@@ -37,9 +37,13 @@ public class LoginControlador implements ActionListener {
                 login.getPanelCarregar().setVisible(true);
                 
                 new Thread(() -> {
-                    limparCampo();
-                    login.setVisible(false);
-                    new Dashboard().setVisible(true);
+                    try {
+                        Thread.sleep(2000);
+                        limparCampo();
+                        login.setVisible(false);
+                        new Dashboard().setVisible(true);
+                    } catch (Exception e) {
+                    }
                 }).start();
                 
             } else {
