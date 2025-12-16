@@ -8,8 +8,6 @@ public class Dashboard extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
     
     private FormularioPrincipal formularioPrincipal;
-    private FormularioUsuario formularioUsuario;
-    private int menuSelecionadoIndex = 0;
 
     public Dashboard() {
         initComponents();
@@ -17,25 +15,11 @@ public class Dashboard extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
         inicializarFormulario();
         
-        menu1.addEventoMenu(e -> {
-            menuSelecionadoIndex = e;
-            
-            switch(e) {
-                case 0 -> {setForm(formularioPrincipal);}
-                case 1 -> {}
-                case 2 -> {}
-                case 3 -> {}
-                case 4 -> {}
-                case 5 -> {setForm(formularioUsuario);}
-            }
-        });
-        
         setForm(formularioPrincipal);
     }
     
     private void inicializarFormulario() {
         formularioPrincipal = new FormularioPrincipal();
-        formularioUsuario = new FormularioUsuario();
     }
     
     private void setForm(JComponent component) {

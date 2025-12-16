@@ -1,7 +1,6 @@
 
 package com.jotadev.gestao.vendas.visual.componentes;
 
-import com.jotadev.gestao.vendas.visual.evento.EventoMenuSelecionado;
 import com.jotadev.gestao.vendas.visual.modelo.MenuModelo;
 import static com.jotadev.gestao.vendas.visual.modelo.MenuModelo.TipoMenu.MENU;
 import static com.jotadev.gestao.vendas.visual.modelo.MenuModelo.TipoMenu.TITULO;
@@ -13,18 +12,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 public class Menu extends javax.swing.JPanel {
-    
-    private EventoMenuSelecionado evento;
 
     public Menu() {
         initComponents();
         setOpaque(false);
         listaMenu1.setOpaque(false);
         inicializarMenu();
-    }
-    
-    public void addEventoMenu(EventoMenuSelecionado evento) {
-        this.listaMenu1.addEventoMenu(evento);
     }
     
     private void inicializarMenu() {
