@@ -1,5 +1,6 @@
 package com.jotadev.gestao.vendas.visual.componentes;
 
+import com.jotadev.gestao.vendas.visual.evento.EventoMenuSelecionado;
 import com.jotadev.gestao.vendas.visual.modelo.MenuModelo;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -16,6 +17,7 @@ public class ListaMenu<E extends Object> extends JList<E> {
     private DefaultListModel model;
     private int selecionadoIndex = -1;
     private int hoverIndex = -1;
+    private EventoMenuSelecionado evento;
     
     public ListaMenu() {
         setOpaque(false);
@@ -35,6 +37,9 @@ public class ListaMenu<E extends Object> extends JList<E> {
                         
                         if (menuModelo.getTipoMenu() == MenuModelo.TipoMenu.MENU) {
                             selecionadoIndex = index;
+                            if (evento != null) {
+                                evento.selecionado(index);
+                            }
                             
                         }
                     }
@@ -98,5 +103,9 @@ public class ListaMenu<E extends Object> extends JList<E> {
         if (menuModelo.getNome().equals("Dashboard")) {
             selecionadoIndex = 0;
         }
+    }
+    
+    public void addEventoMenu(EventoMenuSelecionado evento) {
+        this.evento = evento;
     }
 }
