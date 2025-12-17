@@ -43,4 +43,15 @@ public class UsuarioServico {
     public Optional<Usuario> buscarPeloId(Long id) {
         return usuarioRepositorio.buscarPeloId(id);
     }
+    
+    public boolean salvar(Usuario usuario) {
+        
+        usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
+        
+        return usuarioRepositorio.salvar(usuario);
+    }
+    
+    public boolean remover(Long id) {
+        return usuarioRepositorio.removerPeloId(id);
+    }
 }

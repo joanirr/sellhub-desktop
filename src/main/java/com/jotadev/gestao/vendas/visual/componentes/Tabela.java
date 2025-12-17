@@ -31,6 +31,8 @@ public class Tabela extends JTable {
                 } else {
                     component.setForeground(new Color(102, 102, 102));
                 }
+                
+                component.setBackground(Color.WHITE);
                 return component;
             }
             

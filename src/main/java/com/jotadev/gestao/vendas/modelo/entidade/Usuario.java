@@ -17,6 +17,7 @@ public class Usuario {
     private String email;
     private String senha;
     private String perfil;
+    private String foto;
     private Boolean estado;
     private LocalDateTime dataCriacao;
     private LocalDateTime ultimoLogin;
