@@ -2,6 +2,7 @@ package com.jotadev.gestao.vendas.modelo.servico;
 
 import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import com.jotadev.gestao.vendas.modelo.repositorio.impl.UsuarioRepositorioImpl;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,5 +34,13 @@ public class UsuarioServico {
     
     public boolean validaSenha(String senhaInserida, String senhaUsuario) {
         return new BCryptPasswordEncoder().matches(senhaInserida, senhaUsuario);
+    }
+    
+    public List<Usuario> buscarTodos() {
+        return usuarioRepositorio.buscarTodos();
+    }
+    
+    public Optional<Usuario> buscarPeloId(Long id) {
+        return usuarioRepositorio.buscarPeloId(id);
     }
 }

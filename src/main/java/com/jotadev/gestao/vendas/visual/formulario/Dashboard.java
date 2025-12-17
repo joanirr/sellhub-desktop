@@ -21,12 +21,12 @@ public class Dashboard extends javax.swing.JFrame {
             menuSelecionadoIndex = e;
             
             switch(e) {
-                case 0 -> {setForm(formularioPrincipal);}
+                case 0 -> { setForm(formularioPrincipal); }
                 case 1 -> {}
                 case 2 -> {}
                 case 3 -> {}
                 case 4 -> {}
-                case 5 -> {setForm(formularioUsuario);}
+                case 5 -> { setForm(formularioUsuario); }
             }
         });
         

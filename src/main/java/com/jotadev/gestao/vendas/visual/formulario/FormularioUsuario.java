@@ -1,27 +1,210 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.jotadev.gestao.vendas.visual.formulario;
 
-/**
- *
- * @author Joanir
- */
-public class FormularioUsuario extends javax.swing.JPanel {
+import com.jotadev.gestao.vendas.controlador.FormularioUsuarioController;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
-    /**
-     * Creates new form FormularioUsuario
-     */
+public class FormularioUsuario extends javax.swing.JPanel {
+    
+    private FormularioUsuarioController formularioUsuarioController;
+
     public FormularioUsuario() {
         initComponents();
+        
+        setOpaque(false);
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        
+        formularioUsuarioController = new FormularioUsuarioController(this);
+        eventoDosBotoes();
+    }
+    
+    private void eventoDosBotoes() {
+        botaoAtualizar.addActionListener(formularioUsuarioController);
+        botaoAdicionar.addActionListener(formularioUsuarioController);
+        botaoSelecionarArquivo.addActionListener(formularioUsuarioController);
+        botaoImprimir.addActionListener(formularioUsuarioController);
+        botaoPermissoes.addActionListener(formularioUsuarioController);
+        botaoRemover.addActionListener(formularioUsuarioController);
+        botaoUsuarioCadastro.addActionListener(formularioUsuarioController);
+        botaoUsuarioPermissao.addActionListener(formularioUsuarioController);
+    }
+    
+    public JTable getTabelaUsuarios() {
+        return tabelaUsuarios;
+    }
+    
+    public JButton getBotaoAdicionar() {
+        return botaoAdicionar;
+    }
+    
+     public JButton getBotaoAtualizar() {
+        return botaoAtualizar;
+    }
+     
+    public JButton getBotaoRemover() {
+        return botaoRemover;
+    }
+      
+    public JButton getBotaoPermissoes() {
+        return botaoPermissoes;
+    }
+       
+    public JButton getBotaoImprimir() {
+        return botaoImprimir;
+    }
+    
+    public JButton getBotaoSelecionarArquivo() {
+        return botaoSelecionarArquivo;
+    }
+    
+    public JButton getBotaoSalvarUsuario() {
+        return botaoUsuarioCadastro;
+    }
+    
+    public JButton getBotaoSalvarPermissao() {
+        return botaoUsuarioPermissao;
+    }
+    
+    public JLabel getLabelTitulo() {
+        return labelTitulo;
+    }
+    
+    public JLabel getLabelPermissaoUsuario() {
+        return labelPermissaoUsuario;
+    }
+    
+    public JLabel getLabelMensagem() {
+        return labelMensagem;
+    }
+    
+    public JTextField getTxtNome() {
+        return txtNome;
+    }
+    
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+    
+    public JTextField getTxtSenha() {
+        return txtSenha;
+    }
+    
+    public JTextField getTxtFoto() {
+        return txtFoto;
+    }
+    
+    public JComboBox getComboPerfil() {
+        return comboPerfil;
+    }
+    
+    public JRadioButton getRadioAtivo() {
+        return radioAtivo;
+    }
+    
+    public JRadioButton getRadioInativo() {
+        return radioInativo;
+    }
+    
+    public List<JCheckBox> listaChecks() {
+        List<JCheckBox> lista = new ArrayList<>();
+        
+        lista.add(jCheckBox1);
+        lista.add(jCheckBox2);
+        lista.add(jCheckBox3);
+        lista.add(jCheckBox4);
+        lista.add(jCheckBox5);
+        lista.add(jCheckBox6);
+        lista.add(jCheckBox7);
+        lista.add(jCheckBox8);
+        lista.add(jCheckBox9);
+        lista.add(jCheckBox10);
+        lista.add(jCheckBox11);
+        lista.add(jCheckBox12);
+        lista.add(jCheckBox13);
+        lista.add(jCheckBox14);
+        lista.add(jCheckBox15);
+        lista.add(jCheckBox16);
+        lista.add(jCheckBox17);
+        
+        return lista;
+    }
+    
+    public JCheckBox getCheckBox1() {
+        return jCheckBox1;
+    }
+    
+    public JCheckBox getCheckBox2() {
+        return jCheckBox2;
+    }
+    
+    public JCheckBox getCheckBox3() {
+        return jCheckBox3;
+    }
+    
+    public JCheckBox getCheckBox4() {
+        return jCheckBox4;
+    }
+    
+    public JCheckBox getCheckBox5() {
+        return jCheckBox5;
+    }
+    
+    public JCheckBox getCheckBox6() {
+        return jCheckBox6;
+    }
+    
+    public JCheckBox getCheckBox7() {
+        return jCheckBox7;
+    }
+    
+    public JCheckBox getCheckBox8() {
+        return jCheckBox8;
+    }
+    
+    public JCheckBox getCheckBox9() {
+        return jCheckBox9;
+    }
+    
+    public JCheckBox getCheckBox10() {
+        return jCheckBox10;
+    }
+    
+    public JCheckBox getCheckBox11() {
+        return jCheckBox11;
+    }
+    
+    public JCheckBox getCheckBox12() {
+        return jCheckBox12;
+    }
+    
+    public JCheckBox getCheckBox13() {
+        return jCheckBox13;
+    }
+    
+    public JCheckBox getCheckBox14() {
+        return jCheckBox14;
+    }
+    
+    public JCheckBox getCheckBox15() {
+        return jCheckBox15;
+    }
+    
+    public JCheckBox getCheckBox16() {
+        return jCheckBox16;
+    }
+    
+    public JCheckBox getCheckBox17() {
+        return jCheckBox17;
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,13 +224,13 @@ public class FormularioUsuario extends javax.swing.JPanel {
         txtSenha = new javax.swing.JTextField();
         comboPerfil = new javax.swing.JComboBox<>();
         txtFoto = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        botaoSelecionarArquivo = new javax.swing.JButton();
         radioAtivo = new javax.swing.JRadioButton();
         radioInativo = new javax.swing.JRadioButton();
         botaoUsuarioCadastro = new javax.swing.JButton();
         jDialog2 = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        labelPermissaoUsuario = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
@@ -80,13 +263,13 @@ public class FormularioUsuario extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        botaoAdicionar = new javax.swing.JButton();
+        botaoAtualizar = new javax.swing.JButton();
+        botaoRemover = new javax.swing.JButton();
+        botaoPermissoes = new javax.swing.JButton();
+        botaoImprimir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabela1 = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
+        tabelaUsuarios = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,10 +326,10 @@ public class FormularioUsuario extends javax.swing.JPanel {
         txtFoto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
         txtFoto.setEnabled(false);
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Selecione");
-        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
+        botaoSelecionarArquivo.setBackground(new java.awt.Color(255, 255, 255));
+        botaoSelecionarArquivo.setForeground(new java.awt.Color(0, 0, 0));
+        botaoSelecionarArquivo.setText("Selecione");
+        botaoSelecionarArquivo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
         buttonGroup1.add(radioAtivo);
         radioAtivo.setSelected(true);
@@ -182,7 +365,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(radioAtivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -223,7 +406,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel8)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,11 +432,11 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(238, 238, 238));
         jPanel3.setForeground(new java.awt.Color(244, 244, 244));
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Joanir Rodrigo");
+        labelPermissaoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        labelPermissaoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
+        labelPermissaoUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        labelPermissaoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelPermissaoUsuario.setText("Joanir Rodrigo");
 
         jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox1.setText("Salvar");
@@ -266,45 +449,58 @@ public class FormularioUsuario extends javax.swing.JPanel {
 
         jCheckBox3.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox3.setText("Buscar todos");
+        jCheckBox3.setName("usuario:buscar_todos"); // NOI18N
 
         jCheckBox4.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox4.setText("Remover");
+        jCheckBox4.setName("usuario:remover"); // NOI18N
 
         jCheckBox5.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox5.setText("Todos os históricos");
+        jCheckBox5.setName("estoque:todos_historicos"); // NOI18N
 
         jCheckBox6.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox6.setText("Remover");
+        jCheckBox6.setName("estoque:remover"); // NOI18N
         jCheckBox6.addActionListener(this::jCheckBox6ActionPerformed);
 
         jCheckBox7.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox7.setText("Salvar");
+        jCheckBox7.setName("estoque:salvar"); // NOI18N
 
         jCheckBox8.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox8.setText("Somente seu historico");
+        jCheckBox8.setName("estoque:seu_historico"); // NOI18N
 
         jCheckBox9.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox9.setText("Salvar");
+        jCheckBox9.setName("produto:salvar"); // NOI18N
 
         jCheckBox10.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox10.setText("Remover");
+        jCheckBox10.setName("produto:remover"); // NOI18N
         jCheckBox10.addActionListener(this::jCheckBox10ActionPerformed);
 
         jCheckBox11.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox11.setText("Salvar");
+        jCheckBox11.setName("categoria:salvar"); // NOI18N
 
         jCheckBox12.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox12.setText("Remover");
+        jCheckBox12.setName("categoria:remover"); // NOI18N
 
         jCheckBox13.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox13.setText("Salvar");
+        jCheckBox13.setName("venda:salvar"); // NOI18N
         jCheckBox13.addActionListener(this::jCheckBox13ActionPerformed);
 
         jCheckBox16.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox16.setText("Salvar");
+        jCheckBox16.setName("permissao:salvar"); // NOI18N
 
         jCheckBox17.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox17.setText("Remover");
+        jCheckBox17.setName("cliente:remover"); // NOI18N
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
@@ -354,9 +550,11 @@ public class FormularioUsuario extends javax.swing.JPanel {
 
         jCheckBox14.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox14.setText("Atualizar");
+        jCheckBox14.setName("venda:atualizar"); // NOI18N
 
         jCheckBox15.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox15.setText("Remover");
+        jCheckBox15.setName("venda:remover"); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -413,7 +611,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
                         .addGap(50, 50, 50)
                         .addComponent(jCheckBox17))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(labelPermissaoUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
@@ -424,8 +622,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelPermissaoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
@@ -488,7 +685,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
                 .addComponent(jCheckBox17)
                 .addGap(18, 18, 18)
                 .addComponent(botaoUsuarioPermissao, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
@@ -508,40 +705,45 @@ public class FormularioUsuario extends javax.swing.JPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 70));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1);
+        botaoAdicionar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoAdicionar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAdicionar.setText("Adicionar");
+        botaoAdicionar.setName("adicionar"); // NOI18N
+        botaoAdicionar.addActionListener(this::botaoAdicionarActionPerformed);
+        jPanel1.add(botaoAdicionar);
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 70));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Atualizar");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        jPanel1.add(jButton2);
+        botaoAtualizar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botaoAtualizar.setText("Atualizar");
+        botaoAtualizar.setName("atualizar"); // NOI18N
+        botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
+        jPanel1.add(botaoAtualizar);
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 70));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Remover");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
-        jPanel1.add(jButton3);
+        botaoRemover.setBackground(new java.awt.Color(0, 0, 70));
+        botaoRemover.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
+        botaoRemover.setText("Remover");
+        botaoRemover.setName("remover"); // NOI18N
+        botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
+        jPanel1.add(botaoRemover);
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 70));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Permissões");
-        jPanel1.add(jButton4);
+        botaoPermissoes.setBackground(new java.awt.Color(0, 0, 70));
+        botaoPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoPermissoes.setForeground(new java.awt.Color(255, 255, 255));
+        botaoPermissoes.setText("Permissões");
+        botaoPermissoes.setName("permissoes"); // NOI18N
+        jPanel1.add(botaoPermissoes);
 
-        jButton5.setBackground(new java.awt.Color(0, 0, 70));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Imprimir");
-        jPanel1.add(jButton5);
+        botaoImprimir.setBackground(new java.awt.Color(0, 0, 70));
+        botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
+        botaoImprimir.setText("Imprimir");
+        botaoImprimir.setName("imprimir"); // NOI18N
+        jPanel1.add(botaoImprimir);
 
-        tabela1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -549,7 +751,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabela1);
+        jScrollPane1.setViewportView(tabelaUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -579,17 +781,17 @@ public class FormularioUsuario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botaoAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botaoAdicionarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botaoAtualizarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_botaoRemoverActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
@@ -617,17 +819,17 @@ public class FormularioUsuario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAdicionar;
+    private javax.swing.JButton botaoAtualizar;
+    private javax.swing.JButton botaoImprimir;
+    private javax.swing.JButton botaoPermissoes;
+    private javax.swing.JButton botaoRemover;
+    private javax.swing.JButton botaoSelecionarArquivo;
     private javax.swing.JButton botaoUsuarioCadastro;
     private javax.swing.JButton botaoUsuarioPermissao;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboPerfil;
     private javax.swing.JDialog dialogUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -647,7 +849,6 @@ public class FormularioUsuario extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -670,10 +871,11 @@ public class FormularioUsuario extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel labelMensagem;
+    private javax.swing.JLabel labelPermissaoUsuario;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JRadioButton radioAtivo;
     private javax.swing.JRadioButton radioInativo;
-    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabela1;
+    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabelaUsuarios;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFoto;
     private javax.swing.JTextField txtNome;

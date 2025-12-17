@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="dialogUsuario">
 
@@ -44,7 +44,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="txtFoto" min="-2" pref="132" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton6" pref="106" max="32767" attributes="0"/>
+                              <Component id="botaoSelecionarArquivo" pref="106" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="radioAtivo" min="-2" max="-2" attributes="0"/>
@@ -95,7 +95,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="botaoSelecionarArquivo" min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                           <Component id="txtFoto" min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
@@ -305,7 +305,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton6">
+            <Component class="javax.swing.JButton" name="botaoSelecionarArquivo">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -463,7 +463,7 @@
                               <Component id="jCheckBox17" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel10" alignment="0" pref="494" max="32767" attributes="0"/>
+                          <Component id="labelPermissaoUsuario" alignment="0" pref="494" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
@@ -479,8 +479,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel10" min="-2" pref="43" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelPermissaoUsuario" min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -554,13 +553,13 @@
                       <Component id="jCheckBox17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botaoUsuarioPermissao" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="labelPermissaoUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -602,6 +601,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar todos"/>
+                <Property name="name" type="java.lang.String" value="usuario:buscar_todos" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox4">
@@ -610,6 +610,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="usuario:remover" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox5">
@@ -618,6 +619,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Todos os hist&#xf3;ricos"/>
+                <Property name="name" type="java.lang.String" value="estoque:todos_historicos" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox6">
@@ -626,6 +628,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="estoque:remover" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox6ActionPerformed"/>
@@ -637,6 +640,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="estoque:salvar" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox8">
@@ -645,6 +649,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Somente seu historico"/>
+                <Property name="name" type="java.lang.String" value="estoque:seu_historico" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox9">
@@ -653,6 +658,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="produto:salvar" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox10">
@@ -661,6 +667,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="produto:remover" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox10ActionPerformed"/>
@@ -672,6 +679,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="categoria:salvar" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox12">
@@ -680,6 +688,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="categoria:remover" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox13">
@@ -688,6 +697,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="venda:salvar" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox13ActionPerformed"/>
@@ -699,6 +709,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="name" type="java.lang.String" value="permissao:salvar" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox17">
@@ -707,6 +718,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="cliente:remover" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -849,6 +861,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Atualizar"/>
+                <Property name="name" type="java.lang.String" value="venda:atualizar" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox15">
@@ -857,6 +870,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
+                <Property name="name" type="java.lang.String" value="venda:remover" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -930,7 +944,7 @@
         <Property name="rows" type="int" value="1"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="botaoAdicionar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="46" green="0" red="0" type="rgb"/>
@@ -942,12 +956,13 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
+            <Property name="name" type="java.lang.String" value="adicionar" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="botaoAtualizar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="46" green="0" red="0" type="rgb"/>
@@ -959,12 +974,13 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="name" type="java.lang.String" value="atualizar" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAtualizarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="botaoRemover">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="46" green="0" red="0" type="rgb"/>
@@ -976,12 +992,13 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="name" type="java.lang.String" value="remover" noResource="true"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRemoverActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="botaoPermissoes">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="46" green="0" red="0" type="rgb"/>
@@ -993,9 +1010,10 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Permiss&#xf5;es"/>
+            <Property name="name" type="java.lang.String" value="permissoes" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton5">
+        <Component class="javax.swing.JButton" name="botaoImprimir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="46" green="0" red="0" type="rgb"/>
@@ -1007,6 +1025,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
+            <Property name="name" type="java.lang.String" value="imprimir" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -1018,7 +1037,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="com.jotadev.gestao.vendas.visual.componentes.Tabela" name="tabela1">
+        <Component class="com.jotadev.gestao.vendas.visual.componentes.Tabela" name="tabelaUsuarios">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
