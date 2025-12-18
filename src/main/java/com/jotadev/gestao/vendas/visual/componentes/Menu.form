@@ -23,7 +23,7 @@
               <Component id="imageAvatar1" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
-          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+          <Component id="labelNomeUsuario" alignment="0" max="32767" attributes="0"/>
           <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
           <Component id="listaMenu1" alignment="1" max="32767" attributes="0"/>
       </Group>
@@ -37,7 +37,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="imageAvatar1" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="labelNomeUsuario" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -81,7 +81,7 @@
       <Properties>
         <Property name="borderSize" type="int" value="0"/>
         <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\fotogithub.jpg"/>
+          <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\avatar.png"/>
         </Property>
       </Properties>
 
@@ -89,7 +89,7 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="labelNomeUsuario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>

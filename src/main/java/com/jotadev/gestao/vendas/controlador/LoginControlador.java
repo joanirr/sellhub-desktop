@@ -1,11 +1,13 @@
 package com.jotadev.gestao.vendas.controlador;
 
+import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import com.jotadev.gestao.vendas.modelo.servico.UsuarioServico;
 import com.jotadev.gestao.vendas.visual.componentes.Mensagem;
 import com.jotadev.gestao.vendas.visual.formulario.Dashboard;
 import com.jotadev.gestao.vendas.visual.formulario.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Optional;
 
 public class LoginControlador implements ActionListener {
     
@@ -35,13 +37,14 @@ public class LoginControlador implements ActionListener {
             if (mensagem.startsWith("Email e Senha")) {
                 login.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
                 login.getPanelCarregar().setVisible(true);
+                Optional<Object> usuario = usuarioServico.buscarPeloEmail(email);
                 
                 new Thread(() -> {
                     try {
                         Thread.sleep(2000);
                         limparCampo();
                         login.setVisible(false);
-                        new Dashboard().setVisible(true);
+                        new Dashboard((Usuario) usuario.get()).setVisible(true);
                     } catch (Exception e) {
                     }
                 }).start();

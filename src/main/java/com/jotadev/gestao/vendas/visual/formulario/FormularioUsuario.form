@@ -760,7 +760,12 @@
                   <Font name="Segoe UI" size="17" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
+                <Property name="actionCommand" type="java.lang.String" value="salvarpermissao"/>
+                <Property name="name" type="java.lang.String" value="salvarpermissao" noResource="true"/>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="salvarpermissao"/>
+              </AccessibilityProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoUsuarioPermissaoActionPerformed"/>
               </Events>
@@ -920,8 +925,12 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Permiss&#xf5;es"/>
+            <Property name="actionCommand" type="java.lang.String" value="permissoes"/>
             <Property name="name" type="java.lang.String" value="permissoes" noResource="true"/>
           </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="permissoes"/>
+          </AccessibilityProperties>
         </Component>
         <Component class="javax.swing.JButton" name="botaoImprimir">
           <Properties>

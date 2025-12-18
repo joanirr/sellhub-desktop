@@ -1,6 +1,7 @@
 
 package com.jotadev.gestao.vendas.visual.componentes;
 
+import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import com.jotadev.gestao.vendas.visual.evento.EventoMenuSelecionado;
 import com.jotadev.gestao.vendas.visual.modelo.MenuModelo;
 import static com.jotadev.gestao.vendas.visual.modelo.MenuModelo.TipoMenu.MENU;
@@ -11,6 +12,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.io.File;
+import javax.swing.ImageIcon;
 
 public class Menu extends javax.swing.JPanel {
     
@@ -42,6 +45,22 @@ public class Menu extends javax.swing.JPanel {
         listaMenu1.adicionarItem(new MenuModelo("9", "Fale conosco", MENU));
         listaMenu1.adicionarItem(new MenuModelo("10", "Sair", MENU));
     }
+    
+    public void inicializarFotoDoPerfil(Usuario usuario) {
+        labelNomeUsuario.setText(usuario.getNome());
+        
+        if (usuario.getFoto() != null) {
+            try {
+                File file = new File (usuario.getFoto());
+                if (file.isFile()) {
+                    ImageIcon icon = new ImageIcon(file.getAbsolutePath());
+                    imageAvatar1.setImage(icon);
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao carregar foto do usuário.");
+            }
+        }
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -67,7 +86,7 @@ public class Menu extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         imageAvatar1 = new com.jotadev.gestao.vendas.visual.componentes.ImageAvatar();
-        jLabel2 = new javax.swing.JLabel();
+        labelNomeUsuario = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         listaMenu1 = new com.jotadev.gestao.vendas.visual.componentes.ListaMenu<>();
 
@@ -88,12 +107,12 @@ public class Menu extends javax.swing.JPanel {
         );
 
         imageAvatar1.setBorderSize(0);
-        imageAvatar1.setImage(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\fotogithub.jpg")); // NOI18N
+        imageAvatar1.setImage(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\avatar.png")); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Joanir Rodrigo");
+        labelNomeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        labelNomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        labelNomeUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNomeUsuario.setText("Joanir Rodrigo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -105,7 +124,7 @@ public class Menu extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator2)
             .addComponent(listaMenu1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -118,7 +137,7 @@ public class Menu extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(labelNomeUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -130,10 +149,10 @@ public class Menu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jotadev.gestao.vendas.visual.componentes.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelNomeUsuario;
     private com.jotadev.gestao.vendas.visual.componentes.ListaMenu<String> listaMenu1;
     // End of variables declaration//GEN-END:variables
 }

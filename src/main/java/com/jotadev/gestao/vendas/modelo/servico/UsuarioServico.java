@@ -16,7 +16,7 @@ public class UsuarioServico {
     }
     
     public String login(String email, String senha) {
-        Optional usuarioOptional = usuarioRepositorio.buscarPeloEmail(email);
+        Optional usuarioOptional = buscarPeloEmail(email);
         
         if (usuarioOptional.isPresent()) {
             Usuario usuario = (Usuario) usuarioOptional.get();
@@ -42,6 +42,10 @@ public class UsuarioServico {
     
     public Optional<Usuario> buscarPeloId(Long id) {
         return usuarioRepositorio.buscarPeloId(id);
+    }
+    
+    public Optional<Object> buscarPeloEmail(String email) {
+        return usuarioRepositorio.buscarPeloEmail(email);
     }
     
     public boolean salvar(Usuario usuario) {

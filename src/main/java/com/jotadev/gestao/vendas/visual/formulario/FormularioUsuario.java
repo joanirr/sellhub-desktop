@@ -16,8 +16,9 @@ import javax.swing.JTextField;
 public class FormularioUsuario extends javax.swing.JPanel {
     
     private FormularioUsuarioController formularioUsuarioController;
+    private Long usuarioId;
 
-    public FormularioUsuario() {
+    public FormularioUsuario(Long usuarioId) {
         initComponents();
         
         setOpaque(false);
@@ -25,9 +26,16 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jDialog2.setResizable(false);
         dialogUsuario.setResizable(false);
         txtFoto.setColumns(15);
+        
+        this.usuarioId = usuarioId;
+        
         formularioUsuarioController = new FormularioUsuarioController(this);
         eventoDosBotoes();
         eventoDoMouse();
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
     }
     
     private void eventoDosBotoes() {
@@ -548,6 +556,8 @@ public class FormularioUsuario extends javax.swing.JPanel {
 
         botaoUsuarioPermissao.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         botaoUsuarioPermissao.setText("Salvar");
+        botaoUsuarioPermissao.setActionCommand("salvarpermissao");
+        botaoUsuarioPermissao.setName("salvarpermissao"); // NOI18N
         botaoUsuarioPermissao.addActionListener(this::botaoUsuarioPermissaoActionPerformed);
 
         jCheckBox14.setForeground(new java.awt.Color(0, 0, 0));
@@ -690,6 +700,8 @@ public class FormularioUsuario extends javax.swing.JPanel {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
+        botaoUsuarioPermissao.getAccessibleContext().setAccessibleName("salvarpermissao");
+
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
@@ -735,8 +747,10 @@ public class FormularioUsuario extends javax.swing.JPanel {
         botaoPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoPermissoes.setForeground(new java.awt.Color(255, 255, 255));
         botaoPermissoes.setText("Permissões");
+        botaoPermissoes.setActionCommand("permissoes");
         botaoPermissoes.setName("permissoes"); // NOI18N
         jPanel1.add(botaoPermissoes);
+        botaoPermissoes.getAccessibleContext().setAccessibleName("permissoes");
 
         botaoImprimir.setBackground(new java.awt.Color(0, 0, 70));
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

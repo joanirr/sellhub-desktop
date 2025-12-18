@@ -1,5 +1,6 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
+import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -11,11 +12,16 @@ public class Dashboard extends javax.swing.JFrame {
     private FormularioUsuario formularioUsuario;
     private int menuSelecionadoIndex = 0;
 
-    public Dashboard() {
+    public Dashboard(Usuario usuario) {
         initComponents();
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
-        inicializarFormulario();
+        
+        if (usuario == null) {
+            throw new RuntimeException("Erro ao inicializar o sistema: não há usuário logado.");
+        }
+        
+        inicializarFormulario(usuario.getId());
         
         menu1.addEventoMenu(e -> {
             menuSelecionadoIndex = e;
@@ -27,15 +33,18 @@ public class Dashboard extends javax.swing.JFrame {
                 case 3 -> {}
                 case 4 -> {}
                 case 5 -> { setForm(formularioUsuario); }
+                case 11 -> System.exit(0);
             }
         });
         
         setForm(formularioPrincipal);
+        
+        menu1.inicializarFotoDoPerfil(usuario);
     }
     
-    private void inicializarFormulario() {
+    private void inicializarFormulario(Long usuarioId) {
         formularioPrincipal = new FormularioPrincipal();
-        formularioUsuario = new FormularioUsuario();
+        formularioUsuario = new FormularioUsuario(usuarioId);
     }
     
     private void setForm(JComponent component) {
@@ -100,30 +109,30 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            logger.log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> new Dashboard().setVisible(true));
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jotadev.gestao.vendas.visual.componentes.Cabecalho cabecalho1;
