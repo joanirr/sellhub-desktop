@@ -46,10 +46,10 @@ public class Dashboard extends javax.swing.JFrame {
     private void inicializarFormulario(Long usuarioId) {
         formularioPrincipal = new FormularioPrincipal();
         formularioUsuario = new FormularioUsuario(usuarioId);
-        formularioProduto = new FormularioProduto(usuarioId);
+        formularioProduto = new FormularioProduto(usuarioId, this);
     }
     
-    private void setForm(JComponent component) {
+    public void setForm(JComponent component) {
         panelPrincipal.removeAll();
         panelPrincipal.add(component);
         panelPrincipal.repaint();

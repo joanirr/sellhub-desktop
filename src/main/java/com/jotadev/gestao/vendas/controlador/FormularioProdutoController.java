@@ -27,7 +27,15 @@ public class FormularioProdutoController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+       String acao = e.getActionCommand().toLowerCase();
        
+       switch(acao) {
+           case "adicionar" -> { mostrarTelaDeCadastroProdutoCategoria(); }
+       }
+    }
+    
+    public void mostrarTelaDeCadastroProdutoCategoria() {
+        formularioProduto.getDashboard().setForm(formularioProduto.getTela());
     }
  
 }

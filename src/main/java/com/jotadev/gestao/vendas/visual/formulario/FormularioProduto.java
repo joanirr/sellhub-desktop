@@ -1,6 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.FormularioProdutoController;
+import com.jotadev.gestao.vendas.visual.formulario.produto.Tela;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -8,19 +9,31 @@ import javax.swing.JTable;
 public class FormularioProduto extends javax.swing.JPanel {
     
     private FormularioProdutoController formularioProdutoController;
+    private Dashboard dashboard;
+    private Tela tela;
     private Long usuarioId;
 
-    public FormularioProduto(Long usuarioId) {
+    public FormularioProduto(Long usuarioId, Dashboard dashboard) {
         initComponents();
         
         setOpaque(false);
         jScrollPane1.getViewport().setBackground(Color.WHITE);
         
         this.usuarioId = usuarioId;
+        this.dashboard = dashboard;
         
         formularioProdutoController = new FormularioProdutoController(this);
+        tela = new Tela();
         eventoDosBotoes();
         eventoDoMouse();
+    }
+    
+    public Tela getTela() {
+        return tela;
+    }
+    
+    public Dashboard getDashboard() {
+        return dashboard;
     }
 
     public Long getUsuarioId() {
