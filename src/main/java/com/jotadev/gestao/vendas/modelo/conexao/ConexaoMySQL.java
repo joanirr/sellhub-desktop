@@ -11,7 +11,7 @@ public class ConexaoMySQL {
     private static final String PASSWORD = "@Joanir123";
     private static Connection connection;
     
-    private ConexaoMySQL() {}
+    public ConexaoMySQL() {}
     
     public static Connection obterConexao() throws SQLException {
         if (connection == null) {
