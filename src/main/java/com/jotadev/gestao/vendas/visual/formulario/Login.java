@@ -1,7 +1,6 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.LoginControlador;
-import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeSenha;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
@@ -10,7 +9,6 @@ import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;

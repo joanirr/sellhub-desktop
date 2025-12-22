@@ -7,7 +7,6 @@ import com.jotadev.gestao.vendas.modelo.servico.PermissaoServico;
 import com.jotadev.gestao.vendas.modelo.servico.UsuarioServico;
 import com.jotadev.gestao.vendas.visual.formulario.FormularioUsuario;
 import com.jotadev.gestao.vendas.visual.modelo.TabelaModeloUsuario;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

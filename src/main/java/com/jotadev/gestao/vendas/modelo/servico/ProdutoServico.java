@@ -40,4 +40,16 @@ public class ProdutoServico {
         }
         return produtosDto;
     }
+
+    public String salvar(Produto produto) {
+        boolean resultado = produtoRepositorioImpl.salvar(produto);
+        
+        if (resultado) return "Produto salvo com sucesso!";
+        
+        return "Erro ao salvar o produto.";
+    }
+
+    public void remover(Long produtoId) {
+        produtoRepositorioImpl.removerPeloId(produtoId);
+    }
 }

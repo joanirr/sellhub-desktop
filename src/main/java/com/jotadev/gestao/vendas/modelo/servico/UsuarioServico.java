@@ -25,7 +25,7 @@ public class UsuarioServico {
                 if (!usuario.getEstado())
                     return "Usuario bloqueado. Validar com o admin.";
                 
-                return "Email e Senha correto";
+                return "Iniciando login...";
                 }
             return "Email ou Senha incorreta.";
         }

@@ -1,6 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario.produto;
 
 import com.jotadev.gestao.vendas.visual.componentes.BotaoContorno;
+import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -28,12 +29,16 @@ public class Capa extends javax.swing.JPanel {
     private ActionListener actionListener;
     private DecimalFormat decimalFormat = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private MigLayout layout;
+    private FormularioProduto formularioProduto;
     
-    public Capa() {
+    
+    public Capa(FormularioProduto formularioProduto) {
         initComponents();
         setOpaque(false);
         layout = new MigLayout("wrap, fill", "[center]", "push[]25[]10[]25[]push");
         setLayout(layout);
+        
+        this.formularioProduto = formularioProduto;
         inicializacao();
     }
     
@@ -47,6 +52,7 @@ public class Capa extends javax.swing.JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 System.out.println("CLICOU PARA VOLTAR NA TELA DE LISTAGEM DO PRODUTO");
+                formularioProduto.getDashboard().setForm(formularioProduto);
             }
         });
         

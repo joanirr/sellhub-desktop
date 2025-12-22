@@ -1,14 +1,23 @@
 package com.jotadev.gestao.vendas.visual.formulario.produto;
 
+import com.jotadev.gestao.vendas.modelo.entidade.Categoria;
+import com.jotadev.gestao.vendas.modelo.servico.CategoriaServico;
+import com.jotadev.gestao.vendas.visual.componentes.BarraDeRolar;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
 import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
+import com.jotadev.gestao.vendas.visual.componentes.Mensagem;
+import com.jotadev.gestao.vendas.visual.componentes.Tabela;
+import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
 
 public class ProdutoCategoria extends javax.swing.JPanel {
@@ -25,8 +34,12 @@ public class ProdutoCategoria extends javax.swing.JPanel {
     private Botao botaoProduto;
     
     String caminho = "\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\";
+    
+//    private FormularioProdutoController formularioProdutoController;
+    private FormularioProduto formularioProduto;
+    private CategoriaServico categoriaServico;
 
-    public ProdutoCategoria() {
+    public ProdutoCategoria(FormularioProduto formularioProduto) {
         initComponents();
         
         produto.setVisible(true);
@@ -34,6 +47,58 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         
         formularioProduto();
         formularioCategoria();
+        this.formularioProduto = formularioProduto;
+        
+        categoriaServico = new CategoriaServico();
+        preencherComboBoxCategoria();
+        
+        
+        eventoNaTabela();
+        limpar();
+    }
+    
+    public void preencherComboBoxCategoria() {
+        comboBoxCategoriaProduto.removeAllItems();
+        comboBoxCategoriaProduto.addItem("Selecione a categoria.");
+        
+        categoriaServico.buscarTodos()
+                .forEach(c -> comboBoxCategoriaProduto.addItem(c.getNome()));
+    }
+    
+    private void eventoNaTabela() {
+        tabelaCategoria.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int linha = tabelaCategoria.getSelectedRow();
+                int coluna = tabelaCategoria.getSelectedColumn();
+                Categoria categoria = formularioProduto.getFormularioProdutoController().getTabelaModeloCategoria().getCategorias().get(linha);
+                textoNomeCategoria.setText(categoria.getNome());
+                textoDescricaoCategoria.setText(categoria.getDescricao());
+                formularioProduto.getFormularioProdutoController().setCategoriaId(categoria.getId());
+                
+                
+                System.out.println("Coluna: " + coluna);
+                
+                if (coluna == 3) {
+                    int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover\n"
+                            + categoria.getNome() + "?", "Remover categoria.", JOptionPane.YES_NO_OPTION);
+                    
+                    if (confirmar == JOptionPane.YES_OPTION) {
+                        categoriaServico.removerPeloId(categoria.getId());
+                        formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Removido com Sucesso.");
+                        formularioProduto.getFormularioProdutoController().atualizarTabelaCategoria();
+                        formularioProduto.getFormularioProdutoController().limparCamposCategoria();
+                        preencherComboBoxCategoria();
+                    }
+                }
+            }
+        });
+    }
+    
+    private void limpar() {
+        botaoResetCategoria.addActionListener(e -> {
+        formularioProduto.getFormularioProdutoController().limparCamposCategoria();
+        });
     }
     
     private void formularioProduto(){
@@ -61,7 +126,7 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         
         comboBoxCategoriaProduto = new ComboBox();
         comboBoxCategoriaProduto.addItem("Selecione a categoria.");
-        produto.add(textoNomeProduto, "w 60%, h 35");
+        produto.add(comboBoxCategoriaProduto, "w 60%, h 35");
         
         botaoProduto = new Botao();
         botaoProduto.setBackground(new Color(28, 181, 224));
@@ -103,6 +168,10 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         botaoCategoria.setActionCommand("salvarcategoria");
         botaoCategoria.setText("Salvar");
         categoria.add(botaoCategoria, "w 40%, h 40");
+        
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jScrollPane1.setVerticalScrollBar(new BarraDeRolar());
+        categoria.add(jScrollPane1, "w 80%, h 40%");
     }
         
     
@@ -116,6 +185,48 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         }
     }
 
+    public CampoDeTexto getTextoNomeCategoria() {
+        return textoNomeCategoria;
+    }
+
+    public CampoDeTexto getTextoDescricaoCategoria() {
+        return textoDescricaoCategoria;
+    }
+
+    public JButton getBotaoResetCategoria() {
+        return botaoResetCategoria;
+    }
+
+    public Botao getBotaoCategoria() {
+        return botaoCategoria;
+    }
+
+    public CampoDeTexto getTextoNomeProduto() {
+        return textoNomeProduto;
+    }
+
+    public CampoDeTexto getTextoDescricaoProduto() {
+        return textoDescricaoProduto;
+    }
+
+    public CampoDeTexto getTextoPrecoProduto() {
+        return textoPrecoProduto;
+    }
+    
+
+    public ComboBox getComboBoxCategoriaProduto() {
+        return comboBoxCategoriaProduto;
+    }
+
+    public Botao getBotaoProduto() {
+        return botaoProduto;
+    }
+
+    public Tabela getTabelaCategoria() {
+        return tabelaCategoria;
+    }
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -123,6 +234,8 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         background = new javax.swing.JPanel();
         produto = new javax.swing.JPanel();
         categoria = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaCategoria = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
         background.setLayout(new java.awt.CardLayout());
 
@@ -143,15 +256,31 @@ public class ProdutoCategoria extends javax.swing.JPanel {
 
         categoria.setBackground(new java.awt.Color(255, 255, 255));
 
+        tabelaCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaCategoria);
+
         javax.swing.GroupLayout categoriaLayout = new javax.swing.GroupLayout(categoria);
         categoria.setLayout(categoriaLayout);
         categoriaLayout.setHorizontalGroup(
             categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(categoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         categoriaLayout.setVerticalGroup(
             categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(categoriaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         background.add(categoria, "card2");
@@ -172,6 +301,8 @@ public class ProdutoCategoria extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JPanel categoria;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel produto;
+    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabelaCategoria;
     // End of variables declaration//GEN-END:variables
 }

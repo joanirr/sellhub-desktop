@@ -1,5 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario.produto;
 
+import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
+import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -19,12 +21,23 @@ public class Tela extends javax.swing.JPanel {
     private double tamanhoProdutoCategoria = 67;
     private double tamanhoAdicional = 35;
     private DecimalFormat decimalFormat = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
+    private MensagemUtil mensagemUtil;
 
-    public Tela() {
+    public Tela(FormularioProduto formularioProduto) {
         initComponents();
-        capa = new Capa();
-        produtoCategoria = new ProdutoCategoria();
+        capa = new Capa(formularioProduto);
+        produtoCategoria = new ProdutoCategoria(formularioProduto);
         inicializacao();
+        mensagemUtil = new MensagemUtil(background, layout);
+    }
+
+    public MensagemUtil getMensagemUtil() {
+        return mensagemUtil;
+    }
+    
+
+    public ProdutoCategoria getProdutoCategoria() {
+        return produtoCategoria;
     }
     
     private void inicializacao() {

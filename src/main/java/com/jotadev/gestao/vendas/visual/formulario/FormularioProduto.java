@@ -22,10 +22,16 @@ public class FormularioProduto extends javax.swing.JPanel {
         this.usuarioId = usuarioId;
         this.dashboard = dashboard;
         
+        tela = new Tela(this);
         formularioProdutoController = new FormularioProdutoController(this);
-        tela = new Tela();
+        
+        
         eventoDosBotoes();
         eventoDoMouse();
+    }
+    
+    public FormularioProdutoController getFormularioProdutoController() {
+        return formularioProdutoController;
     }
     
     public Tela getTela() {
@@ -48,7 +54,7 @@ public class FormularioProduto extends javax.swing.JPanel {
     }
     
     private void eventoDoMouse() {
-//        tabelaUsuarios.addMouseListener(formularioProdutoController);
+        tabelaProduto.addMouseListener(formularioProdutoController);
     }
     
     public JTable getTabelaProduto() {
@@ -102,6 +108,7 @@ public class FormularioProduto extends javax.swing.JPanel {
         botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
+        botaoAtualizar.setActionCommand("atualizar");
         botaoAtualizar.setName("atualizar"); // NOI18N
         botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
         jPanel1.add(botaoAtualizar);
@@ -110,6 +117,7 @@ public class FormularioProduto extends javax.swing.JPanel {
         botaoRemover.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
         botaoRemover.setText("Remover");
+        botaoRemover.setActionCommand("remover");
         botaoRemover.setName("remover"); // NOI18N
         botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
         jPanel1.add(botaoRemover);
@@ -118,6 +126,7 @@ public class FormularioProduto extends javax.swing.JPanel {
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
         botaoImprimir.setText("Imprimir");
+        botaoImprimir.setActionCommand("imprimir");
         botaoImprimir.setName("imprimir"); // NOI18N
         jPanel1.add(botaoImprimir);
 

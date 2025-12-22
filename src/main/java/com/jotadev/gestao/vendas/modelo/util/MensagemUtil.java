@@ -69,6 +69,7 @@ public class MensagemUtil {
         new Thread(() -> {
             try {
                 Thread.sleep(2000);
+                animacao.start();
             } catch (InterruptedException e) {
                 System.out.println(e);
             }

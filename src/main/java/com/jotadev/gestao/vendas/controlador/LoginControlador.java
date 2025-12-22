@@ -34,7 +34,7 @@ public class LoginControlador implements ActionListener {
             
             String mensagem = usuarioServico.login(email, senha);
             
-            if (mensagem.startsWith("Email e Senha")) {
+            if (mensagem.startsWith("Iniciando")) {
                 login.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
                 login.getPanelCarregar().setVisible(true);
                 Optional<Object> usuario = usuarioServico.buscarPeloEmail(email);

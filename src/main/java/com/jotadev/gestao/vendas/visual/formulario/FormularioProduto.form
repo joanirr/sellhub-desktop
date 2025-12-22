@@ -95,6 +95,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Atualizar"/>
+            <Property name="actionCommand" type="java.lang.String" value="atualizar"/>
             <Property name="name" type="java.lang.String" value="atualizar" noResource="true"/>
           </Properties>
           <Events>
@@ -113,6 +114,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="actionCommand" type="java.lang.String" value="remover"/>
             <Property name="name" type="java.lang.String" value="remover" noResource="true"/>
           </Properties>
           <Events>
@@ -131,6 +133,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imprimir"/>
+            <Property name="actionCommand" type="java.lang.String" value="imprimir"/>
             <Property name="name" type="java.lang.String" value="imprimir" noResource="true"/>
           </Properties>
         </Component>
