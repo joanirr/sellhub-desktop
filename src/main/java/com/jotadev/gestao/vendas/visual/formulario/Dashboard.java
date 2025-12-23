@@ -11,6 +11,8 @@ public class Dashboard extends javax.swing.JFrame {
     private FormularioPrincipal formularioPrincipal;
     private FormularioUsuario formularioUsuario;
     private FormularioProduto formularioProduto;
+    private FormularioEstoque formularioEstoque;
+    
     private int menuSelecionadoIndex = 0;
 
     public Dashboard(Usuario usuario) {
@@ -30,7 +32,7 @@ public class Dashboard extends javax.swing.JFrame {
             switch(e) {
                 case 0 -> { setForm(formularioPrincipal); }
                 case 1 -> { setForm(formularioProduto); }
-                case 2 -> {}
+                case 2 -> { setForm(formularioEstoque); }
                 case 3 -> {}
                 case 4 -> {}
                 case 5 -> { setForm(formularioUsuario); }
@@ -47,6 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         formularioPrincipal = new FormularioPrincipal();
         formularioUsuario = new FormularioUsuario(usuarioId);
         formularioProduto = new FormularioProduto(usuarioId, this);
+        formularioEstoque = new FormularioEstoque(usuarioId, formularioPrincipal);
     }
     
     public void setForm(JComponent component) {

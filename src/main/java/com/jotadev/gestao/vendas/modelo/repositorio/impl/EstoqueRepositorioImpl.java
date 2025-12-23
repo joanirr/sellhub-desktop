@@ -1,25 +1,26 @@
 package com.jotadev.gestao.vendas.modelo.repositorio.impl;
 
 import com.jotadev.gestao.vendas.modelo.conexao.ConexaoMySQL;
+import com.jotadev.gestao.vendas.modelo.entidade.Estoque;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 
-public class ProdutoRepositorioImpl extends CrudRepositorioImpl<Produto> {
-
-    public ProdutoRepositorioImpl() {
-        super(Produto.class);
+public class EstoqueRepositorioImpl extends CrudRepositorioImpl<Estoque> {
+    
+    public EstoqueRepositorioImpl() {
+        super(Estoque.class);
     }
     
-     public Optional<Produto> buscarPeloNome(String nome) {
+    public Optional<Estoque> buscarPeloProdutoId(Long produtoId) {
         try {
-            String SQL = String.format("SELECT * FROM produto WHERE nome = ?");
+            String SQL = String.format("SELECT * FROM estoque WHERE produtoid = ?");
             System.out.println("SQL " + SQL);
             
             PreparedStatement ps = ConexaoMySQL.obterConexao().prepareStatement(SQL);
             
-            ps.setString(1, nome);
+            ps.setLong(1, produtoId);
             
             ResultSet resultSet = ps.executeQuery();
             

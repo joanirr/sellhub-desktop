@@ -1,5 +1,6 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
+import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import com.jotadev.gestao.vendas.visual.modelo.CartaoModelo;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -21,6 +22,11 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         cartao2.setData(cartaoModelo2);
         cartao3.setData(cartaoModelo3);
     }
+
+    public Tabela getTabelaDoFormularioPrincipal() {
+        return tabelaDoFormularioPrincipal;
+    }
+    
     
     private String getCaminho() {
         return System.getProperty("user.dir") + "\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\";
@@ -36,7 +42,7 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         panelBoard1 = new com.jotadev.gestao.vendas.visual.componentes.PanelBoard();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabela1 = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
+        tabelaDoFormularioPrincipal = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
@@ -56,7 +62,7 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(130, 130, 130));
         jLabel1.setText("Histórico do estoque");
 
-        tabela1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDoFormularioPrincipal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -75,7 +81,7 @@ public class FormularioPrincipal extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabela1);
+        jScrollPane1.setViewportView(tabelaDoFormularioPrincipal);
 
         javax.swing.GroupLayout panelBoard1Layout = new javax.swing.GroupLayout(panelBoard1);
         panelBoard1.setLayout(panelBoard1Layout);
@@ -127,6 +133,6 @@ public class FormularioPrincipal extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.jotadev.gestao.vendas.visual.componentes.PanelBoard panelBoard1;
-    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabela1;
+    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabelaDoFormularioPrincipal;
     // End of variables declaration//GEN-END:variables
 }
