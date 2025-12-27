@@ -10,9 +10,8 @@ import javax.swing.JComboBox;
 public class ComboBox extends JComboBox<Object> {
     
     public ComboBox() {
-        setBackground(new Color(0, 0, 0, 0));
-        setForeground(Color.decode("#1D1B86"));
-        setForeground(new Color(200, 200, 200));
+        setBackground(new Color(0,0,0,0));
+        setForeground(new Color(220, 220, 220));
         setFont(new Font("sanserif", 0, 13));
     }
 
@@ -20,7 +19,7 @@ public class ComboBox extends JComboBox<Object> {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(new Color(28, 181, 224, 80));
+        g2.setColor(new Color(70, 70, 70));
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
         super.paintComponent(g);
     }

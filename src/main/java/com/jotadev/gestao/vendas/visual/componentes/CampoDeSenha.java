@@ -22,10 +22,10 @@ public class CampoDeSenha extends JPasswordField {
     public CampoDeSenha() {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setBackground(new Color(0, 0, 0, 0));
-        setForeground(Color.decode("#1D1B86"));
+        setForeground(new Color(220, 220, 220));
         setFont(new Font("sanserif", 0, 13));
-        setSelectedTextColor(new Color(75, 175, 152));
-        this.cor = new Color(28, 181, 223, 80);
+        setSelectedTextColor(new Color(26, 188, 254));
+        this.cor = new Color(45, 45, 45);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class CampoDeSenha extends JPasswordField {
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             Insets ins = getInsets();
             FontMetrics fm = g.getFontMetrics();
-            g.setColor(new Color(200, 200, 200));
+            g.setColor(new Color(150, 150, 150));
             g.drawString(dicas, ins.left, altura / 2 + fm.getAscent() / 2 - 2);
         }
     }

@@ -22,12 +22,12 @@ public class Botao extends JButton {
     private float tamanhoDaAnimacao;
     private Point ponto;
     private float alfa;
-    private Color corDeEfeito = new Color(255, 255, 255);
+    private Color corDeEfeito = new Color(255, 255, 255, 100);
     
     public Botao() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(5, 0, 5, 0));
-        setBackground(Color.WHITE);
+        setBackground(new Color(26, 188, 254));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         addMouseListener(new MouseAdapter() {

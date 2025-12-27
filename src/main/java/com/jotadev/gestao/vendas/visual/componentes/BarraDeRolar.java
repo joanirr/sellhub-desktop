@@ -9,7 +9,7 @@ public class BarraDeRolar extends JScrollBar {
     public BarraDeRolar() {
         setUI(new ModernScrollBarUI());
         setPreferredSize(new Dimension(5, 5));
-        setBackground(new Color(242, 242, 242));
+        setBackground(new Color(45, 45, 45));
         setUnitIncrement(20);
     }
 }

@@ -17,7 +17,7 @@ public class Cabecalho extends javax.swing.JPanel {
         Graphics2D graphics2D = (Graphics2D) g;
         
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics2D.setColor(Color.WHITE);
+        graphics2D.setColor(new Color(34, 34, 34));
         graphics2D.fillRoundRect(10, 0, getWidth() -20, getHeight(), 15, 15);
         graphics2D.fillRect(0, 0, 25, getHeight());
         graphics2D.fillRect(getWidth() -25, getHeight() -25, getWidth(), getHeight());

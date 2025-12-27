@@ -12,7 +12,7 @@ public class BotaoContorno extends JButton {
     public BotaoContorno() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(5, 0, 5, 0));
-        setBackground(Color.WHITE);
+        setBackground(new Color(26, 188, 254));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     

@@ -15,8 +15,8 @@ public class Cartao extends javax.swing.JPanel {
     public Cartao() {
         initComponents();
         setOpaque(false);
-        cor1 = Color.BLACK;
-        cor2 = Color.WHITE;
+        cor1 = new Color(45, 45, 45);
+        cor2 = new Color(70, 70, 70);
     }
     
     public void setData(CartaoModelo cartaoModelo) {
