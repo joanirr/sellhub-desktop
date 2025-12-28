@@ -54,11 +54,11 @@ public class MenuItem extends javax.swing.JPanel {
             graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             
             if (selecionado) {
-                graphics2D.setColor(new Color(255, 255, 255, 80));
+                graphics2D.setColor(new Color(255, 255, 255, 120));
             } else {
-                graphics2D.setColor(new Color(255, 255, 255, 80));
-            }
-            graphics2D.fillRoundRect(10, 0, getWidth() -20, getHeight(), 5, 5);
+                graphics2D.setColor(new Color(255, 255, 255, 60));
+}
+            graphics2D.fillRoundRect(10, 0, getWidth() -20, getHeight(), 8, 8);
         }
         
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody

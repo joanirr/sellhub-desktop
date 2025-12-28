@@ -26,7 +26,7 @@ import lombok.Setter;
 public class ImageAvatar extends JComponent {
     private Icon image;
     private int borderSize = 5;
-    private Color borderColor = new Color(60, 60, 60);
+    private Color borderColor = new Color(26, 188, 254);
     
       @Override
     public void paint(Graphics g) {

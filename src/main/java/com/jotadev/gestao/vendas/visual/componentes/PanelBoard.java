@@ -13,8 +13,8 @@ public class PanelBoard extends javax.swing.JPanel {
 
     public PanelBoard() {
         initComponents();
-        cor1 = getBackground();
-        cor2 = getBackground();
+        cor1 = new Color(245, 247, 250);
+        cor2 = new Color(230, 235, 240);
         setOpaque(false);
     }
     

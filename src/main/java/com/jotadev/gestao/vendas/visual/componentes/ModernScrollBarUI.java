@@ -9,13 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import netscape.javascript.JSException;
 
 public class ModernScrollBarUI extends BasicScrollBarUI {
-    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 100;
-    private static final int SCROLL_BAR_ALPHA = 50;
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 140;
+    private static final int SCROLL_BAR_ALPHA = 80;
     private static final int THUMB_SIZE = 8;
-    private static final Color THUMB_COLOR = Color.BLACK;
+    private static final Color THUMB_COLOR = new Color(120, 180, 190);
     
     public ModernScrollBarUI() {
         

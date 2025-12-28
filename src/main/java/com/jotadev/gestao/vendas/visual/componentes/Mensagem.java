@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
 
 public class Mensagem extends javax.swing.JPanel {
     
@@ -41,16 +40,16 @@ public class Mensagem extends javax.swing.JPanel {
         Graphics2D graphics2D = (Graphics2D) g;
         
         if (this.tipoMensagem == TipoMensagem.SUCESSO) {
-            graphics2D.setColor(new Color(15, 174, 34));
+            graphics2D.setColor(new Color(46, 204, 113));
         } else {
-            graphics2D.setColor(new Color(240, 52, 53));
+            graphics2D.setColor(new Color(231, 76, 60));
         }
         
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f));
         graphics2D.fillRect(0, 0, getWidth(), getHeight());
         
         graphics2D.setComposite(AlphaComposite.SrcOver);
-        graphics2D.setColor(new Color(245, 245, 245));
+        graphics2D.setColor(new Color(70, 70, 70));
         graphics2D.drawRect(0, 0, getWidth() -1, getHeight());
         
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody

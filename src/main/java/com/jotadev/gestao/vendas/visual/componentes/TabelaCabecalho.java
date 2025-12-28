@@ -11,15 +11,15 @@ class TabelaCabecalho extends JLabel{
     public TabelaCabecalho(String texto) {
         super(texto);
         setOpaque(true);
-        setBackground(Color.white);
+        setBackground(new Color(50, 50, 50));
         setFont(new Font("sanserif", 1, 12));
-        setForeground(new Color(102, 102, 102));
+        setForeground(new Color(200, 200, 200));
         setBorder(new EmptyBorder(10, 5, 10, 5));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.setColor(new Color(230, 230, 230));
+        g.setColor(new Color(70, 70, 70));
         g.drawLine(0, getHeight() -1, getWidth(), getHeight());
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }

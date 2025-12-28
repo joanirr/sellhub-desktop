@@ -7,43 +7,44 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class Tabela extends JTable {
-    
+
+    private final Color backgroundCell = new Color(35, 35, 35);
+    private final Color foregroundCell = new Color(200, 200, 200);
+    private final Color gridDark = new Color(70, 70, 70);
+    private final Color selectedText = new Color(13, 113, 182);
+
     public Tabela() {
         setShowHorizontalLines(true);
         setRowHeight(30);
-        setGridColor(new Color(230, 230 ,230));
+        setGridColor(gridDark);
         getTableHeader().setReorderingAllowed(false);
         getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 TabelaCabecalho cabecalho = new TabelaCabecalho(value + "");
+                cabecalho.setBackground(new Color(50, 50, 50));
+                cabecalho.setForeground(foregroundCell);
                 return cabecalho;
             }
-            
         });
-        
+
         setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-                if (value != null) {
-                    if (value == "REMOVER") return botao(String.valueOf(value));
+
+                if (value != null && "REMOVER".equals(value)) {
+                    return botao(String.valueOf(value));
                 }
-                
-                if (isSelected) {
-                    component.setForeground(new Color(13, 113, 182));
-                } else {
-                    component.setForeground(new Color(102, 102, 102));
-                }
-                
-                component.setBackground(Color.WHITE);
+
+                component.setBackground(backgroundCell);
+                component.setForeground(isSelected ? selectedText : foregroundCell);
+
                 return component;
             }
-            
         });
     }
-    
+
     public JButton botao(String texto) {
         BotaoContorno botao = new BotaoContorno();
         botao.setText(texto);

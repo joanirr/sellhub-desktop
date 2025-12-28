@@ -13,7 +13,7 @@ public class Pesquisar extends JTextField {
     
     public Pesquisar() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
-        setSelectionColor(new Color(220, 204, 184));
+        setSelectionColor(new Color(75, 175, 152));
     }
     
     private final String hint = "Pesquise aqui...";
