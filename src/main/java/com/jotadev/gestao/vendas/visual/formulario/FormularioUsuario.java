@@ -22,7 +22,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         initComponents();
         
         setOpaque(false);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jScrollPane1.getViewport().setBackground(new Color(45,45,45));
         jDialog2.setResizable(false);
         dialogUsuario.setResizable(false);
         txtFoto.setColumns(15);
@@ -247,11 +247,11 @@ public class FormularioUsuario extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         comboPerfil = new javax.swing.JComboBox<>();
         txtFoto = new javax.swing.JTextField();
-        botaoSelecionarArquivo = new javax.swing.JButton();
         radioAtivo = new javax.swing.JRadioButton();
         radioInativo = new javax.swing.JRadioButton();
-        botaoUsuarioCadastro = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
+        botaoSelecionarArquivo = new com.jotadev.gestao.vendas.visual.componentes.Botao();
+        botaoUsuarioCadastro = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         jDialog2 = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         labelPermissaoUsuario = new javax.swing.JLabel();
@@ -295,10 +295,10 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaUsuarios = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(45, 45, 45));
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        labelTitulo.setForeground(new java.awt.Color(176, 214, 223));
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitulo.setText("ADICIONAR USUÁRIO");
         labelTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -308,53 +308,62 @@ public class FormularioUsuario extends javax.swing.JPanel {
         labelMensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(176, 214, 223));
         jLabel4.setText("Nome:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(176, 214, 223));
         jLabel5.setText("Email:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(176, 214, 223));
         jLabel6.setText("Senha:");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(176, 214, 223));
         jLabel7.setText("Perfil:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(176, 214, 223));
         jLabel8.setText("Foto:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(176, 214, 223));
         jLabel9.setText("Estado:");
 
-        txtNome.setBackground(new java.awt.Color(255, 255, 255));
+        txtNome.setBackground(new java.awt.Color(40, 75, 100));
         txtNome.addActionListener(this::txtNomeActionPerformed);
 
-        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmail.setBackground(new java.awt.Color(40, 75, 100));
 
-        comboPerfil.setBackground(new java.awt.Color(255, 255, 255));
+        comboPerfil.setBackground(new java.awt.Color(40, 75, 100));
         comboPerfil.setForeground(new java.awt.Color(0, 0, 0));
         comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Admin", "Padrão" }));
 
+        txtFoto.setBackground(new java.awt.Color(40, 75, 100));
         txtFoto.setEnabled(false);
 
-        botaoSelecionarArquivo.setForeground(new java.awt.Color(0, 0, 0));
-        botaoSelecionarArquivo.setText("Selecione");
-
+        radioAtivo.setBackground(new java.awt.Color(45, 45, 45));
         buttonGroup1.add(radioAtivo);
         radioAtivo.setSelected(true);
         radioAtivo.setText("Ativo");
 
-        radioInativo.setBackground(new java.awt.Color(255, 255, 255));
+        radioInativo.setBackground(new java.awt.Color(45, 45, 45));
         buttonGroup1.add(radioInativo);
         radioInativo.setText("Inativo");
 
-        botaoUsuarioCadastro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtSenha.setBackground(new java.awt.Color(40, 75, 100));
+
+        botaoSelecionarArquivo.setForeground(new java.awt.Color(176, 214, 223));
+        botaoSelecionarArquivo.setText("Selecionar");
+        botaoSelecionarArquivo.setActionCommand("selecionar");
+        botaoSelecionarArquivo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        botaoSelecionarArquivo.addActionListener(this::botaoSelecionarArquivoActionPerformed);
+
+        botaoUsuarioCadastro.setForeground(new java.awt.Color(255, 255, 255));
         botaoUsuarioCadastro.setText("Salvar");
+        botaoUsuarioCadastro.setActionCommand("salvar");
+        botaoUsuarioCadastro.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -362,34 +371,35 @@ public class FormularioUsuario extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
-                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(radioAtivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(radioInativo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNome)
-                    .addComponent(txtEmail)
-                    .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSenha))
-                .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(radioAtivo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                .addComponent(radioInativo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNome)
+                            .addComponent(txtEmail)
+                            .addComponent(comboPerfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSenha))))
+                .addGap(50, 50, 50))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,15 +430,15 @@ public class FormularioUsuario extends javax.swing.JPanel {
                         .addComponent(jLabel8))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(17, 17, 17)
+                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(radioAtivo)
                     .addComponent(radioInativo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(botaoUsuarioCadastro)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18)
+                .addComponent(botaoUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialogUsuarioLayout = new javax.swing.GroupLayout(dialogUsuario.getContentPane());
@@ -442,75 +452,78 @@ public class FormularioUsuario extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jDialog2.setBackground(new java.awt.Color(45, 45, 45));
+
+        jPanel3.setBackground(new java.awt.Color(45, 45, 45));
         jPanel3.setForeground(new java.awt.Color(244, 244, 244));
 
-        labelPermissaoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        labelPermissaoUsuario.setBackground(new java.awt.Color(45, 45, 45));
         labelPermissaoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
-        labelPermissaoUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        labelPermissaoUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelPermissaoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPermissaoUsuario.setText("Joanir Rodrigo");
 
-        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox1.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox1.setText("Salvar");
         jCheckBox1.setName("usuario:salvar"); // NOI18N
         jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
 
-        jCheckBox2.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox2.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox2.setText("Somente seus dados");
         jCheckBox2.setName("usuario:somente_seu"); // NOI18N
 
-        jCheckBox3.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox3.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox3.setText("Buscar todos");
         jCheckBox3.setName("usuario:buscar_todos"); // NOI18N
 
-        jCheckBox4.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox4.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox4.setText("Remover");
         jCheckBox4.setName("usuario:remover"); // NOI18N
 
-        jCheckBox5.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox5.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox5.setText("Todos os históricos");
         jCheckBox5.setName("estoque:todos_historicos"); // NOI18N
 
-        jCheckBox6.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox6.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox6.setText("Remover");
         jCheckBox6.setName("estoque:remover"); // NOI18N
         jCheckBox6.addActionListener(this::jCheckBox6ActionPerformed);
 
-        jCheckBox7.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox7.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox7.setText("Salvar");
         jCheckBox7.setName("estoque:salvar"); // NOI18N
 
-        jCheckBox8.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox8.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox8.setText("Somente seu historico");
         jCheckBox8.setName("estoque:seu_historico"); // NOI18N
 
-        jCheckBox9.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox9.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox9.setText("Salvar");
         jCheckBox9.setName("produto:salvar"); // NOI18N
 
-        jCheckBox10.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox10.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox10.setText("Remover");
         jCheckBox10.setName("produto:remover"); // NOI18N
         jCheckBox10.addActionListener(this::jCheckBox10ActionPerformed);
 
-        jCheckBox11.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox11.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox11.setText("Salvar");
         jCheckBox11.setName("categoria:salvar"); // NOI18N
 
-        jCheckBox12.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox12.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox12.setText("Remover");
         jCheckBox12.setName("categoria:remover"); // NOI18N
 
-        jCheckBox13.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox13.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox13.setText("Salvar");
         jCheckBox13.setName("venda:salvar"); // NOI18N
         jCheckBox13.addActionListener(this::jCheckBox13ActionPerformed);
 
-        jCheckBox16.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox16.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox16.setText("Salvar");
         jCheckBox16.setName("permissao:salvar"); // NOI18N
 
-        jCheckBox17.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox17.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox17.setText("Remover");
         jCheckBox17.setName("cliente:remover"); // NOI18N
 
@@ -518,40 +531,40 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Usuário");
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Estoque");
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Produto");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Categoria");
 
         jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Venda");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Permissão");
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Cliente");
 
         botaoUsuarioPermissao.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -560,11 +573,11 @@ public class FormularioUsuario extends javax.swing.JPanel {
         botaoUsuarioPermissao.setName("salvarpermissao"); // NOI18N
         botaoUsuarioPermissao.addActionListener(this::botaoUsuarioPermissaoActionPerformed);
 
-        jCheckBox14.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox14.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox14.setText("Atualizar");
         jCheckBox14.setName("venda:atualizar"); // NOI18N
 
-        jCheckBox15.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox15.setForeground(new java.awt.Color(176, 214, 223));
         jCheckBox15.setText("Remover");
         jCheckBox15.setName("venda:remover"); // NOI18N
 
@@ -713,6 +726,8 @@ public class FormularioUsuario extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        setBackground(new java.awt.Color(45, 45, 45));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("> Usuário");
@@ -833,6 +848,10 @@ public class FormularioUsuario extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox13ActionPerformed
 
+    private void botaoSelecionarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSelecionarArquivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoSelecionarArquivoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAdicionar;
@@ -840,8 +859,8 @@ public class FormularioUsuario extends javax.swing.JPanel {
     private javax.swing.JButton botaoImprimir;
     private javax.swing.JButton botaoPermissoes;
     private javax.swing.JButton botaoRemover;
-    private javax.swing.JButton botaoSelecionarArquivo;
-    private javax.swing.JButton botaoUsuarioCadastro;
+    private com.jotadev.gestao.vendas.visual.componentes.Botao botaoSelecionarArquivo;
+    private com.jotadev.gestao.vendas.visual.componentes.Botao botaoUsuarioCadastro;
     private javax.swing.JButton botaoUsuarioPermissao;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comboPerfil;

@@ -18,6 +18,11 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JLayeredPane" name="background">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2d" green="2d" red="2d" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">

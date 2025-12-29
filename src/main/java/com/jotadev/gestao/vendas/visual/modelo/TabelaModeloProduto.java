@@ -1,7 +1,6 @@
 package com.jotadev.gestao.vendas.visual.modelo;
 
 import com.jotadev.gestao.vendas.modelo.dto.ProdutoDto;
-import com.jotadev.gestao.vendas.modelo.entidade.Produto;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 

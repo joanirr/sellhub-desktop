@@ -39,10 +39,10 @@
     <Container class="com.jotadev.gestao.vendas.visual.componentes.PanelBoard" name="panelBoard1">
       <Properties>
         <Property name="cor1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="2d" green="2d" red="2d" type="rgb"/>
         </Property>
         <Property name="cor2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="2d" green="2d" red="2d" type="rgb"/>
         </Property>
       </Properties>
 
@@ -108,7 +108,7 @@
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="df" green="b5" red="1c" type="rgb"/>
+              <Color blue="df" green="d6" red="b0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Registro de Estoque"/>
@@ -116,6 +116,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="textoNomeOuId">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Nome ou id do produto"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\produto1.png"/>
@@ -127,6 +130,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="textoQuantidade">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Quantidade"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\quantidade.png"/>
@@ -135,6 +141,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="textoObservacao">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Observa&#xe7;&#xf5;es"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\observacao.png"/>
@@ -190,6 +199,11 @@
       </SubComponents>
     </Container>
   </NonVisualComponents>
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="2d" green="2d" red="2d" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -247,6 +261,11 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="2d" green="2d" red="2d" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
         <Property name="columns" type="int" value="0"/>
@@ -335,6 +354,9 @@
       <SubComponents>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.Tabela" name="tabelaEstoque">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="2d" green="2d" red="2d" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="Title 1" type="java.lang.Object"/>

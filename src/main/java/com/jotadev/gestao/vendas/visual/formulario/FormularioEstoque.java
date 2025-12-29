@@ -23,7 +23,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         initComponents();
         
         setOpaque(false);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jScrollPane1.getViewport().setBackground(new Color(30,30,30));
         dialogEstoque.setResizable(false);
         
         this.usuarioId = usuarioId;
@@ -155,21 +155,24 @@ public class FormularioEstoque extends javax.swing.JPanel {
             .addComponent(background)
         );
 
-        panelBoard1.setCor1(new java.awt.Color(255, 255, 255));
-        panelBoard1.setCor2(new java.awt.Color(255, 255, 255));
+        panelBoard1.setCor1(new java.awt.Color(45, 45, 45));
+        panelBoard1.setCor2(new java.awt.Color(45, 45, 45));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(28, 181, 223));
+        jLabel2.setForeground(new java.awt.Color(176, 214, 223));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Registro de Estoque");
 
+        textoNomeOuId.setBackground(new java.awt.Color(40, 75, 100));
         textoNomeOuId.setDicas("Nome ou id do produto");
         textoNomeOuId.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\produto1.png")); // NOI18N
         textoNomeOuId.addActionListener(this::textoNomeOuIdActionPerformed);
 
+        textoQuantidade.setBackground(new java.awt.Color(40, 75, 100));
         textoQuantidade.setDicas("Quantidade");
         textoQuantidade.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\quantidade.png")); // NOI18N
 
+        textoObservacao.setBackground(new java.awt.Color(40, 75, 100));
         textoObservacao.setDicas("Observações");
         textoObservacao.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\observacao.png")); // NOI18N
 
@@ -235,10 +238,13 @@ public class FormularioEstoque extends javax.swing.JPanel {
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(45, 45, 45));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("> Estoque");
 
+        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
 
         botaoAdicionar.setBackground(new java.awt.Color(0, 0, 70));
@@ -273,6 +279,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         botaoImprimir.setName("imprimir"); // NOI18N
         jPanel1.add(botaoImprimir);
 
+        tabelaEstoque.setBackground(new java.awt.Color(45, 45, 45));
         tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

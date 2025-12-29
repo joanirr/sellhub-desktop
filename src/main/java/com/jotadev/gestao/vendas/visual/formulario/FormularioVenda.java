@@ -164,6 +164,8 @@ public class FormularioVenda extends javax.swing.JPanel {
         dataFinal = new com.toedter.calendar.JDateChooser();
         botaoPesquisar = new javax.swing.JButton();
 
+        background.setBackground(new java.awt.Color(45, 45, 45));
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
