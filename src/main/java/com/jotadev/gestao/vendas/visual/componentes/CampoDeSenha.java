@@ -21,6 +21,7 @@ public class CampoDeSenha extends JPasswordField {
     
     public CampoDeSenha() {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setOpaque(true);
         setBackground(new Color(0, 0, 0, 0));
         setForeground(new Color(220, 220, 220));
         setFont(new Font("sanserif", 0, 13));
@@ -35,9 +36,9 @@ public class CampoDeSenha extends JPasswordField {
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setColor(cor);
         graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
-        paintIcon(g);
         
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        paintIcon(g);
     }
 
     @Override

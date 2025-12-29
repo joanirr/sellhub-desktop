@@ -74,7 +74,7 @@ public class Login extends javax.swing.JFrame {
         labelFechar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                labelFechar.setBackground(Color.red);
+                labelFechar.setBackground(new Color(250, 250, 250, 70));
                 labelFechar.setForeground(Color.white);
                 labelFechar.setOpaque(true);
             }
@@ -127,19 +127,20 @@ public class Login extends javax.swing.JFrame {
         labelFechar = new javax.swing.JLabel();
         background = new javax.swing.JLayeredPane();
 
-        panelBoard1.setCor1(new java.awt.Color(255, 255, 255));
-        panelBoard1.setCor2(new java.awt.Color(102, 159, 210));
+        panelBoard1.setCor1(new java.awt.Color(30, 30, 40));
+        panelBoard1.setCor2(new java.awt.Color(28, 181, 224));
 
+        campoDeSenha.setBackground(new java.awt.Color(45, 45, 45));
         campoDeSenha.setCor(new java.awt.Color(255, 255, 255));
         campoDeSenha.setDicas("Senha");
         campoDeSenha.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\pass.png")); // NOI18N
         campoDeSenha.addActionListener(this::campoDeSenhaActionPerformed);
 
+        campoDeTextoEmail.setBackground(new java.awt.Color(45, 45, 45));
         campoDeTextoEmail.setCor(new java.awt.Color(255, 255, 255));
         campoDeTextoEmail.setDicas("Email");
         campoDeTextoEmail.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\mail.png")); // NOI18N
 
-        botaoLogin.setBackground(new java.awt.Color(28, 181, 224));
         botaoLogin.setForeground(new java.awt.Color(255, 255, 255));
         botaoLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\login_16.png")); // NOI18N
         botaoLogin.setText("LOGIN");

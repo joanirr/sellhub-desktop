@@ -10,7 +10,9 @@ public class FormularioPrincipal extends javax.swing.JPanel {
     public FormularioPrincipal() {
         initComponents();
         inicializarCartao();
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        jScrollPane1.getViewport().setBackground(new Color(45, 45, 45));
+        jScrollPane1.setBackground(new Color(45, 45, 45));
+        jScrollPane1.setBorder(null);
     }
     
     private void inicializarCartao() {
@@ -44,6 +46,9 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaDoFormularioPrincipal = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
+        setBackground(new java.awt.Color(45, 45, 45));
+
+        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         cartao1.setCor1(new java.awt.Color(0, 180, 219));
@@ -56,6 +61,9 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         cartao3.setCor1(new java.awt.Color(176, 106, 179));
         cartao3.setCor2(new java.awt.Color(0, 0, 0));
         jPanel1.add(cartao3);
+
+        panelBoard1.setCor1(new java.awt.Color(45, 45, 45));
+        panelBoard1.setCor2(new java.awt.Color(45, 45, 45));
 
         jLabel1.setBackground(new java.awt.Color(242, 242, 242));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

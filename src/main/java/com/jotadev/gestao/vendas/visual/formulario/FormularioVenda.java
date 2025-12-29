@@ -220,27 +220,34 @@ public class FormularioVenda extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        campoDeTexto1.setBackground(new java.awt.Color(40, 75, 100));
         campoDeTexto1.setDicas("Buscar produto pelo ID");
         campoDeTexto1.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\produto1.png")); // NOI18N
 
+        campoDeTexto2.setBackground(new java.awt.Color(40, 75, 100));
         campoDeTexto2.setDicas("Quantidade");
         campoDeTexto2.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\quantidade.png")); // NOI18N
 
+        comboBox1.setBackground(new java.awt.Color(40, 75, 100));
         comboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a categoria" }));
         comboBox1.addActionListener(this::comboBox1ActionPerformed);
 
+        comboBox2.setBackground(new java.awt.Color(40, 75, 100));
         comboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o produto" }));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Detalhes da venda");
 
+        campoDeTexto3.setBackground(new java.awt.Color(40, 75, 100));
         campoDeTexto3.setDicas("Desconto");
         campoDeTexto3.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\desconto.png")); // NOI18N
 
+        campoDeTexto4.setBackground(new java.awt.Color(40, 75, 100));
         campoDeTexto4.setDicas("Valor pago");
         campoDeTexto4.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\preco.png")); // NOI18N
 
+        campoDeTexto5.setBackground(new java.awt.Color(40, 75, 100));
         campoDeTexto5.setDicas("CPF/CNPJ");
         campoDeTexto5.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\id.png")); // NOI18N
 
@@ -253,7 +260,6 @@ public class FormularioVenda extends javax.swing.JPanel {
         botao1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jPanel2.add(botao1);
 
-        botao2.setBackground(new java.awt.Color(26, 188, 254));
         botao2.setForeground(new java.awt.Color(255, 255, 255));
         botao2.setText("Vender");
         botao2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

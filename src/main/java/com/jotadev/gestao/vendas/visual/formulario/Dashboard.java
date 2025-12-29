@@ -73,8 +73,16 @@ public class Dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        panelBoard1.setBackground(new java.awt.Color(45, 45, 45));
+        panelBoard1.setCor1(new java.awt.Color(45, 45, 45));
+        panelBoard1.setCor2(new java.awt.Color(45, 45, 45));
         panelBoard1.setPreferredSize(new java.awt.Dimension(750, 600));
 
+        menu1.setBackground(new java.awt.Color(45, 45, 45));
+
+        cabecalho1.setBackground(new java.awt.Color(0, 0, 0));
+
+        panelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
         panelPrincipal.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout panelBoard1Layout = new javax.swing.GroupLayout(panelBoard1);

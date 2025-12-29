@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicTextFieldUI;
 
 public class CampoDeTexto extends JTextField{
     
@@ -20,7 +21,9 @@ public class CampoDeTexto extends JTextField{
     private Color cor;
     
     public CampoDeTexto() {
+        setUI(new BasicTextFieldUI());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setOpaque(true);
         setBackground(new Color(0, 0, 0, 0));
         setForeground(new Color(220, 220, 220));
         setFont(new Font("sanserif", 0, 13));
@@ -35,9 +38,9 @@ public class CampoDeTexto extends JTextField{
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setColor(cor);
         graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
-        paintIcon(g);
         
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        paintIcon(g);
     }
 
     @Override

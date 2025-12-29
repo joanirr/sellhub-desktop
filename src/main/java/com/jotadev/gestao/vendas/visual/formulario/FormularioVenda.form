@@ -186,6 +186,9 @@
         </Container>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTexto1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Buscar produto pelo ID"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\produto1.png"/>
@@ -194,6 +197,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTexto2">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Quantidade"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\quantidade.png"/>
@@ -202,6 +208,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.ComboBox" name="comboBox1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="1">
                 <StringItem index="0" value="Selecione a categoria"/>
@@ -214,6 +223,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.ComboBox" name="comboBox2">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="1">
                 <StringItem index="0" value="Selecione o produto"/>
@@ -234,6 +246,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTexto3">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Desconto"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\desconto.png"/>
@@ -242,6 +257,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTexto4">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="Valor pago"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\preco.png"/>
@@ -250,6 +268,9 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTexto5">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="64" green="4b" red="28" type="rgb"/>
+            </Property>
             <Property name="dicas" type="java.lang.String" value="CPF/CNPJ"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\id.png"/>
@@ -285,9 +306,6 @@
             </Component>
             <Component class="com.jotadev.gestao.vendas.visual.componentes.Botao" name="botao2">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fe" green="bc" red="1a" type="rgb"/>
-                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
