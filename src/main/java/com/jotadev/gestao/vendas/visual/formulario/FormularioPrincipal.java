@@ -1,5 +1,6 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import com.jotadev.gestao.vendas.visual.modelo.CartaoModelo;
 import java.awt.Color;
@@ -13,6 +14,9 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         jScrollPane1.getViewport().setBackground(new Color(45, 45, 45));
         jScrollPane1.setBackground(new Color(45, 45, 45));
         jScrollPane1.setBorder(null);
+        
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new java.awt.Dimension(8, Integer.MAX_VALUE));
     }
     
     private void inicializarCartao() {
@@ -106,7 +110,7 @@ public class FormularioPrincipal extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 

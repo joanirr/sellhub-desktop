@@ -34,9 +34,9 @@ public class Tabela extends JTable {
                 Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
                 if (value != null && "REMOVER".equals(value)) {
-                    return botao(String.valueOf(value));
+                    component.setForeground(new Color(204, 0, 0));
                 }
-
+                
                 component.setBackground(backgroundCell);
                 component.setForeground(isSelected ? selectedText : foregroundCell);
 

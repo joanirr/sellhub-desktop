@@ -76,8 +76,8 @@ public class Botao extends JButton {
         
         Graphics2D graphics2D = img.createGraphics();
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Color corTopo = new Color(46, 89, 112);   // azul escuro azulado
-        Color corBase = new Color(30, 60, 80);    // azul bem escuro
+        Color corTopo = new Color(46, 89, 112);
+        Color corBase = new Color(30, 60, 80);
         java.awt.GradientPaint gradiente = new java.awt.GradientPaint(0, 0, corTopo, 0, altura, corBase);
         graphics2D.setPaint(gradiente);
         graphics2D.fillRoundRect(0, 0, comprimento, altura, altura, altura);

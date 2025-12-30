@@ -21,8 +21,8 @@ public class FormularioVenda extends javax.swing.JPanel {
     public FormularioVenda(Long usuarioId) {
         initComponents();
         
-        setOpaque(false);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        setOpaque(true);
+        jScrollPane1.getViewport().setBackground(new Color(45,45,45));
         dialogVenda.setResizable(false);
         
         this.usuarioId = usuarioId;
@@ -60,8 +60,7 @@ public class FormularioVenda extends javax.swing.JPanel {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                panelCirculo1.setBackground(Color.decode("#000046"));
-            }
+                panelCirculo1.setBackground(new Color(13,27,42));            }
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -164,6 +163,8 @@ public class FormularioVenda extends javax.swing.JPanel {
         dataFinal = new com.toedter.calendar.JDateChooser();
         botaoPesquisar = new javax.swing.JButton();
 
+        dialogVenda.setBackground(new java.awt.Color(45, 45, 45));
+
         background.setBackground(new java.awt.Color(45, 45, 45));
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -188,6 +189,7 @@ public class FormularioVenda extends javax.swing.JPanel {
             .addComponent(background)
         );
 
+        panelBoard1.setBackground(new java.awt.Color(45, 45, 45));
         panelBoard1.setCor1(new java.awt.Color(43, 43, 43));
         panelBoard1.setCor2(new java.awt.Color(43, 43, 43));
 
@@ -253,7 +255,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         campoDeTexto5.setDicas("CPF/CNPJ");
         campoDeTexto5.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\id.png")); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(45, 45, 45));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
         botao1.setBackground(new java.awt.Color(46, 204, 113));
@@ -457,13 +459,16 @@ public class FormularioVenda extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        setBackground(new java.awt.Color(45, 45, 45));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("> Vendas");
 
+        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
 
-        botaoAdicionar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAdicionar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAdicionar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAdicionar.setText("Adicionar");
@@ -471,7 +476,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoAdicionar.addActionListener(this::botaoAdicionarActionPerformed);
         jPanel1.add(botaoAdicionar);
 
-        botaoAtualizar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAtualizar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
@@ -479,7 +484,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
         jPanel1.add(botaoAtualizar);
 
-        botaoRemover.setBackground(new java.awt.Color(0, 0, 70));
+        botaoRemover.setBackground(new java.awt.Color(25, 55, 65));
         botaoRemover.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
         botaoRemover.setText("Remover");
@@ -487,7 +492,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
         jPanel1.add(botaoRemover);
 
-        botaoPermissoes.setBackground(new java.awt.Color(0, 0, 70));
+        botaoPermissoes.setBackground(new java.awt.Color(25, 55, 65));
         botaoPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoPermissoes.setForeground(new java.awt.Color(255, 255, 255));
         botaoPermissoes.setText("Detalhes");
@@ -496,7 +501,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         jPanel1.add(botaoPermissoes);
         botaoPermissoes.getAccessibleContext().setAccessibleName("permissoes");
 
-        botaoImprimir.setBackground(new java.awt.Color(0, 0, 70));
+        botaoImprimir.setBackground(new java.awt.Color(25, 55, 65));
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
         botaoImprimir.setText("Imprimir");
@@ -513,11 +518,20 @@ public class FormularioVenda extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tabelaVendas);
 
+        labelDataInicial.setBackground(new java.awt.Color(45, 45, 45));
+        labelDataInicial.setForeground(new java.awt.Color(255, 255, 255));
         labelDataInicial.setText("Data inicial:");
 
+        dataInicial.setBackground(new java.awt.Color(45, 45, 45));
+        dataInicial.setForeground(new java.awt.Color(255, 255, 255));
+
+        labelDataFinal.setBackground(new java.awt.Color(45, 45, 45));
+        labelDataFinal.setForeground(new java.awt.Color(255, 255, 255));
         labelDataFinal.setText("Data final:");
 
-        botaoPesquisar.setBackground(new java.awt.Color(0, 0, 70));
+        dataFinal.setBackground(new java.awt.Color(45, 45, 45));
+
+        botaoPesquisar.setBackground(new java.awt.Color(25, 55, 65));
         botaoPesquisar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoPesquisar.setForeground(new java.awt.Color(255, 255, 255));
         botaoPesquisar.setText("Pesquisar");

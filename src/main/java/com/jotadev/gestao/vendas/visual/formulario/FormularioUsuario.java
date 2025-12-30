@@ -21,7 +21,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
     public FormularioUsuario(Long usuarioId) {
         initComponents();
         
-        setOpaque(false);
+        setOpaque(true);
         jScrollPane1.getViewport().setBackground(new Color(45,45,45));
         jDialog2.setResizable(false);
         dialogUsuario.setResizable(false);
@@ -341,15 +341,18 @@ public class FormularioUsuario extends javax.swing.JPanel {
         comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Admin", "Padrão" }));
 
         txtFoto.setBackground(new java.awt.Color(40, 75, 100));
+        txtFoto.setForeground(new java.awt.Color(40, 75, 100));
         txtFoto.setEnabled(false);
 
         radioAtivo.setBackground(new java.awt.Color(45, 45, 45));
         buttonGroup1.add(radioAtivo);
+        radioAtivo.setForeground(new java.awt.Color(255, 255, 255));
         radioAtivo.setSelected(true);
         radioAtivo.setText("Ativo");
 
         radioInativo.setBackground(new java.awt.Color(45, 45, 45));
         buttonGroup1.add(radioInativo);
+        radioInativo.setForeground(new java.awt.Color(255, 255, 255));
         radioInativo.setText("Inativo");
 
         txtSenha.setBackground(new java.awt.Color(40, 75, 100));
@@ -377,15 +380,21 @@ public class FormularioUsuario extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,8 +422,8 @@ public class FormularioUsuario extends javax.swing.JPanel {
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -424,21 +433,18 @@ public class FormularioUsuario extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(radioAtivo)
                     .addComponent(radioInativo))
                 .addGap(18, 18, 18)
                 .addComponent(botaoUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dialogUsuarioLayout = new javax.swing.GroupLayout(dialogUsuario.getContentPane());
@@ -727,14 +733,17 @@ public class FormularioUsuario extends javax.swing.JPanel {
         );
 
         setBackground(new java.awt.Color(45, 45, 45));
+        setEnabled(false);
+        setFocusable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("> Usuário");
 
+        jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
 
-        botaoAdicionar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAdicionar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAdicionar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAdicionar.setText("Adicionar");
@@ -742,7 +751,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         botaoAdicionar.addActionListener(this::botaoAdicionarActionPerformed);
         jPanel1.add(botaoAdicionar);
 
-        botaoAtualizar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAtualizar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
@@ -750,7 +759,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
         jPanel1.add(botaoAtualizar);
 
-        botaoRemover.setBackground(new java.awt.Color(0, 0, 70));
+        botaoRemover.setBackground(new java.awt.Color(25, 55, 65));
         botaoRemover.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
         botaoRemover.setText("Remover");
@@ -758,7 +767,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
         jPanel1.add(botaoRemover);
 
-        botaoPermissoes.setBackground(new java.awt.Color(0, 0, 70));
+        botaoPermissoes.setBackground(new java.awt.Color(25, 55, 65));
         botaoPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoPermissoes.setForeground(new java.awt.Color(255, 255, 255));
         botaoPermissoes.setText("Permissões");
@@ -767,12 +776,14 @@ public class FormularioUsuario extends javax.swing.JPanel {
         jPanel1.add(botaoPermissoes);
         botaoPermissoes.getAccessibleContext().setAccessibleName("permissoes");
 
-        botaoImprimir.setBackground(new java.awt.Color(0, 0, 70));
+        botaoImprimir.setBackground(new java.awt.Color(25, 55, 65));
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
         botaoImprimir.setText("Imprimir");
         botaoImprimir.setName("imprimir"); // NOI18N
         jPanel1.add(botaoImprimir);
+
+        jScrollPane1.setBackground(new java.awt.Color(25, 25, 25));
 
         tabelaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

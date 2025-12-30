@@ -22,8 +22,8 @@ public class FormularioEstoque extends javax.swing.JPanel {
     public FormularioEstoque(Long usuarioId, FormularioPrincipal formularioPrincipal) {
         initComponents();
         
-        setOpaque(false);
-        jScrollPane1.getViewport().setBackground(new Color(30,30,30));
+        setOpaque(true);
+        jScrollPane1.getViewport().setBackground(new Color(45,45,45));
         dialogEstoque.setResizable(false);
         
         this.usuarioId = usuarioId;
@@ -247,7 +247,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 8, 0));
 
-        botaoAdicionar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAdicionar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAdicionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAdicionar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAdicionar.setText("Adicionar");
@@ -255,7 +255,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         botaoAdicionar.addActionListener(this::botaoAdicionarActionPerformed);
         jPanel1.add(botaoAdicionar);
 
-        botaoAtualizar.setBackground(new java.awt.Color(0, 0, 70));
+        botaoAtualizar.setBackground(new java.awt.Color(25, 55, 65));
         botaoAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         botaoAtualizar.setText("Atualizar");
@@ -263,7 +263,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         botaoAtualizar.addActionListener(this::botaoAtualizarActionPerformed);
         jPanel1.add(botaoAtualizar);
 
-        botaoRemover.setBackground(new java.awt.Color(0, 0, 70));
+        botaoRemover.setBackground(new java.awt.Color(25, 55, 65));
         botaoRemover.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoRemover.setForeground(new java.awt.Color(255, 255, 255));
         botaoRemover.setText("Remover");
@@ -272,7 +272,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
         jPanel1.add(botaoRemover);
 
-        botaoImprimir.setBackground(new java.awt.Color(0, 0, 70));
+        botaoImprimir.setBackground(new java.awt.Color(25, 55, 65));
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
         botaoImprimir.setText("Imprimir");

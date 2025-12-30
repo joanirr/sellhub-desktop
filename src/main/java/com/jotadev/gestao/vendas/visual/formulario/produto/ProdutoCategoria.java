@@ -2,15 +2,16 @@ package com.jotadev.gestao.vendas.visual.formulario.produto;
 
 import com.jotadev.gestao.vendas.modelo.entidade.Categoria;
 import com.jotadev.gestao.vendas.modelo.servico.CategoriaServico;
-import com.jotadev.gestao.vendas.visual.componentes.BarraDeRolar;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
 import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
 import com.jotadev.gestao.vendas.visual.componentes.Mensagem;
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -52,6 +53,8 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         categoriaServico = new CategoriaServico();
         preencherComboBoxCategoria();
         
+        this.setBackground(new Color(45, 45, 45));
+        this.background.setBackground(new Color(45, 45, 45));
         
         eventoNaTabela();
         limpar();
@@ -102,10 +105,14 @@ public class ProdutoCategoria extends javax.swing.JPanel {
     }
     
     private void formularioProduto(){
-        produto.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]25[]push"));
+        produto.setLayout(new MigLayout("insets 0, wrap", "push[center]push", "push[]25[]10[]10[]10[]25[]push"));
+        
+        Color verdeAguaEscuro = new Color(28, 166, 154);
+        Color verdePetroleoEscuro = new Color(10, 90, 80);
+                
         
         JLabel label = new JLabel("Registro de Produto");
-        label.setForeground(Color.decode("#1cb5e0"));
+        label.setForeground(verdeAguaEscuro);
         label.setFont(new Font("sansserif", 1, 20));
         produto.add(label);
         
@@ -129,7 +136,7 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         produto.add(comboBoxCategoriaProduto, "w 60%, h 35");
         
         botaoProduto = new Botao();
-        botaoProduto.setBackground(new Color(28, 181, 224));
+        botaoProduto.setBackground(verdePetroleoEscuro);
         botaoProduto.setForeground(Color.WHITE);
         botaoProduto.setFont(new Font("sansserif", 5, 14));
         botaoProduto.setActionCommand("salvarproduto");
@@ -138,10 +145,13 @@ public class ProdutoCategoria extends javax.swing.JPanel {
     }
     
     private void formularioCategoria() {
-        categoria.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]25[]push"));
+        categoria.setLayout(new MigLayout("insets 0, wrap", "push[center]push", "push[]25[]10[]10[]10[]25[]push"));
+        
+        Color verdeAguaEscuro = new Color(28, 166, 154);
+        Color verdePetroleoEscuro = new Color(10, 90, 80);
         
         JLabel label = new JLabel("Registro de Categoria.");
-        label.setForeground(Color.decode("#1cb5e0"));
+        label.setForeground(verdeAguaEscuro);
         label.setFont(new Font("sansserif", 1, 20));
         categoria.add(label);
         
@@ -158,19 +168,26 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         botaoResetCategoria = new JButton("Limpar");
         botaoResetCategoria.setContentAreaFilled(false);
         botaoResetCategoria.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        botaoResetCategoria.setForeground(Color.decode("#1cb5e0"));
+        botaoResetCategoria.setForeground(verdeAguaEscuro);
         categoria.add(botaoResetCategoria);
         
         botaoCategoria = new Botao();
-        botaoCategoria.setBackground(new Color(28, 181, 224));
+        botaoCategoria.setBackground(verdePetroleoEscuro);
         botaoCategoria.setForeground(Color.WHITE);
         botaoCategoria.setFont(new Font("sansserif", 5, 14));
         botaoCategoria.setActionCommand("salvarcategoria");
         botaoCategoria.setText("Salvar");
         categoria.add(botaoCategoria, "w 40%, h 40");
         
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
-        jScrollPane1.setVerticalScrollBar(new BarraDeRolar());
+        jScrollPane1.getViewport().setBackground(new Color(45, 45, 45));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setViewportBorder(null);
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(8, Integer.MAX_VALUE));
+
+        jScrollPane1.getHorizontalScrollBar().setUI(new ModernScrollBarUI());
+        jScrollPane1.getHorizontalScrollBar().setPreferredSize(new Dimension(Integer.MAX_VALUE, 8));
+
         categoria.add(jScrollPane1, "w 80%, h 40%");
     }
         
@@ -179,7 +196,7 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         if (mostrar) {
             produto.setVisible(true);
             categoria.setVisible(false);
-        } else {
+        } else { 
             produto.setVisible(false);
             categoria.setVisible(true);
         }
@@ -237,24 +254,17 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCategoria = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 
+        setBackground(new java.awt.Color(45, 45, 45));
+
+        background.setBackground(new java.awt.Color(45, 45, 45));
         background.setLayout(new java.awt.CardLayout());
 
-        produto.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout produtoLayout = new javax.swing.GroupLayout(produto);
-        produto.setLayout(produtoLayout);
-        produtoLayout.setHorizontalGroup(
-            produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        produtoLayout.setVerticalGroup(
-            produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
+        produto.setBackground(new java.awt.Color(45, 45, 45));
+        produto.setLayout(new java.awt.BorderLayout());
         background.add(produto, "card3");
 
-        categoria.setBackground(new java.awt.Color(255, 255, 255));
+        categoria.setBackground(new java.awt.Color(45, 45, 45));
+        categoria.setLayout(new java.awt.BorderLayout());
 
         tabelaCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -266,22 +276,7 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tabelaCategoria);
 
-        javax.swing.GroupLayout categoriaLayout = new javax.swing.GroupLayout(categoria);
-        categoria.setLayout(categoriaLayout);
-        categoriaLayout.setHorizontalGroup(
-            categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(categoriaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        categoriaLayout.setVerticalGroup(
-            categoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(categoriaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        categoria.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         background.add(categoria, "card2");
 

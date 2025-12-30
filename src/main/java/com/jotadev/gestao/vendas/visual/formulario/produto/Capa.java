@@ -35,7 +35,7 @@ public class Capa extends javax.swing.JPanel {
     public Capa(FormularioProduto formularioProduto) {
         initComponents();
         setOpaque(false);
-        layout = new MigLayout("wrap, fill", "[center]", "push[]25[]10[]25[]push");
+        layout = new MigLayout("wrap, fill, insets 0, gap 0", "[center]", "push[]25[]10[]25[]push");
         setLayout(layout);
         
         this.formularioProduto = formularioProduto;
@@ -69,7 +69,7 @@ public class Capa extends javax.swing.JPanel {
         
         botaoContorno = new BotaoContorno();
         botaoContorno.setText("CATEGORIA");
-        botaoContorno.setBackground(Color.WHITE);
+        botaoContorno.setBackground(new Color(45,45,45));
         botaoContorno.setForeground(Color.WHITE);
         botaoContorno.addActionListener(e -> actionListener.actionPerformed(e));
         add(botaoContorno, "w 50%, h 30");
@@ -127,10 +127,10 @@ public class Capa extends javax.swing.JPanel {
         
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#1CB5E0"), 0, getHeight(), Color.decode("#000046"));
+        GradientPaint gradientPaint = new GradientPaint(0, 0, Color.decode("#008080"), 0, getHeight(), Color.decode("#004D40"));
         graphics2D.setPaint(gradientPaint);
         
-        graphics2D.fillRect(0, 0, getWidth(), getHeight());
+        graphics2D.fillRect(0, 0, getWidth() + 1, getHeight());
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     

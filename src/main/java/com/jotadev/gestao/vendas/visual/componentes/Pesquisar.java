@@ -14,6 +14,11 @@ public class Pesquisar extends JTextField {
     public Pesquisar() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setSelectionColor(new Color(75, 175, 152));
+        
+        setOpaque(false);
+        setBackground(new Color(0, 0, 0, 0));
+        setForeground(new Color(220, 220, 220));
+        setCaretColor(Color.WHITE);
     }
     
     private final String hint = "Pesquise aqui...";
@@ -34,5 +39,4 @@ public class Pesquisar extends JTextField {
             g.drawString(hint, ins.left, h / 2 + fm.getAscent() / 2 - 2);
         }
     }
-    
 }

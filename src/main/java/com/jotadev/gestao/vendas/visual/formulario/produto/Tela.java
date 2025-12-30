@@ -2,6 +2,7 @@ package com.jotadev.gestao.vendas.visual.formulario.produto;
 
 import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
+import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -25,6 +26,7 @@ public class Tela extends javax.swing.JPanel {
 
     public Tela(FormularioProduto formularioProduto) {
         initComponents();
+        this.setBackground(new Color(45, 45, 45));
         capa = new Capa(formularioProduto);
         produtoCategoria = new ProdutoCategoria(formularioProduto);
         inicializacao();

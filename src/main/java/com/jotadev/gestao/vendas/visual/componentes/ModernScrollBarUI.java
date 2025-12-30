@@ -1,67 +1,52 @@
 package com.jotadev.gestao.vendas.visual.componentes;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JScrollBar;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class ModernScrollBarUI extends BasicScrollBarUI {
-    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 140;
-    private static final int SCROLL_BAR_ALPHA = 80;
-    private static final int THUMB_SIZE = 8;
-    private static final Color THUMB_COLOR = new Color(120, 180, 190);
-    
-    public ModernScrollBarUI() {
-        
+
+    private final Color thumbColor = new Color(100, 100, 100, 100);
+
+    @Override
+    protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
     }
-    
+
+    @Override
+    protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
+        if (!c.isEnabled() || r.width > r.height) {
+            return;
+        }
+
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(thumbColor);
+        g2.fillRoundRect(r.x, r.y, r.width, r.height, 10, 10);
+        g2.dispose();
+    }
+
     @Override
     protected JButton createDecreaseButton(int orientation) {
-        return new InvisibleScrollBarButton();
+        return createZeroButton();
     }
-    
+
     @Override
     protected JButton createIncreaseButton(int orientation) {
-        return new InvisibleScrollBarButton();
+        return createZeroButton();
     }
-    
+
+    private JButton createZeroButton() {
+        JButton button = new JButton();
+        button.setPreferredSize(new Dimension(0, 0));
+        button.setMinimumSize(new Dimension(0, 0));
+        button.setMaximumSize(new Dimension(0, 0));
+        return button;
+    }
+
     @Override
-    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
-        
-    }
-    
-    @Override
-    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-        int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
-        int orientation = scrollbar.getOrientation();
-        int x = thumbBounds.x;
-        int y = thumbBounds.y;
-        
-        int width = orientation == JScrollBar.VERTICAL ? THUMB_SIZE : thumbBounds.width;
-        width = Math.max(width, THUMB_SIZE);
-        
-        int height = orientation == JScrollBar.VERTICAL ? thumbBounds.height : THUMB_SIZE;
-        height = Math.max(height, THUMB_SIZE);
-        
-        Graphics2D graphics2D = (Graphics2D) g.create();
-        graphics2D.setColor(new Color(THUMB_COLOR.getRed(), THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
-        graphics2D.fillRect(x, y, width, height);
-        graphics2D.dispose();
-    }
-    
-    private static class InvisibleScrollBarButton extends JButton {
-        
-        private InvisibleScrollBarButton() {
-            setOpaque(false);
-            setFocusable(false);
-            setFocusPainted(false);
-            setBorderPainted(false);
-            setBorder(BorderFactory.createEmptyBorder());
-        }
+    protected Dimension getMinimumThumbSize() {
+        return new Dimension(5, 30);
     }
 }
