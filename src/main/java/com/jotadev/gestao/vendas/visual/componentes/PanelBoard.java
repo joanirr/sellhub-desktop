@@ -13,22 +13,23 @@ public class PanelBoard extends javax.swing.JPanel {
 
     public PanelBoard() {
         initComponents();
-        cor1 = new Color(245, 247, 250);
-        cor2 = new Color(230, 235, 240);
+        cor1 = new Color(26, 122, 102);
+        cor2 = new Color(0, 70, 50);
         setOpaque(false);
     }
     
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D graphics2D = (Graphics2D) g;
+        Graphics2D graphics2D = (Graphics2D) g.create();
         
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        GradientPaint gradientPaint = new GradientPaint(0, 0, cor1, getWidth(), getHeight(), cor2);
+        GradientPaint gradientPaint = new GradientPaint(0, 0, cor1, 0, getHeight(), cor2);
         graphics2D.setPaint(gradientPaint);
         
         graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
         
+        graphics2D.dispose();
         super.paintComponent(g);
     }
 
@@ -38,6 +39,7 @@ public class PanelBoard extends javax.swing.JPanel {
 
     public void setCor1(Color cor1) {
         this.cor1 = cor1;
+        repaint();
     }
 
     public Color getCor2() {
@@ -46,6 +48,7 @@ public class PanelBoard extends javax.swing.JPanel {
 
     public void setCor2(Color cor2) {
         this.cor2 = cor2;
+        repaint();
     }
     
     

@@ -60,27 +60,30 @@
         <Component class="com.jotadev.gestao.vendas.visual.componentes.Cartao" name="cartao1">
           <Properties>
             <Property name="cor1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="db" green="b4" red="0" type="rgb"/>
+              <Color blue="54" green="b9" red="1d" type="rgb"/>
             </Property>
             <Property name="cor2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="12" red="12" type="rgb"/>
             </Property>
           </Properties>
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.Cartao" name="cartao2">
           <Properties>
+            <Property name="cor1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="12" green="12" red="12" type="rgb"/>
+            </Property>
             <Property name="cor2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="63" green="2b" red="30" type="rgb"/>
+              <Color blue="80" green="5a" red="3d" type="rgb"/>
             </Property>
           </Properties>
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.Cartao" name="cartao3">
           <Properties>
             <Property name="cor1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b3" green="6a" red="b0" type="rgb"/>
+              <Color blue="ec" green="38" red="83" type="rgb"/>
             </Property>
             <Property name="cor2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="12" green="12" red="12" type="rgb"/>
             </Property>
           </Properties>
         </Component>

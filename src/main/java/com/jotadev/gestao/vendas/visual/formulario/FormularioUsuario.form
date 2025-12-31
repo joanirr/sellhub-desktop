@@ -20,7 +20,10 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2d" green="2d" red="2d" type="rgb"/>
+              <Color blue="23" green="21" red="1e" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
 
@@ -40,18 +43,20 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                   </Group>
@@ -85,32 +90,34 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelMensagem" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNome" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSenha" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="comboPerfil" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtFoto" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="botaoSelecionarArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtFoto" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="botaoSelecionarArquivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="radioAtivo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,7 +125,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botaoUsuarioCadastro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -130,7 +137,7 @@
                   <Font name="Segoe UI" size="17" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="ADICIONAR USU&#xc1;RIO"/>
@@ -154,7 +161,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome:"/>
               </Properties>
@@ -165,7 +172,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Email:"/>
               </Properties>
@@ -176,7 +183,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Senha:"/>
               </Properties>
@@ -187,7 +194,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Perfil:"/>
               </Properties>
@@ -198,7 +205,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Foto:"/>
               </Properties>
@@ -209,7 +216,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estado:"/>
               </Properties>
@@ -217,7 +224,20 @@
             <Component class="javax.swing.JTextField" name="txtNome">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="64" green="4b" red="28" type="rgb"/>
+                  <Color blue="17" green="16" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="41" green="46" red="3c" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="69" green="90" red="3d" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -227,17 +247,30 @@
             <Component class="javax.swing.JTextField" name="txtEmail">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="64" green="4b" red="28" type="rgb"/>
+                  <Color blue="17" green="16" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="41" green="46" red="3c" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="69" green="90" red="3d" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboPerfil">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="64" green="4b" red="28" type="rgb"/>
+                  <Color blue="17" green="16" red="0" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
@@ -245,6 +278,13 @@
                     <StringItem index="1" value="Admin"/>
                     <StringItem index="2" value="Padr&#xe3;o"/>
                   </StringArray>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="41" green="46" red="3c" type="rgb"/>
+                    </LineBorder>
+                  </Border>
                 </Property>
               </Properties>
               <AuxValues>
@@ -254,12 +294,20 @@
             <Component class="javax.swing.JTextField" name="txtFoto">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="64" green="4b" red="28" type="rgb"/>
+                  <Color blue="17" green="16" red="0" type="rgb"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="64" green="4b" red="28" type="rgb"/>
                 </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="41" green="46" red="3c" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioAtivo">
@@ -271,10 +319,11 @@
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Ativo"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioInativo">
@@ -286,23 +335,34 @@
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Inativo"/>
+                <Property name="contentAreaFilled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtSenha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="64" green="4b" red="28" type="rgb"/>
+                  <Color blue="17" green="16" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="41" green="46" red="3c" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="69" green="90" red="3d" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="com.jotadev.gestao.vendas.visual.componentes.Botao" name="botaoSelecionarArquivo">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Selecionar"/>
                 <Property name="actionCommand" type="java.lang.String" value="selecionar"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -315,9 +375,6 @@
             </Component>
             <Component class="com.jotadev.gestao.vendas.visual.componentes.Botao" name="botaoUsuarioCadastro">
               <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="actionCommand" type="java.lang.String" value="salvar"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -352,10 +409,10 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2d" green="2d" red="2d" type="rgb"/>
+              <Color blue="23" green="21" red="1e" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f4" green="f4" red="f4" type="rgb"/>
+              <Color blue="b2" green="ac" red="b0" type="rgb"/>
             </Property>
           </Properties>
 
@@ -531,7 +588,7 @@
                   <Font name="Segoe UI" size="17" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Joanir Rodrigo"/>
@@ -540,7 +597,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="usuario:salvar" noResource="true"/>
@@ -552,7 +609,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox2">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Somente seus dados"/>
                 <Property name="name" type="java.lang.String" value="usuario:somente_seu" noResource="true"/>
@@ -561,7 +618,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox3">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar todos"/>
                 <Property name="name" type="java.lang.String" value="usuario:buscar_todos" noResource="true"/>
@@ -570,7 +627,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox4">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="usuario:remover" noResource="true"/>
@@ -579,7 +636,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox5">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Todos os hist&#xf3;ricos"/>
                 <Property name="name" type="java.lang.String" value="estoque:todos_historicos" noResource="true"/>
@@ -588,7 +645,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox6">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="estoque:remover" noResource="true"/>
@@ -600,7 +657,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox7">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="estoque:salvar" noResource="true"/>
@@ -609,7 +666,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox8">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Somente seu historico"/>
                 <Property name="name" type="java.lang.String" value="estoque:seu_historico" noResource="true"/>
@@ -618,7 +675,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox9">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="produto:salvar" noResource="true"/>
@@ -627,7 +684,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox10">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="produto:remover" noResource="true"/>
@@ -639,7 +696,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox11">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="categoria:salvar" noResource="true"/>
@@ -648,7 +705,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox12">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="categoria:remover" noResource="true"/>
@@ -657,7 +714,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox13">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="venda:salvar" noResource="true"/>
@@ -669,7 +726,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox16">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
                 <Property name="name" type="java.lang.String" value="permissao:salvar" noResource="true"/>
@@ -678,7 +735,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox17">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="cliente:remover" noResource="true"/>
@@ -700,7 +757,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
               </Properties>
@@ -711,7 +768,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estoque"/>
               </Properties>
@@ -732,7 +789,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produto"/>
               </Properties>
@@ -743,7 +800,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Categoria"/>
               </Properties>
@@ -764,7 +821,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Venda"/>
               </Properties>
@@ -775,7 +832,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Permiss&#xe3;o"/>
               </Properties>
@@ -796,7 +853,7 @@
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="c8" green="c8" red="c8" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
@@ -811,16 +868,19 @@
                 <Property name="name" type="java.lang.String" value="salvarpermissao" noResource="true"/>
               </Properties>
               <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="salvarpermissao"/>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
               </AccessibilityProperties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoUsuarioPermissaoActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox14">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Atualizar"/>
                 <Property name="name" type="java.lang.String" value="venda:atualizar" noResource="true"/>
@@ -829,7 +889,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox15">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="df" green="d6" red="b0" type="rgb"/>
+                  <Color blue="b2" green="ac" red="b0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remover"/>
                 <Property name="name" type="java.lang.String" value="venda:remover" noResource="true"/>
@@ -841,6 +901,21 @@
     </Container>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Container class="com.jotadev.gestao.vendas.visual.componentes.PanelBoard" name="panelBoard1">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -935,6 +1010,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="botaoAtualizar">
           <Properties>
@@ -953,6 +1031,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAtualizarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="botaoRemover">
           <Properties>
@@ -971,6 +1052,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRemoverActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="botaoPermissoes">
           <Properties>
@@ -988,8 +1072,11 @@
             <Property name="name" type="java.lang.String" value="permissoes" noResource="true"/>
           </Properties>
           <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="permissoes"/>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
           </AccessibilityProperties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="botaoImprimir">
           <Properties>
@@ -1005,6 +1092,9 @@
             <Property name="text" type="java.lang.String" value="Imprimir"/>
             <Property name="name" type="java.lang.String" value="imprimir" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

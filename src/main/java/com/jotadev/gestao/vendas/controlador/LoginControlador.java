@@ -70,5 +70,4 @@ public class LoginControlador implements ActionListener {
             login.getCampoDeTextoEmail().setText("");
             login.getCampoDeSenha().setText("");
         }
-    
 }

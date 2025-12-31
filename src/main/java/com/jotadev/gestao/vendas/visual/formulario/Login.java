@@ -108,40 +108,27 @@ public class Login extends javax.swing.JFrame {
     public Botao getBotaoLogin() {
         return botaoLogin;
     }
-    
+
     public CampoDeSenha getCampoDeSenha() {
         return campoDeSenha;
     }
-
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelBoard1 = new com.jotadev.gestao.vendas.visual.componentes.PanelBoard();
-        campoDeSenha = new com.jotadev.gestao.vendas.visual.componentes.CampoDeSenha();
         campoDeTextoEmail = new com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto();
         botaoLogin = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         panelMovimento = new javax.swing.JPanel();
         labelLogo = new javax.swing.JLabel();
         labelFechar = new javax.swing.JLabel();
+        campoDeSenha = new com.jotadev.gestao.vendas.visual.componentes.CampoDeSenha();
         background = new javax.swing.JLayeredPane();
 
-        panelBoard1.setCor1(new java.awt.Color(30, 30, 40));
-        panelBoard1.setCor2(new java.awt.Color(28, 181, 224));
-
-        campoDeSenha.setBackground(new java.awt.Color(45, 45, 45));
-        campoDeSenha.setCor(new java.awt.Color(255, 255, 255));
-        campoDeSenha.setDicas("Senha");
-        campoDeSenha.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\pass.png")); // NOI18N
-        campoDeSenha.addActionListener(this::campoDeSenhaActionPerformed);
-
-        campoDeTextoEmail.setBackground(new java.awt.Color(45, 45, 45));
-        campoDeTextoEmail.setCor(new java.awt.Color(255, 255, 255));
         campoDeTextoEmail.setDicas("Email");
         campoDeTextoEmail.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\mail.png")); // NOI18N
 
-        botaoLogin.setForeground(new java.awt.Color(255, 255, 255));
         botaoLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\login_16.png")); // NOI18N
         botaoLogin.setText("LOGIN");
         botaoLogin.setActionCommand("login");
@@ -150,10 +137,10 @@ public class Login extends javax.swing.JFrame {
 
         panelMovimento.setOpaque(false);
 
-        labelLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\SellHub.png")); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\SellHub3.png")); // NOI18N
         labelLogo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        labelFechar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelFechar.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         labelFechar.setForeground(new java.awt.Color(255, 255, 255));
         labelFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFechar.setText("X");
@@ -166,43 +153,46 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelMovimentoLayout.setVerticalGroup(
             panelMovimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
             .addGroup(panelMovimentoLayout.createSequentialGroup()
-                .addComponent(labelFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelFechar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        campoDeSenha.setDicas("Senha");
+        campoDeSenha.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\pass.png")); // NOI18N
 
         javax.swing.GroupLayout panelBoard1Layout = new javax.swing.GroupLayout(panelBoard1);
         panelBoard1.setLayout(panelBoard1Layout);
         panelBoard1Layout.setHorizontalGroup(
             panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBoard1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campoDeSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                    .addComponent(campoDeTextoEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(panelMovimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBoard1Layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(campoDeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoDeTextoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
+            .addGroup(panelBoard1Layout.createSequentialGroup()
+                .addGap(131, 131, 131)
                 .addComponent(botaoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBoard1Layout.setVerticalGroup(
             panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBoard1Layout.createSequentialGroup()
                 .addComponent(panelMovimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(36, 36, 36)
                 .addComponent(campoDeTextoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoDeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(33, 33, 33)
                 .addComponent(botaoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 39, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -232,10 +222,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoDeSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDeSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoDeSenhaActionPerformed
 
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         // TODO add your handling code here:

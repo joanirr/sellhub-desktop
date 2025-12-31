@@ -3,31 +3,23 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="com.jotadev.gestao.vendas.visual.componentes.PanelBoard" name="panelBoard1">
-      <Properties>
-        <Property name="cor1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="28" green="1e" red="1e" type="rgb"/>
-        </Property>
-        <Property name="cor2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e0" green="b5" red="1c" type="rgb"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="campoDeSenha" pref="247" max="32767" attributes="0"/>
-                      <Component id="campoDeTextoEmail" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
               <Component id="panelMovimento" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="134" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="campoDeSenha" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="campoDeTextoEmail" min="-2" pref="250" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                   <Component id="botaoLogin" min="-2" pref="145" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -35,43 +27,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="panelMovimento" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="campoDeTextoEmail" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="campoDeSenha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="botaoLogin" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeSenha" name="campoDeSenha">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2d" green="2d" red="2d" type="rgb"/>
-            </Property>
-            <Property name="cor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="dicas" type="java.lang.String" value="Senha"/>
-            <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\pass.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoDeSenhaActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto" name="campoDeTextoEmail">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2d" green="2d" red="2d" type="rgb"/>
-            </Property>
-            <Property name="cor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="dicas" type="java.lang.String" value="Email"/>
             <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\mail.png"/>
@@ -80,9 +49,6 @@
         </Component>
         <Component class="com.jotadev.gestao.vendas.visual.componentes.Botao" name="botaoLogin">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\login_16.png"/>
             </Property>
@@ -108,7 +74,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelLogo" min="-2" pref="96" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labelFechar" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="labelFechar" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -116,7 +82,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelLogo" pref="65" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelFechar" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="labelFechar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -126,7 +92,7 @@
             <Component class="javax.swing.JLabel" name="labelLogo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\SellHub.png"/>
+                  <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\SellHub3.png"/>
                 </Property>
                 <Property name="verticalAlignment" type="int" value="1"/>
               </Properties>
@@ -134,7 +100,7 @@
             <Component class="javax.swing.JLabel" name="labelFechar">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="18" style="1"/>
+                  <Font name="Segoe UI" size="20" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -145,6 +111,14 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="com.jotadev.gestao.vendas.visual.componentes.CampoDeSenha" name="campoDeSenha">
+          <Properties>
+            <Property name="dicas" type="java.lang.String" value="Senha"/>
+            <Property name="prefixoIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Joanir\Documents\NetBeansProjects\gestao.vendas\src\main\java\com\jotadev\gestao\vendas\visual\icon\pass.png"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </NonVisualComponents>

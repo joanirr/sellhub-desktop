@@ -55,15 +55,16 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(45, 45, 45));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        cartao1.setCor1(new java.awt.Color(0, 180, 219));
-        cartao1.setCor2(new java.awt.Color(0, 0, 0));
+        cartao1.setCor1(new java.awt.Color(29, 185, 84));
+        cartao1.setCor2(new java.awt.Color(18, 18, 18));
         jPanel1.add(cartao1);
 
-        cartao2.setCor2(new java.awt.Color(48, 43, 99));
+        cartao2.setCor1(new java.awt.Color(18, 18, 18));
+        cartao2.setCor2(new java.awt.Color(61, 90, 128));
         jPanel1.add(cartao2);
 
-        cartao3.setCor1(new java.awt.Color(176, 106, 179));
-        cartao3.setCor2(new java.awt.Color(0, 0, 0));
+        cartao3.setCor1(new java.awt.Color(131, 56, 236));
+        cartao3.setCor2(new java.awt.Color(18, 18, 18));
         jPanel1.add(cartao3);
 
         panelBoard1.setCor1(new java.awt.Color(45, 45, 45));

@@ -68,7 +68,7 @@ public class Menu extends javax.swing.JPanel {
         
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        GradientPaint gradientPaint = new GradientPaint(0, 0, new Color(47, 95, 106), 0, getHeight(), new Color(25, 55, 65));
+        GradientPaint gradientPaint = new GradientPaint(0, 0, new Color(26, 122, 102), 0, getHeight(), new Color(0, 70, 50));
         graphics2D.setPaint(gradientPaint);
         
         graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);

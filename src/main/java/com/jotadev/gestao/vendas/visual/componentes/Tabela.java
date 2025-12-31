@@ -33,12 +33,19 @@ public class Tabela extends JTable {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-                if (value != null && "REMOVER".equals(value)) {
-                    component.setForeground(new Color(204, 0, 0));
+                if (isSelected) {
+                    component.setBackground(new Color(25, 45, 40)); 
+                } else {
+                    component.setBackground(backgroundCell);
                 }
-                
-                component.setBackground(backgroundCell);
-                component.setForeground(isSelected ? selectedText : foregroundCell);
+
+                if ("REMOVER".equals(value)) {
+                    component.setForeground(new Color(255, 70, 70));
+                } else if (isSelected) {
+                    component.setForeground(new Color(34, 211, 238));
+                } else {
+                    component.setForeground(foregroundCell);
+                }
 
                 return component;
             }

@@ -20,24 +20,38 @@ public class CampoDeSenha extends JPasswordField {
     private Color cor;
     
     public CampoDeSenha() {
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setOpaque(true);
-        setBackground(new Color(0, 0, 0, 0));
-        setForeground(new Color(220, 220, 220));
+        setUI(new javax.swing.plaf.basic.BasicPasswordFieldUI());
+    
+        setBackground(new Color(0, 35, 25));
+        setForeground(new Color(255, 255, 255));
+        setCaretColor(new Color(29, 185, 84));
+    
+        setSelectionColor(new Color(29, 185, 84, 150)); 
+        setSelectedTextColor(Color.WHITE);
+    
         setFont(new Font("sanserif", 0, 13));
-        setSelectedTextColor(new Color(26, 188, 254));
-        this.cor = new Color(45, 45, 45);
+        setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(new Color(62, 62, 62), 1),
+        BorderFactory.createEmptyBorder(10, 10, 10, 10)
+        ));
+
+        setOpaque(false);
+        this.cor = new Color(0, 35, 25);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D graphics2D = (Graphics2D) g;
-        
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics2D.setColor(cor);
-        graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
-        
-        super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(new Color(0, 35, 25));
+
+        int r = getHeight(); 
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), r, r);
+
+        g2.dispose();
+
+        super.paintComponent(g);
         paintIcon(g);
     }
 

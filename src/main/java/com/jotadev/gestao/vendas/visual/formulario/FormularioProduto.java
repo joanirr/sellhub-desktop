@@ -83,10 +83,10 @@ public class FormularioProduto extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        botaoAdicionar = new javax.swing.JButton();
-        botaoAtualizar = new javax.swing.JButton();
-        botaoRemover = new javax.swing.JButton();
-        botaoImprimir = new javax.swing.JButton();
+        botaoAdicionar = new com.jotadev.gestao.vendas.visual.componentes.Botao();
+        botaoAtualizar = new com.jotadev.gestao.vendas.visual.componentes.Botao();
+        botaoRemover = new com.jotadev.gestao.vendas.visual.componentes.Botao();
+        botaoImprimir = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProduto = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
 

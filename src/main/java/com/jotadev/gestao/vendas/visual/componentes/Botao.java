@@ -1,8 +1,10 @@
 package com.jotadev.gestao.vendas.visual.componentes;
 
 import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -27,7 +29,8 @@ public class Botao extends JButton {
     public Botao() {
         setContentAreaFilled(false);
         setBorder(new EmptyBorder(5, 0, 5, 0));
-        setBackground(new Color(26, 188, 254));
+        setBackground(new Color(40, 100, 80));
+        setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         addMouseListener(new MouseAdapter() {
@@ -76,11 +79,15 @@ public class Botao extends JButton {
         
         Graphics2D graphics2D = img.createGraphics();
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        Color corTopo = new Color(46, 89, 112);
-        Color corBase = new Color(30, 60, 80);
-        java.awt.GradientPaint gradiente = new java.awt.GradientPaint(0, 0, corTopo, 0, altura, corBase);
+        Color corTopo = new Color(60, 120, 100);
+        Color corBase = new Color(40, 100, 80);
+        GradientPaint gradiente = new GradientPaint(0, 0, corTopo, 0, altura, corBase);
         graphics2D.setPaint(gradiente);
         graphics2D.fillRoundRect(0, 0, comprimento, altura, altura, altura);
+        
+        graphics2D.setColor(new Color(255, 255, 255, 60));
+        graphics2D.setStroke(new BasicStroke(1.2f));
+        graphics2D.drawRoundRect(1, 1, comprimento - 3, altura - 3, altura, altura);
         
         if (ponto != null) {
             graphics2D.setColor(corDeEfeito);

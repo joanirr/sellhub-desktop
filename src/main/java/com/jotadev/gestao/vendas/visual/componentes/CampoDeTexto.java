@@ -22,22 +22,31 @@ public class CampoDeTexto extends JTextField{
     
     public CampoDeTexto() {
         setUI(new BasicTextFieldUI());
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setOpaque(true);
-        setBackground(new Color(0, 0, 0, 0));
-        setForeground(new Color(220, 220, 220));
-        setFont(new Font("sanserif", 0, 13));
-        setSelectedTextColor(new Color(26, 188, 254));
-        this.cor = new Color(45, 45, 45);
+        setOpaque(false);
+        setBackground(new Color(0, 35, 25));
+        setForeground(Color.WHITE);
+        setFont(new java.awt.Font("sanserif", 0, 13));
+
+        setSelectionColor(new Color(29, 185, 84, 150));
+        setSelectedTextColor(Color.WHITE);
+        setCaretColor(new Color(29, 185, 84));
+
+        setBorder(BorderFactory.createCompoundBorder(
+        BorderFactory.createLineBorder(new Color(62, 62, 62), 1),
+        BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+
+        this.cor = new Color(0, 35, 25);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D graphics2D = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
         
-        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics2D.setColor(cor);
-        graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(cor);
+        int r = getHeight(); 
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), r, r);
         
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
         paintIcon(g);

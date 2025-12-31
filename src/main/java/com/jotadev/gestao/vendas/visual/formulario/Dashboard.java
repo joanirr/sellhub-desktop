@@ -34,8 +34,8 @@ public class Dashboard extends javax.swing.JFrame {
                 case 0 -> { setForm(formularioPrincipal); }
                 case 1 -> { setForm(formularioProduto); }
                 case 2 -> { setForm(formularioEstoque); }
-                case 3 -> { setForm(formularioVenda); }
-                case 4 -> {}
+                case 3 -> {}
+                case 4 -> { setForm(formularioVenda); }
                 case 5 -> { setForm(formularioUsuario); }
                 case 11 -> System.exit(0);
             }
