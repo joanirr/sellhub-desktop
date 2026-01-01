@@ -706,7 +706,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="com.jotadev.gestao.vendas.visual.componentes.Tabela" name="tabela2">
+            <Component class="com.jotadev.gestao.vendas.visual.componentes.Tabela" name="tabelaCheckout">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="19" green="23" red="0" type="rgb"/>

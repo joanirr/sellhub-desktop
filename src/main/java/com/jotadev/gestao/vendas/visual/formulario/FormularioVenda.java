@@ -4,6 +4,8 @@ import com.jotadev.gestao.vendas.controlador.FormularioVendaController;
 import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
+import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
+import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -105,9 +107,14 @@ public class FormularioVenda extends javax.swing.JPanel {
         return dialogVenda;
     }
     
-    public JTable getTabelaUsuarios() {
+    public JTable getTabelaVendas() {
         return tabelaVendas;
     }
+
+    public Tabela getTabelaCheckout() {
+        return tabelaCheckout;
+    }
+    
     
     public JButton getBotaoAdicionar() {
         return botaoAdicionar;
@@ -204,6 +211,15 @@ public class FormularioVenda extends javax.swing.JPanel {
     public Botao getBotaoVender() {
         return botaoVender;
     }
+
+    public ComboBox getComboBoxCategoria() {
+        return comboBoxCategoria;
+    }
+
+    public ComboBox getComboBoxProduto() {
+        return comboBoxProduto;
+    }
+    
     
     public void mostrarCarrinho() {
         TimingTarget target = new TimingTarget() {
@@ -300,7 +316,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoCarrinhoRemover = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         botaoCarrinhoLimpar = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tabela2 = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
+        tabelaCheckout = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela1 = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
         jLabel1 = new javax.swing.JLabel();
@@ -647,8 +663,8 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoCarrinhoLimpar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jPanel4.add(botaoCarrinhoLimpar);
 
-        tabela2.setBackground(new java.awt.Color(0, 35, 25));
-        tabela2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaCheckout.setBackground(new java.awt.Color(0, 35, 25));
+        tabelaCheckout.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -656,8 +672,8 @@ public class FormularioVenda extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
-        tabela2.setGridColor(new java.awt.Color(179, 179, 179));
-        jScrollPane4.setViewportView(tabela2);
+        tabelaCheckout.setGridColor(new java.awt.Color(179, 179, 179));
+        jScrollPane4.setViewportView(tabelaCheckout);
 
         javax.swing.GroupLayout panelBoard2Layout = new javax.swing.GroupLayout(panelBoard2);
         panelBoard2.setLayout(panelBoard2Layout);
@@ -893,7 +909,7 @@ public class FormularioVenda extends javax.swing.JPanel {
     private com.jotadev.gestao.vendas.visual.componentes.PanelBoard panelBoard2;
     private com.jotadev.gestao.vendas.visual.componentes.PanelCirculo panelCirculo1;
     private com.jotadev.gestao.vendas.visual.componentes.Tabela tabela1;
-    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabela2;
+    private com.jotadev.gestao.vendas.visual.componentes.Tabela tabelaCheckout;
     private com.jotadev.gestao.vendas.visual.componentes.Tabela tabelaVendas;
     private com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto textoBuscarProdutoPeloID;
     private com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto textoCPF;
