@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        this.getRootPane().setDefaultButton(botaoLogin); //login com enter
         setLocationRelativeTo(null);
         setBackground(new Color(0, 0, 0, 0));
         loginControlador = new LoginControlador(this);

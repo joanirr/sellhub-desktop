@@ -52,4 +52,13 @@ public class ProdutoServico {
     public void remover(Long produtoId) {
         produtoRepositorioImpl.removerPeloId(produtoId);
     }
+    
+    public Optional<Produto> buscarPeloId(Long id) {
+        try {
+            return produtoRepositorioImpl.buscarPeloId(id);
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar produto: " + e);
+            return Optional.empty();
+        }
+    }
 }

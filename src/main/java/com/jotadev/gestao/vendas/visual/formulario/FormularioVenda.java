@@ -219,6 +219,10 @@ public class FormularioVenda extends javax.swing.JPanel {
     public ComboBox getComboBoxProduto() {
         return comboBoxProduto;
     }
+
+    public MensagemUtil getMensagemUtil() {
+        return mensagemUtil;
+    }
     
     
     public void mostrarCarrinho() {

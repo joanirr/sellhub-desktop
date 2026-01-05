@@ -41,8 +41,8 @@ public class LoginControlador implements ActionListener {
                 
                 new Thread(() -> {
                     try {
-                        Thread.sleep(2000);
                         limparCampo();
+                        Thread.sleep(2000);
                         login.setVisible(false);
                         new Dashboard((Usuario) usuario.get()).setVisible(true);
                     } catch (Exception e) {
@@ -51,6 +51,7 @@ public class LoginControlador implements ActionListener {
                 
             } else {
                 login.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
+                limparCampo();
             }
         }
       
@@ -69,5 +70,6 @@ public class LoginControlador implements ActionListener {
         private void limparCampo() {
             login.getCampoDeTextoEmail().setText("");
             login.getCampoDeSenha().setText("");
+            login.getCampoDeTextoEmail().requestFocus();
         }
 }
