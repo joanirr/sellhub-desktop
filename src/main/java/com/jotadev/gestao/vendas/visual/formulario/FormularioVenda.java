@@ -35,6 +35,24 @@ public class FormularioVenda extends javax.swing.JPanel {
     public FormularioVenda(Long usuarioId) {
         initComponents();
         
+        jScrollPane4.getViewport().setBackground(new Color(45,45,45));
+        tabelaCheckout.setBackground(new Color(45,45,45));
+        tabelaCheckout.setFocusable(false);
+        tabelaCheckout.setCellSelectionEnabled(false);
+        tabelaCheckout.setRowSelectionAllowed(true);
+        tabelaCheckout.setShowGrid(false);
+        
+        tabelaVendas.setFocusable(false);
+        tabelaVendas.setCellSelectionEnabled(false);
+        tabelaVendas.setRowSelectionAllowed(true);
+        tabelaVendas.setShowGrid(false);
+        
+        layout = new MigLayout("fill, insets");
+        background.setLayout(layout);
+        background.add(panelBoard1);
+        
+        this.mensagemUtil = new MensagemUtil(background, layout);
+        
         Border bordaEscura = BorderFactory.createLineBorder(new Color(70, 70, 70));
         
         dataInicial.getComponent(1).setBackground(new Color(45, 45, 45));
@@ -55,9 +73,6 @@ public class FormularioVenda extends javax.swing.JPanel {
         
         this.usuarioId = usuarioId;
         
-        layout = new MigLayout("fill, insets");
-        background.setLayout(layout);
-        background.add(panelBoard1);
         inicializacaoDoPanelCirculo();
         
         formularioVendaController = new FormularioVendaController(this);
@@ -223,7 +238,11 @@ public class FormularioVenda extends javax.swing.JPanel {
     public MensagemUtil getMensagemUtil() {
         return mensagemUtil;
     }
-    
+
+    public JLabel getLabelCarrinho() {
+        return labelCarrinho;
+    }
+
     
     public void mostrarCarrinho() {
         TimingTarget target = new TimingTarget() {
@@ -340,6 +359,7 @@ public class FormularioVenda extends javax.swing.JPanel {
 
         dialogVenda.setBackground(new java.awt.Color(45, 45, 45));
 
+        background.setBackground(new java.awt.Color(0, 35, 25));
         background.setEnabled(false);
         background.setFocusable(false);
 
@@ -347,14 +367,14 @@ public class FormularioVenda extends javax.swing.JPanel {
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGap(0, 715, Short.MAX_VALUE)
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        panelBoard1.setBackground(new java.awt.Color(45, 45, 45));
+        panelBoard1.setBackground(new java.awt.Color(0, 35, 25));
         panelBoard1.setCor2(new java.awt.Color(30, 30, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -647,6 +667,7 @@ public class FormularioVenda extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        panelBoard2.setBackground(new java.awt.Color(0, 35, 25));
         panelBoard2.setCor1(new java.awt.Color(0, 70, 50));
         panelBoard2.setCor2(new java.awt.Color(26, 122, 102));
 
@@ -667,6 +688,9 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoCarrinhoLimpar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jPanel4.add(botaoCarrinhoLimpar);
 
+        jScrollPane4.setBackground(new java.awt.Color(0, 35, 25));
+        jScrollPane4.setOpaque(true);
+
         tabelaCheckout.setBackground(new java.awt.Color(0, 35, 25));
         tabelaCheckout.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -677,6 +701,7 @@ public class FormularioVenda extends javax.swing.JPanel {
             }
         ));
         tabelaCheckout.setGridColor(new java.awt.Color(179, 179, 179));
+        tabelaCheckout.setOpaque(false);
         jScrollPane4.setViewportView(tabelaCheckout);
 
         javax.swing.GroupLayout panelBoard2Layout = new javax.swing.GroupLayout(panelBoard2);

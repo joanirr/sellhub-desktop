@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 
 public class VendaDto {
     private Long id;
+    private String nome;
+    private Double preco;
+    private Integer quantidade;
+    private Double subtotal;
     private BigDecimal totalVenda;
     private BigDecimal valorPago;
     private BigDecimal troco;

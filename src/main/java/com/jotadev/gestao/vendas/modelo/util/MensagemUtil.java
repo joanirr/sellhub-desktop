@@ -19,14 +19,14 @@ public class MensagemUtil {
     
     public void mostrarMensagem(Mensagem.TipoMensagem tipo, String mensagem) {
         Mensagem ms = new Mensagem();
-         
         ms.mostrarMensagem(tipo, mensagem);
         
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void begin() {
                 if (!ms.isMostrar()) {
-                    background.add(ms, "pos 0.al 20", 0);
+                    background.add(ms, "pos 0.5al -30", JLayeredPane.DRAG_LAYER);
+                    background.setLayer(ms, JLayeredPane.DRAG_LAYER);
                     ms.setVisible(true);
                     background.repaint();
                 }
@@ -36,14 +36,13 @@ public class MensagemUtil {
             public void timingEvent(float fraction) {
                 float f;
                 
-                if (ms.isMostrar()) {
-                    f = 20 * (1f - fraction);
+                if (!ms.isMostrar()) {
+                    f = -30 + (70 * fraction);
                 } else {
-                    f = 20 * fraction;
+                    f = 40 - (70 * fraction);
                 }
                 
-                layout.setComponentConstraints(ms, "pos 0.5al " + (int) (f - 20));
-                background.repaint();
+                layout.setComponentConstraints(ms, "pos 0.5al " + (int) f);
                 background.revalidate();
             }
 
@@ -60,18 +59,22 @@ public class MensagemUtil {
             
         };
         
-        Animator animacao = new Animator(300, target);
-        animacao.setAcceleration(0.5f);
-        animacao.setDeceleration(0.5f);
-        animacao.setResolution(0);
-        animacao.start();
+        Animator animacaoEntrada = new Animator(300, target);
+        Animator animacaoSaida = new Animator(300, target);
+        animacaoEntrada.setAcceleration(0.5f);
+        animacaoEntrada.setDeceleration(0.5f);
+        animacaoSaida.setAcceleration(0.5f);
+        animacaoSaida.setDeceleration(0.5f);
         
         new Thread(() -> {
             try {
+                animacaoEntrada.start();
                 Thread.sleep(2000);
-                animacao.start();
+                animacaoSaida.start();
             } catch (InterruptedException e) {
                 System.out.println(e);
+            } catch (IllegalStateException e) {
+                System.out.println("Animador já estava rodando: " + e.getMessage());
             }
         }).start();
         

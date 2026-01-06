@@ -164,6 +164,8 @@ public class FormularioEstoque extends javax.swing.JPanel {
         textoObservacao.setDicas("Observações");
         textoObservacao.setPrefixoIcon(new javax.swing.ImageIcon("C:\\Users\\Joanir\\Documents\\NetBeansProjects\\gestao.vendas\\src\\main\\java\\com\\jotadev\\gestao\\vendas\\visual\\icon\\observacao.png")); // NOI18N
 
+        labelTextoDoProduto.setForeground(new java.awt.Color(255, 255, 255));
+
         botaoSalvar.setBackground(new java.awt.Color(28, 181, 223));
         botaoSalvar.setText("Salvar");
         botaoSalvar.setActionCommand("salvar");
@@ -194,14 +196,13 @@ public class FormularioEstoque extends javax.swing.JPanel {
                     .addComponent(textoNomeOuId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBoard1Layout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelTextoDoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBoard1Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(radioAtivar)
                         .addGap(48, 48, 48)
-                        .addComponent(radioDesativar)))
+                        .addComponent(radioDesativar))
+                    .addComponent(labelTextoDoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         panelBoard1Layout.setVerticalGroup(
@@ -219,10 +220,10 @@ public class FormularioEstoque extends javax.swing.JPanel {
                     .addComponent(radioAtivar)
                     .addComponent(radioDesativar))
                 .addGap(18, 18, 18)
-                .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTextoDoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addComponent(labelTextoDoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout dialogEstoqueLayout = new javax.swing.GroupLayout(dialogEstoque.getContentPane());
