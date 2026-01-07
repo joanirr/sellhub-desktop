@@ -42,6 +42,7 @@ public class FormularioEstoqueController implements ActionListener, KeyListener,
         estoqueHistoricoRepositorioImpl = new EstoqueHistoricoRepositorioImpl();
         atualizarTabelaEstoque();
         atualizarTabelaEstoqueHistorico();
+        
     }
     
     private void atualizarTabelaEstoque() {
@@ -121,6 +122,20 @@ public class FormularioEstoqueController implements ActionListener, KeyListener,
                 formularioEstoque.getLabelTextoDoProduto().setText("");
             }
        }
+    }
+    
+    private void atualizarProdutoSelecionado(String texto) {
+        try {
+            Long id = Long.valueOf(texto);
+            produto = produtoRepositorioImpl.buscarPeloId(id);
+        } catch (NumberFormatException e) {
+            produto = produtoRepositorioImpl.buscarPeloNome(texto);
+        }
+
+        if (produto.isPresent()) {
+            formularioEstoque.getLabelTextoDoProduto().setText(produto.get().getNome());
+            System.out.println("Estoque carregado: " + produto.get().getQuantidade());
+        }
     }
     
     private void validacaoDeCampoVazio(String texto) {

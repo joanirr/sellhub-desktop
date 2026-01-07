@@ -64,5 +64,9 @@ public class TabelaModeloCheckout extends AbstractTableModel {
             fireTableRowsDeleted(rowIndex, rowIndex); //avisa a tabela que uma linha sumiu
         }
     }
+    
+    public List<VendaDto> getItens() {
+        return this.itens;
+    }
 }
 

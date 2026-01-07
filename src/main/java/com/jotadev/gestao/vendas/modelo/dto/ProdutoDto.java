@@ -17,4 +17,5 @@ public class ProdutoDto {
     private String descricao;
     private BigDecimal preco;
     private String categoria;
+    private Integer quantidade;
 }

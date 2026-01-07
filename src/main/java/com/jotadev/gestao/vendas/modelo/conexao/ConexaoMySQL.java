@@ -9,24 +9,20 @@ public class ConexaoMySQL {
     private static final String URL = "jdbc:mysql://localhost:3306/gestao_venda?useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo";
     private static final String USER = "root";
     private static final String PASSWORD = "@Joanir123";
-    private static Connection connection;
-    
-    public ConexaoMySQL() {}
-    
+
     public static Connection obterConexao() throws SQLException {
-        if (connection == null) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        }
-        return connection;
+        // SEMPRE retorna uma conexão nova para evitar o erro de "Connection Closed"
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
     
-    public static void fecharConexao() throws SQLException {
-        if (connection != null) {
-            connection.close();
+    // O fecharConexao agora deve receber a conexão que deve ser fechada
+    public static void fecharConexao(Connection conn) {
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao fechar: " + e.getMessage());
         }
-    }
-    
-    public static void main(String[] args) throws SQLException {
-        System.out.println(obterConexao());
     }
 }

@@ -3,6 +3,7 @@ package com.jotadev.gestao.vendas.controlador;
 import com.jotadev.gestao.vendas.modelo.dto.VendaDto;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
 import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
+import com.jotadev.gestao.vendas.modelo.entidade.Venda;
 import com.jotadev.gestao.vendas.modelo.servico.CategoriaServico;
 import com.jotadev.gestao.vendas.modelo.servico.ProdutoServico;
 import com.jotadev.gestao.vendas.modelo.servico.UsuarioServico;
@@ -15,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,18 +49,18 @@ public class FormularioVendaController implements ActionListener {
     }
     
     private void atualizarTabelaVenda() {
-        // se o usuário possui permissão de adm
-        Optional<Usuario> usuario = usuarioServico.buscarPeloId(formularioVenda.getUsuarioId());
-        List<VendaDto> lista = new ArrayList<>();
-        
-        if(usuario.get().getPerfil().equalsIgnoreCase("ADMIN")) {
-            lista =  vendaServico.buscarTodos();
-        } else {
-            
-        }
-        
+        // Busca a lista atualizada do banco
+        List<VendaDto> lista = vendaServico.buscarTodos(); 
+
+        // Cria um novo modelo com os dados novos
         tabelaModeloVenda = new TabelaModeloVenda(lista);
+
+        // Seta o modelo na tabela da View
         formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
+
+        // Força a interface a se redesenhar
+        formularioVenda.getTabelaVendas().revalidate();
+        formularioVenda.getTabelaVendas().repaint();
     }
 
     @Override
@@ -76,6 +79,16 @@ public class FormularioVendaController implements ActionListener {
         for(ActionListener al : formularioVenda.getBotaoAdicionarCarrinho().getActionListeners()) {
             formularioVenda.getBotaoAdicionarCarrinho().removeActionListener(al);
         }
+        for(ActionListener al : formularioVenda.getComboBoxCategoria().getActionListeners()) {
+            formularioVenda.getComboBoxCategoria().removeActionListener(al);
+        }
+        for(ActionListener al : formularioVenda.getBotaoCarrinhoRemover().getActionListeners()) {
+            formularioVenda.getBotaoCarrinhoRemover().removeActionListener(al);
+        }
+        
+        for(ActionListener al : formularioVenda.getBotaoVender().getActionListeners()) {
+            formularioVenda.getBotaoVender().removeActionListener(al);
+        }
 
         formularioVenda.getTextoBuscarProdutoPeloID().addActionListener(e -> {
             System.out.println("Evento disparado! Buscando ID: " + formularioVenda.getTextoBuscarProdutoPeloID().getText()); // Teste de console
@@ -87,17 +100,31 @@ public class FormularioVendaController implements ActionListener {
             adicionarItem();
         });
         
+        formularioVenda.getComboBoxCategoria().addActionListener(e -> {
+            String categoriaSelecionada = (String) formularioVenda.getComboBoxCategoria().getSelectedItem();
+            System.out.println("Categoria selecionada: " + categoriaSelecionada); // Log para teste
+            atualizarProdutosPorCategoria(categoriaSelecionada);
+        });
+        
+        formularioVenda.getComboBoxProduto().addActionListener(e -> {
+            String produtoNome = (String) formularioVenda.getComboBoxProduto().getSelectedItem();
+            preencherCamposPeloNome(produtoNome);
+        });
+        
+        formularioVenda.getBotaoVender().addActionListener(e -> {
+            finalizarVenda();
+        });
+        
         formularioVenda.getBotaoCarrinhoRemover().addActionListener(e -> {
-            //pega o índice da linha selecionada
             int linhaSelecionada = formularioVenda.getTabelaCheckout().getSelectedRow();
-            
+
             if (linhaSelecionada >= 0) {
-                // remove linha
                 tabelaModeloCheckout.remover(linhaSelecionada);
-                //atualiza o contador do carrinho
+                atualizarTotalVenda();
+
                 int totalRestante = tabelaModeloCheckout.getRowCount();
                 formularioVenda.getLabelCarrinho().setText(String.valueOf(totalRestante));
-                
+
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Item removido com sucesso!");
             } else {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Por favor, selecione um item na tabela para remover!");
@@ -140,12 +167,18 @@ public class FormularioVendaController implements ActionListener {
             
             if (produtoOpt.isPresent()) {
                 Produto p = produtoOpt.get(); // extrai o produto de dentro do optional
+                System.out.println("PRODUTO ENCONTRADO: " + p.getNome() + " | QTD NO OBJETO: " + p.getQuantidade());
                 
                 formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
-                formularioVenda.getLabelPrecoProduto().setText(p.getPreco().toString());
+                formularioVenda.getLabelPrecoProduto().setText(String.valueOf(p.getPreco()));
                 formularioVenda.getLabelEstoqueQuantidade().setText(String.valueOf(p.getQuantidade()));
                 formularioVenda.getTextoQuantidade().requestFocus();
+                
+                // Proteção para o estoque não vir "null"
+                Integer estoque = p.getQuantidade();
+                formularioVenda.getLabelEstoqueQuantidade().setText(estoque != null ? String.valueOf(estoque) : "0");
             } else {
+                formularioVenda.getLabelEstoqueQuantidade().setText("0");
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Produto não encontrado!");
             }
         } catch (NumberFormatException e) {
@@ -155,29 +188,41 @@ public class FormularioVendaController implements ActionListener {
     
     private void calcularTotal() {
         try {
-            String precoTexto = formularioVenda.getLabelPrecoProduto().getText()
-                                    .replace("R$", "")
-                                    .replace(",", ".")
-                                    .trim();
-            
-            double preco = Double.parseDouble(precoTexto);
+            String precoTexto = formularioVenda.getLabelPrecoProduto().getText().replace(",", ".");
+            double precoUnitario = Double.parseDouble(precoTexto);
             
             // pega a quantidade
             String qtdTexto = formularioVenda.getTextoQuantidade().getText().trim();
             
             if (!qtdTexto.isBlank()) {
-                int quantidade = Integer.parseInt(qtdTexto);
-                double total = preco * quantidade;
+                int qtd = Integer.parseInt(qtdTexto);
+                double subtotalCalculado = precoUnitario * qtd;
                 
-                // atualiza o label do Preço Total
-                formularioVenda.getLabelTotalVenda().setText(String.format("%.2f", total));
-            } else {
-                formularioVenda.getLabelTotalVenda().setText("0.00");
+                // atualiza o label do preço total do item
+                formularioVenda.getLabelSubtotalItem().setText(String.format("%.2f", subtotalCalculado));
             }
         } catch (Exception e) {
-            formularioVenda.getLabelTotalVenda().setText("0.00");
+            formularioVenda.getLabelSubtotalItem().setText("0.00");
         }
     }
+    
+    public void atualizarTotalVenda() {
+        try {
+            double totalGeral = 0.0;
+            for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
+                // Acessar a coluna 4 (Subtotal)
+                Object valorLinha = tabelaModeloCheckout.getValueAt(i, 4);
+                if (valorLinha != null) {
+                    // Remove possíveis "R$" ou espaços que bugam o Double.parseDouble
+                    String limparValor = valorLinha.toString().replace("R$", "").replace(",", ".").trim();
+                    totalGeral += Double.parseDouble(limparValor);
+                }
+            }
+            formularioVenda.getLabelTotalVenda().setText(String.format("%.2f", totalGeral));
+        } catch (Exception e) {
+            System.err.println("Erro no cálculo: " + e.getMessage());
+        }
+    }   
     
     private void adicionarItem() {
         System.out.println("botão adicionar clicado!"); //teste
@@ -188,34 +233,55 @@ public class FormularioVendaController implements ActionListener {
                 return;
             }
             
-            String qtdTexto = formularioVenda.getTextoQuantidade().getText().trim();
-            if (qtdTexto.isEmpty() || Integer.parseInt(qtdTexto) <= 0) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Informe uma quantidade válida!");
+            String estoqueTexto = formularioVenda.getLabelEstoqueQuantidade().getText();
+    
+            // Proteção contra "null" ou textos vazios
+            if (estoqueTexto == null || estoqueTexto.equals("null") || estoqueTexto.isEmpty()) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque inválido!");
+                return;
+            }
+
+            int estoqueAtual = Integer.parseInt(estoqueTexto);
+            int qtdDesejada = Integer.parseInt(formularioVenda.getTextoQuantidade().getText().trim());
+
+            if (qtdDesejada > estoqueAtual) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque insuficiente! Disponível: " + estoqueAtual);
                 return;
             }
             
-            int quantidade = Integer.parseInt(qtdTexto);
-            double preco = Double.parseDouble(formularioVenda.getLabelPrecoProduto().getText().replace(",", "."));
-            double subtotal = preco * quantidade;
+            if (qtdDesejada <= 0) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Quantidade deve ser maior que zero!");
+                return;
+            }
+            
+            String textoPreco = formularioVenda.getLabelPrecoProduto().getText().replace(",", ".");
+            double vPreco = Double.parseDouble(textoPreco);
+
+            int vQuantidade = Integer.parseInt(formularioVenda.getTextoQuantidade().getText().trim());
+
+            // Calculamos o subtotal aqui para passar para o DTO
+            double vSubtotal = vPreco * vQuantidade;
             
             VendaDto item = VendaDto.builder()
                     .id(Long.parseLong(formularioVenda.getTextoBuscarProdutoPeloID().getText()))
                     .nome(nome)
-                    .preco(preco)
-                    .quantidade(quantidade)
-                    .subtotal(subtotal)
+                    .preco(vPreco)
+                    .quantidade(vQuantidade)
+                    .subtotal(vSubtotal)
                     .build();
             
             tabelaModeloCheckout.adicionar(item);
             int totalItens = tabelaModeloCheckout.getRowCount();
             formularioVenda.getLabelCarrinho().setText(String.valueOf(totalItens));
-            System.out.println("Item adicionado ao modelo. Total de linhas agora: " + tabelaModeloCheckout.getRowCount()); //teste
+            
+            atualizarTotalVenda();
+            
             limparCamposProduto();
             
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Produto adicionado!");
             
         } catch (Exception e) {
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao adicionar item!");
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro na contagem do estoque ou quantidade!");
         }
         
     }
@@ -225,9 +291,119 @@ public class FormularioVendaController implements ActionListener {
         formularioVenda.getLabelNomeDoProduto().setText("Nome do produto");
         formularioVenda.getLabelPrecoProduto().setText("0.00");
         formularioVenda.getLabelEstoqueQuantidade().setText("0");
+        formularioVenda.getLabelSubtotalItem().setText("0.00");
         formularioVenda.getTextoQuantidade().setText("");
-        formularioVenda.getLabelTotalVenda().setText("0.00");
         
         formularioVenda.getTextoBuscarProdutoPeloID().requestFocus();
+    }
+    
+    private void atualizarProdutosPorCategoria(String nomeCategoria) {
+        formularioVenda.getComboBoxProduto().removeAllItems();
+        formularioVenda.getComboBoxProduto().addItem("Selecione o produto");
+
+        if (nomeCategoria == null || nomeCategoria.equals("Selecione a categoria")) return;
+
+        produtoServico.buscarTodos().stream()
+                .filter(p -> {
+                    Object catObj = p.getCategoria();
+                    if (catObj == null) return false;
+
+                    // Se catObj for o objeto Categoria, o toString() ou o cast funcionará
+                    String nomeBanco = "";
+
+                    if (catObj instanceof com.jotadev.gestao.vendas.modelo.entidade.Categoria) {
+                        nomeBanco = ((com.jotadev.gestao.vendas.modelo.entidade.Categoria) catObj).getNome();
+                    } else {
+                        // Se o Java estiver tratando como String ou outro objeto
+                        nomeBanco = catObj.toString(); 
+                    }
+
+                    // Log de emergência para vermos o que o Java "vê"
+                    System.out.println("COMPARAÇÃO -> Banco: [" + nomeBanco + "] | Selecionado: [" + nomeCategoria + "]");
+
+                    return nomeBanco != null && nomeBanco.trim().equalsIgnoreCase(nomeCategoria.trim());
+                })
+                .forEach(p -> formularioVenda.getComboBoxProduto().addItem(p.getNome()));
+    }
+    
+    private void preencherCamposPeloNome(String nome) {
+        if (nome == null || nome.equals("Selecione o produto")) return;
+        
+        //busca o produto na lista geral pelo nome
+        Optional<Produto> produtoOpt = produtoServico.buscarPeloNome(nome);
+            produtoOpt.ifPresent(p -> {
+                formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
+                formularioVenda.getLabelPrecoProduto().setText(String.format("%.2f", p.getPreco()));
+
+                Integer estoque = p.getQuantidade();
+                formularioVenda.getLabelEstoqueQuantidade().setText(estoque != null ? String.valueOf(estoque) : "0");
+
+                // Preenche o ID para o sistema saber qual produto é na hora de adicionar ao carrinho
+                formularioVenda.getTextoBuscarProdutoPeloID().setText(p.getId().toString());
+                formularioVenda.getTextoQuantidade().requestFocus();
+
+                System.out.println("Produto carregado pelo Combo: " + p.getNome() + " | Estoque: " + p.getQuantidade());
+            });
+    }
+    
+    private void finalizarVenda() {
+        if (tabelaModeloCheckout.getRowCount() == 0) {
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "O carrinho está vazio!");
+            return;
+        }
+
+        try {
+            // 1. Criar o objeto Venda primeiro
+            Venda venda = new Venda();
+            venda.setUsuarioId(formularioVenda.getUsuarioId());
+            venda.setDataCriacao(LocalDateTime.now());
+
+            String totalLimpo = formularioVenda.getLabelTotalVenda().getText()
+                .replace("R$", "").replace(".", "").replace(",", ".").trim();
+
+            venda.setTotalVenda(new BigDecimal(totalLimpo));
+            venda.setValorPago(venda.getTotalVenda());
+            venda.setTroco(BigDecimal.ZERO);
+            venda.setDesconto(BigDecimal.ZERO);
+
+            String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens()); 
+
+            if (mensagem.startsWith("Venda realizada")) {
+                for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
+                    Long produtoId = Long.valueOf(tabelaModeloCheckout.getValueAt(i, 0).toString());
+                    Integer qtdVendida = Integer.valueOf(tabelaModeloCheckout.getValueAt(i, 2).toString());
+
+                    Optional<Produto> produtoOpt = produtoServico.buscarPeloId(produtoId);
+                    if (produtoOpt.isPresent()) {
+                        int novoEstoque = produtoOpt.get().getQuantidade() - qtdVendida;
+                        produtoServico.atualizarEstoque(produtoId, novoEstoque);
+                    }
+                }
+
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
+
+                // 4. Sincronização
+                atualizarTabelaVenda(); 
+                limparTudoAposVenda();
+            } else {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao finalizar: " + ex.getMessage());
+        }
+    }
+    
+    private void limparTudoAposVenda() {
+        // Esvazia a lista do TableModel do Checkout
+        tabelaModeloCheckout.limpar();
+
+        // Atualiza os labels
+        formularioVenda.getLabelTotalVenda().setText("0.00");
+        formularioVenda.getLabelCarrinho().setText("0");
+
+        // Limpa os campos de busca
+        limparCamposProduto();
     }
 }

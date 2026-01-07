@@ -61,4 +61,12 @@ public class ProdutoServico {
             return Optional.empty();
         }
     }
+    
+    public Optional<Produto> buscarPeloNome(String nome) {
+        return produtoRepositorioImpl.buscarPeloNome(nome);
+    }
+    
+    public void atualizarEstoque(Long produtoId, int novaQuantidade) {
+        produtoRepositorioImpl.atualizarEstoque(produtoId, novaQuantidade);
+    }
 }

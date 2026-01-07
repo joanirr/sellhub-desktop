@@ -21,4 +21,10 @@ public class Produto {
     private Long usuarioId;
     private Long categoriaId;
     private LocalDateTime dataCriacao;
+    private Categoria categoria;
+    
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }

@@ -243,6 +243,10 @@ public class FormularioVenda extends javax.swing.JPanel {
         return labelCarrinho;
     }
 
+    public JLabel getLabelSubtotalItem() {
+        return labelSubtotalItem;
+    }
+    
     
     public void mostrarCarrinho() {
         TimingTarget target = new TimingTarget() {
@@ -333,6 +337,8 @@ public class FormularioVenda extends javax.swing.JPanel {
         labelValorPago = new javax.swing.JLabel();
         labelDesconto = new javax.swing.JLabel();
         labelTroco = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        labelSubtotalItem = new javax.swing.JLabel();
         panelBoard2 = new com.jotadev.gestao.vendas.visual.componentes.PanelBoard();
         jLabel19 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -521,6 +527,14 @@ public class FormularioVenda extends javax.swing.JPanel {
         labelTroco.setForeground(new java.awt.Color(179, 179, 179));
         labelTroco.setText("0.00");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(16, 167, 49));
+        jLabel3.setText("Valor total do item:");
+
+        labelSubtotalItem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelSubtotalItem.setForeground(new java.awt.Color(16, 167, 49));
+        labelSubtotalItem.setText("0.00");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -535,12 +549,16 @@ public class FormularioVenda extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(labelSubtotalItem)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelEstoqueQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelPrecoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPrecoProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(labelTotalVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelValorPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -562,7 +580,11 @@ public class FormularioVenda extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(labelPrecoProduto))
-                .addGap(76, 76, 76)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(labelSubtotalItem))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(labelTotalVenda))
@@ -586,7 +608,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         panelBoard1Layout.setHorizontalGroup(
             panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBoard1Layout.createSequentialGroup()
-                .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBoard1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -602,14 +624,14 @@ public class FormularioVenda extends javax.swing.JPanel {
                             .addComponent(textoCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBoard1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelCirculo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addGap(10, 10, 10))
         );
         panelBoard1Layout.setVerticalGroup(
             panelBoard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -796,12 +818,14 @@ public class FormularioVenda extends javax.swing.JPanel {
         labelDataInicial.setText("Data inicial:");
 
         dataInicial.setBackground(new java.awt.Color(45, 45, 45));
+        dataInicial.setForeground(new java.awt.Color(255, 255, 255));
 
         labelDataFinal.setBackground(new java.awt.Color(45, 45, 45));
         labelDataFinal.setForeground(new java.awt.Color(255, 255, 255));
         labelDataFinal.setText("Data final:");
 
         dataFinal.setBackground(new java.awt.Color(45, 45, 45));
+        dataFinal.setForeground(new java.awt.Color(255, 255, 255));
 
         botaoPesquisar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoPesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -910,6 +934,7 @@ public class FormularioVenda extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -931,7 +956,8 @@ public class FormularioVenda extends javax.swing.JPanel {
     private javax.swing.JLabel labelEstoqueQuantidade;
     private javax.swing.JLabel labelNomeDoProduto;
     private javax.swing.JLabel labelPrecoProduto;
-    private javax.swing.JLabel labelTotalVenda;
+    private javax.swing.JLabel labelSubtotalItem;
+    public javax.swing.JLabel labelTotalVenda;
     private javax.swing.JLabel labelTroco;
     private javax.swing.JLabel labelValorPago;
     private com.jotadev.gestao.vendas.visual.componentes.PanelBoard panelBoard1;
