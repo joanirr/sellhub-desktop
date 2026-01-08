@@ -133,6 +133,7 @@ public class ProdutoCategoria extends javax.swing.JPanel {
         
         comboBoxCategoriaProduto = new ComboBox();
         comboBoxCategoriaProduto.addItem("Selecione a categoria.");
+        comboBoxCategoriaProduto.setBackground(new Color(0,35,25));
         produto.add(comboBoxCategoriaProduto, "w 60%, h 35");
         
         botaoProduto = new Botao();
