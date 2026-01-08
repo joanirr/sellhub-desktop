@@ -138,11 +138,41 @@ public class FormularioVendaController implements ActionListener {
                calcularTotal();
            }
         });
+        
+        formularioVenda.getTextoValorPago().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                calcularTroco();
+            }
+
+        });
 
         formularioVenda.getDialogVenda().pack();
         formularioVenda.getDialogVenda().setLocationRelativeTo(null);
         formularioVenda.getDialogVenda().setVisible(true);
         preencherComboBoxCategoria();
+    }
+    
+    private void calcularTroco() {
+        try {
+            String totalVendaTexto = formularioVenda.getLabelTotalVenda().getText().replace(",", ".");
+            BigDecimal totalVenda = new BigDecimal(totalVendaTexto);
+                    
+            String pagoTexto = formularioVenda.getTextoValorPago().getText().replace(",", ".");
+            if (pagoTexto.isEmpty()) return;
+                    
+            BigDecimal valorPago = new BigDecimal(pagoTexto);
+                    
+            BigDecimal troco = valorPago.subtract(totalVenda);
+                    
+            if (troco.compareTo(BigDecimal.ZERO) >= 0) {
+                formularioVenda.getLabelTroco().setText(String.format("%.2f", troco));
+            } else {
+                formularioVenda.getLabelTroco().setText("0.00");
+            }
+        } catch (Exception e) {
+            formularioVenda.getLabelTroco().setText("0.00");
+        }
     }
     
     private void preencherComboBoxCategoria() {
@@ -348,60 +378,83 @@ public class FormularioVendaController implements ActionListener {
     }
     
     private void finalizarVenda() {
+        // Validação de Carrinho Vazio
         if (tabelaModeloCheckout.getRowCount() == 0) {
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "O carrinho está vazio!");
             return;
         }
 
-        String pagoTxt = formularioVenda.getTextoValorPago().getText().trim().replace(",", ".");
-        if (pagoTxt.isEmpty() || new BigDecimal(pagoTxt).compareTo(BigDecimal.ZERO) <= 0) {
-            JOptionPane.showMessageDialog(null,
-                "O valor pago é obrigatório e deve ser maior que zero!",
-                "Pagamento pendente", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        Venda venda = new Venda();
-        String totalLimpo = formularioVenda.getLabelTotalVenda().getText()
-                .replace("R$", "").replace(".", "").replace(",", ".").trim();
-        venda.setTotalVenda(new BigDecimal(totalLimpo));
-
         try {
-            BigDecimal valorPago = new BigDecimal(pagoTxt);
+            // Captura e Limpeza de Dados da Tela
+            String totalTexto = formularioVenda.getLabelTotalVenda().getText()
+                    .replace("R$", "").replace(".", "").replace(",", ".").trim();
+            String pagoTexto = formularioVenda.getTextoValorPago().getText().replace(",", ".");
             String descontoTexto = formularioVenda.getTextoDesconto().getText().replace(",", ".");
+
+            BigDecimal totalVenda = new BigDecimal(totalTexto.isEmpty() ? "0" : totalTexto);
+            BigDecimal valorPago = new BigDecimal(pagoTexto.isEmpty() ? "0" : pagoTexto);
             BigDecimal desconto = new BigDecimal(descontoTexto.isEmpty() ? "0" : descontoTexto);
 
-            BigDecimal valorComDesconto = venda.getTotalVenda().subtract(desconto);
+            // Validação de Pagamento Insuficiente (Considerando Desconto)
+            BigDecimal valorComDesconto = totalVenda.subtract(desconto);
+
+            if (valorPago.compareTo(valorComDesconto) < 0) {
+                JOptionPane.showMessageDialog(null,
+                        "Valor pago insuficiente! O total com desconto é R$ " + valorComDesconto,
+                        "Pagamento insuficiente",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Cálculo do Troco e Configuração do Objeto Venda
             BigDecimal troco = valorPago.subtract(valorComDesconto);
 
+            Venda venda = new Venda();
+            venda.setTotalVenda(totalVenda);
             venda.setValorPago(valorPago);
             venda.setDesconto(desconto);
-            venda.setTroco(troco.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : troco);
+            venda.setTroco(troco);
             venda.setDataCriacao(LocalDateTime.now());
 
+            // Usuário e Cliente
             Long idUsuario = formularioVenda.getUsuarioId();
             venda.setUsuarioId(idUsuario == null ? 1L : idUsuario);
             venda.setClienteId(1L);
 
+            // Persistência no Banco de Dados
             String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens());
 
             if (mensagem.startsWith("Venda realizada")) {
-                for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
-                    Long produtoId = (Long) tabelaModeloCheckout.getValueAt(i, 0);
-                    Integer qtdVendida = (Integer) tabelaModeloCheckout.getValueAt(i, 2);
-                    produtoServico.buscarPeloId(produtoId).ifPresent(p -> {
-                        produtoServico.atualizarEstoque(produtoId, p.getQuantidade() - qtdVendida);
-                    });
-                }
+                // Atualização Automática de Estoque
+                atualizarEstoquePosVenda();
 
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
+
+                // Sincronização da UI
                 atualizarTabelaVenda(); 
                 limparTudoAposVenda();
             } else {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
             }
+
+        } catch (NumberFormatException e) {
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro nos valores digitados!");
         } catch (Exception ex) {
             ex.printStackTrace();
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro inesperado: " + ex.getMessage());
+        }
+    }
+
+    // Método auxiliar para deixar o código principal mais limpo
+    private void atualizarEstoquePosVenda() {
+        for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
+            Long produtoId = (Long) tabelaModeloCheckout.getValueAt(i, 0);
+            Integer qtdVendida = (Integer) tabelaModeloCheckout.getValueAt(i, 2);
+
+            produtoServico.buscarPeloId(produtoId).ifPresent(p -> {
+                int novoEstoque = p.getQuantidade() - qtdVendida;
+                produtoServico.atualizarEstoque(produtoId, novoEstoque);
+            });
         }
     }
     
