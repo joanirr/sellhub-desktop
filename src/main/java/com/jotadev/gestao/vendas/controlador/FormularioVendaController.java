@@ -92,18 +92,15 @@ public class FormularioVendaController implements ActionListener {
         }
 
         formularioVenda.getTextoBuscarProdutoPeloID().addActionListener(e -> {
-            System.out.println("Evento disparado! Buscando ID: " + formularioVenda.getTextoBuscarProdutoPeloID().getText()); // Teste de console
             buscarProdutoPeloId();
         });
         
         formularioVenda.getBotaoAdicionarCarrinho().addActionListener(e -> {
-            System.out.println("Clique detectado no botão adicionar!"); //teste
             adicionarItem();
         });
         
         formularioVenda.getComboBoxCategoria().addActionListener(e -> {
             String categoriaSelecionada = (String) formularioVenda.getComboBoxCategoria().getSelectedItem();
-            System.out.println("Categoria selecionada: " + categoriaSelecionada); // Log para teste
             atualizarProdutosPorCategoria(categoriaSelecionada);
         });
         
@@ -198,7 +195,6 @@ public class FormularioVendaController implements ActionListener {
             
             if (produtoOpt.isPresent()) {
                 Produto p = produtoOpt.get(); // extrai o produto de dentro do optional
-                System.out.println("PRODUTO ENCONTRADO: " + p.getNome() + " | QTD NO OBJETO: " + p.getQuantidade());
                 
                 formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
                 formularioVenda.getLabelPrecoProduto().setText(String.valueOf(p.getPreco()));
@@ -251,12 +247,10 @@ public class FormularioVendaController implements ActionListener {
             }
             formularioVenda.getLabelTotalVenda().setText(String.format("%.2f", totalGeral));
         } catch (Exception e) {
-            System.err.println("Erro no cálculo: " + e.getMessage());
         }
     }   
     
     private void adicionarItem() {
-    System.out.println("DEBUG: Tentando adicionar item ao carrinho...");
     try {
         String nome = formularioVenda.getLabelNomeDoProduto().getText();
         String idTexto = formularioVenda.getTextoBuscarProdutoPeloID().getText();
@@ -351,9 +345,6 @@ public class FormularioVendaController implements ActionListener {
                         nomeBanco = catObj.toString(); 
                     }
 
-                    // Log de emergência para vermos o que o Java "vê"
-                    System.out.println("COMPARAÇÃO -> Banco: [" + nomeBanco + "] | Selecionado: [" + nomeCategoria + "]");
-
                     return nomeBanco != null && nomeBanco.trim().equalsIgnoreCase(nomeCategoria.trim());
                 })
                 .forEach(p -> formularioVenda.getComboBoxProduto().addItem(p.getNome()));
@@ -375,7 +366,6 @@ public class FormularioVendaController implements ActionListener {
                 formularioVenda.getTextoBuscarProdutoPeloID().setText(p.getId().toString());
                 formularioVenda.getTextoQuantidade().requestFocus();
 
-                System.out.println("Produto carregado pelo Combo: " + p.getNome() + " | Estoque: " + p.getQuantidade());
             });
     }
     

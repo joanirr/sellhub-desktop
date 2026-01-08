@@ -51,7 +51,6 @@ public class Capa extends javax.swing.JPanel {
         voltar.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println("CLICOU PARA VOLTAR NA TELA DE LISTAGEM DO PRODUTO");
                 formularioProduto.getDashboard().setForm(formularioProduto);
             }
         });

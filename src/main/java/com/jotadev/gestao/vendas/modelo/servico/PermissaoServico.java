@@ -22,13 +22,11 @@ public class PermissaoServico {
     }
     
     public void validarPermissao(Long permissaoId, Long usuarioId) {
-        System.out.println(String.format("Permissão ID %s Usuario Id %s", permissaoId, usuarioId));
         PermissaoUsuario permissaoUsuario = PermissaoUsuario.builder()
                 .permissaoId(permissaoId)
                 .usuarioId(usuarioId)
                 .build();
         Optional<PermissaoUsuario> lista = buscarPermissaoUsuario(permissaoUsuario);
-        System.out.println("LIST: " + lista);
         if(lista.isEmpty()) {
             String mensagem = "Sem Permissao";
             JOptionPane.showMessageDialog(null, mensagem, mensagem, JOptionPane.ERROR_MESSAGE);
@@ -54,7 +52,6 @@ public class PermissaoServico {
     }
     
     public boolean salvar(PermissaoUsuario permissaoUsuario) {
-        System.out.println("PermissaoUsuario: " + permissaoUsuario);
         return permissaoUsuarioRepositorioImpl.salvar(permissaoUsuario);
     }
     

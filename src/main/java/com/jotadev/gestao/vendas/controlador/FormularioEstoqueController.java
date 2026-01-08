@@ -134,7 +134,6 @@ public class FormularioEstoqueController implements ActionListener, KeyListener,
 
         if (produto.isPresent()) {
             formularioEstoque.getLabelTextoDoProduto().setText(produto.get().getNome());
-            System.out.println("Estoque carregado: " + produto.get().getQuantidade());
         }
     }
     

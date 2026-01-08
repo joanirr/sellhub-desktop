@@ -49,7 +49,6 @@ public class Tela extends javax.swing.JPanel {
             @Override
             public void timingEvent(float fraction) {
                 
-                System.out.println("FRACTION " + fraction);
                 double fractionCapa;
                 double fractionProdutoCategoria;
                 double tamanho = tamanhoAdicional;

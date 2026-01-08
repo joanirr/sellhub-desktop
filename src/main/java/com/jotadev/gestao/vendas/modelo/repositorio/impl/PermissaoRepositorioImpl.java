@@ -13,7 +13,6 @@ public class PermissaoRepositorioImpl extends CrudRepositorioImpl {
     }
     
     public Optional<Permissao> buscarPeloNome(String nome) {
-        System.out.println("Nome: " + nome);
         try {
             String sql = "select * from permissao where nome = ?";
             
@@ -24,7 +23,6 @@ public class PermissaoRepositorioImpl extends CrudRepositorioImpl {
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()) {
-                System.out.println("Resultset: " + rs.getString(1));
                 return Optional.ofNullable((Permissao)getT(rs));
             }
         } catch (Exception e) {

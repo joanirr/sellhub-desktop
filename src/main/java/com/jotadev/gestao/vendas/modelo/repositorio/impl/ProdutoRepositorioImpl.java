@@ -42,9 +42,7 @@ public class ProdutoRepositorioImpl extends CrudRepositorioImpl<Produto> {
                 while (rs.next()) {
                     lista.add(mapearProduto(rs));
                 }
-                System.out.println("DEBUG: Carregados " + lista.size() + " produtos.");
             } catch (SQLException e) {
-                // ISSO VAI MOSTRAR NO CONSOLE O ERRO REAL (se a coluna não existir, por exemplo)
                 System.err.println("ERRO NO BUSCAR TODOS: " + e.getMessage());
             }
             return lista;

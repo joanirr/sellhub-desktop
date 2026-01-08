@@ -89,10 +89,6 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
 
             int totalPreenchido = preencherPreparedStatement(t, ps, atualizar);
 
-            System.out.println("DEBUG SQL: " + sql);
-            System.out.println("Total de '?' no SQL: " + sql.chars().filter(ch -> ch == '?').count());
-            System.out.println("Total de parâmetros preenchidos pelo Java: " + (atualizar ? totalPreenchido : totalPreenchido));
-
             int resultado = ps.executeUpdate();
             return resultado == 1;
 
@@ -187,7 +183,6 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
     public Optional<T> buscarPeloId(Long id) {
         try {
             String SQL = String.format("SELECT * FROM %s WHERE id = ?", t.getSimpleName());
-            System.out.println("SQL " + SQL);
             
             PreparedStatement ps = ConexaoMySQL.obterConexao().prepareStatement(SQL);
             

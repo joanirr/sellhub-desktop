@@ -16,7 +16,6 @@ public class EstoqueRepositorioImpl extends CrudRepositorioImpl<Estoque> {
     public Optional<Estoque> buscarPeloProdutoId(Long produtoId) {
         try {
             String SQL = String.format("SELECT * FROM estoque WHERE produtoid = ?");
-            System.out.println("SQL " + SQL);
             
             PreparedStatement ps = ConexaoMySQL.obterConexao().prepareStatement(SQL);
             

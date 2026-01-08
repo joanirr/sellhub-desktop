@@ -129,7 +129,6 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             else
                 mensagem(false, "Erro ao cadastrar usuário.");
         } catch (Exception e) {
-            System.out.println(e);
             mensagem(false, e.getMessage());
         }
     }
@@ -313,7 +312,6 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             String nome = checkBox.getName();
             
             Optional<Permissao> permissoes = permissaoServico.buscarPermissaoPeloNome(nome);
-            System.out.println(permissoes);
             if (permissoes.isPresent()) {
                 Permissao permissao = permissoes.get();
                 PermissaoUsuario permissaoUsuario = PermissaoUsuario.builder()

@@ -45,7 +45,6 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
                 String nomeCli = rs.getString("cliente_nome");
                 v.setCliente(nomeCli != null ? nomeCli : "Consumidor Final");
 
-                System.out.println("DEBUG: Venda " + v.getId() + " | Usuário: " + v.getUsuario());
                 lista.add(v);
             }
         } catch (SQLException e) {
@@ -89,7 +88,6 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
             }
 
             // O COMANDO QUE ENVIA PARA O BANCO
-            System.out.println("Enviando para o banco...");
             int linhasAfetadas = ps.executeUpdate(); 
 
             if (linhasAfetadas > 0) {

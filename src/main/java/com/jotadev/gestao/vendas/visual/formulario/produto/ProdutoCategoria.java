@@ -79,9 +79,6 @@ public class ProdutoCategoria extends javax.swing.JPanel {
                 textoDescricaoCategoria.setText(categoria.getDescricao());
                 formularioProduto.getFormularioProdutoController().setCategoriaId(categoria.getId());
                 
-                
-                System.out.println("Coluna: " + coluna);
-                
                 if (coluna == 3) {
                     int confirmar = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja remover\n"
                             + categoria.getNome() + "?", "Remover categoria.", JOptionPane.YES_NO_OPTION);
