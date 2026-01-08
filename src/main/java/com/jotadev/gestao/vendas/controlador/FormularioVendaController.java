@@ -351,20 +351,35 @@ public class FormularioVendaController implements ActionListener {
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "O carrinho está vazio!");
             return;
         }
+        Venda venda = new Venda();
+        String totalLimpo = formularioVenda.getLabelTotalVenda().getText()
+                .replace("R$", "").replace(".", "").replace(",", ".").trim();
+        if (totalLimpo.isEmpty()) totalLimpo = "0.00";
+        venda.setTotalVenda(new BigDecimal(totalLimpo));
 
         try {
-            // 1. Criar o objeto Venda primeiro
-            Venda venda = new Venda();
-            venda.setUsuarioId(formularioVenda.getUsuarioId());
+            String pagoTexto = formularioVenda.getTextoValorPago().getText().replace(",", ".");
+            String descontoTexto = formularioVenda.getTextoDesconto().getText().replace(",", ".");
+            
+            BigDecimal valorPago = new BigDecimal(pagoTexto.isEmpty() ? "0" : pagoTexto);
+            BigDecimal desconto = new BigDecimal(descontoTexto.isEmpty() ? "0" : descontoTexto);
+            BigDecimal totalVenda = venda.getTotalVenda();
+            
+            BigDecimal valorComDesconto = totalVenda.subtract(desconto);
+            BigDecimal troco = valorPago.subtract(valorComDesconto);
+            
+            venda.setValorPago(valorPago);
+            venda.setDesconto(desconto);
+            venda.setTroco(troco.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : troco);
             venda.setDataCriacao(LocalDateTime.now());
-
-            String totalLimpo = formularioVenda.getLabelTotalVenda().getText()
-                .replace("R$", "").replace(".", "").replace(",", ".").trim();
-
-            venda.setTotalVenda(new BigDecimal(totalLimpo));
-            venda.setValorPago(venda.getTotalVenda());
-            venda.setTroco(BigDecimal.ZERO);
-            venda.setDesconto(BigDecimal.ZERO);
+            
+            Long idUsuario = formularioVenda.getUsuarioId();
+            
+            if (idUsuario == null) {
+                idUsuario =1L;
+            }
+            
+            venda.setUsuarioId(idUsuario);
 
             String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens()); 
 
@@ -382,7 +397,7 @@ public class FormularioVendaController implements ActionListener {
 
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
 
-                // 4. Sincronização
+                // Sincronização
                 atualizarTabelaVenda(); 
                 limparTudoAposVenda();
             } else {

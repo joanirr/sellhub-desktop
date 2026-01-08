@@ -20,19 +20,35 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
     }
     
     public List<VendaDto> encontrarTodosPersonalizado() {
-        String SQL = "SELECT v.*, u.nome, c.cpf FROM venda v, cliente c, usuario u "
-                + "WHERE v.clienteid = c.id AND v.usuarioId = u.id ORDER BY v.id";
+        String SQL = "SELECT v.*, u.nome as usuario_nome, c.cpf as cliente_cpf " +
+                     "FROM venda v " +
+                     "INNER JOIN usuario u ON v.usuarioId = u.id " +
+                     "LEFT JOIN cliente c ON v.clienteId = c.id " +
+                     "ORDER BY v.id DESC";
+        
         List<VendaDto> lista = new ArrayList<>();
-        try {
-            ResultSet resultSet = ConexaoMySQL.obterConexao()
-                    .prepareStatement(SQL)
-                    .executeQuery();
-            
-            while(resultSet.next()) {
-                lista.add(getVendaDto(resultSet));
-            } 
-        } catch (Exception e) {
-            System.err.println(e);
+        try (Connection conn = ConexaoMySQL.obterConexao();
+             PreparedStatement ps = conn.prepareStatement(SQL);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                VendaDto v = new VendaDto();
+                v.setId(rs.getLong("id"));
+                v.setTotalVenda(rs.getBigDecimal("totalVenda"));
+                v.setValorPago(rs.getBigDecimal("valorPago"));
+                v.setTroco(rs.getBigDecimal("troco"));
+                v.setDesconto(rs.getBigDecimal("desconto"));
+                v.setDataCriacao(rs.getTimestamp("dataCriacao").toLocalDateTime());
+
+                v.setUsuario(rs.getString("usuario_nome"));
+
+                String nomeCli = rs.getString("cliente_nome");
+                v.setCliente(nomeCli != null ? nomeCli : "Consumidor Final");
+
+                lista.add(v);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return lista;
     }
@@ -63,8 +79,13 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
             ps.setBigDecimal(3, venda.getTroco());
             ps.setBigDecimal(4, venda.getDesconto());
             ps.setLong(5, 1L); 
-            ps.setLong(6, venda.getUsuarioId());
             ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+            
+            if (venda.getUsuarioId() != null) {
+                ps.setLong(6, venda.getUsuarioId());
+            } else {
+                ps.setNull(6, java.sql.Types.INTEGER);
+            }
 
             // O COMANDO QUE ENVIA PARA O BANCO
             System.out.println("Enviando para o banco...");
