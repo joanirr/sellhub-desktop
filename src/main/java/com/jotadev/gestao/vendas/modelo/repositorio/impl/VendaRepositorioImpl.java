@@ -20,15 +20,15 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
     }
     
     public List<VendaDto> encontrarTodosPersonalizado() {
-        String SQL = "SELECT v.*, u.nome as usuario_nome, c.cpf as cliente_cpf " +
+        String sql = "SELECT v.*, u.nome AS usuario_nome, c.nome AS cliente_nome " +
                      "FROM venda v " +
                      "INNER JOIN usuario u ON v.usuarioId = u.id " +
                      "LEFT JOIN cliente c ON v.clienteId = c.id " +
                      "ORDER BY v.id DESC";
-        
+
         List<VendaDto> lista = new ArrayList<>();
         try (Connection conn = ConexaoMySQL.obterConexao();
-             PreparedStatement ps = conn.prepareStatement(SQL);
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
@@ -40,11 +40,12 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
                 v.setDesconto(rs.getBigDecimal("desconto"));
                 v.setDataCriacao(rs.getTimestamp("dataCriacao").toLocalDateTime());
 
+                // Mapeando os nomes para os campos que a Tabela vai ler
                 v.setUsuario(rs.getString("usuario_nome"));
-
                 String nomeCli = rs.getString("cliente_nome");
                 v.setCliente(nomeCli != null ? nomeCli : "Consumidor Final");
 
+                System.out.println("DEBUG: Venda " + v.getId() + " | Usuário: " + v.getUsuario());
                 lista.add(v);
             }
         } catch (SQLException e) {

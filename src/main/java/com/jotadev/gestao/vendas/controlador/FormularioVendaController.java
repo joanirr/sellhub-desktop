@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.swing.JOptionPane;
 
 public class FormularioVendaController implements ActionListener {
     
@@ -351,62 +352,56 @@ public class FormularioVendaController implements ActionListener {
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "O carrinho está vazio!");
             return;
         }
+
+        String pagoTxt = formularioVenda.getTextoValorPago().getText().trim().replace(",", ".");
+        if (pagoTxt.isEmpty() || new BigDecimal(pagoTxt).compareTo(BigDecimal.ZERO) <= 0) {
+            JOptionPane.showMessageDialog(null,
+                "O valor pago é obrigatório e deve ser maior que zero!",
+                "Pagamento pendente", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         Venda venda = new Venda();
         String totalLimpo = formularioVenda.getLabelTotalVenda().getText()
                 .replace("R$", "").replace(".", "").replace(",", ".").trim();
-        if (totalLimpo.isEmpty()) totalLimpo = "0.00";
         venda.setTotalVenda(new BigDecimal(totalLimpo));
 
         try {
-            String pagoTexto = formularioVenda.getTextoValorPago().getText().replace(",", ".");
+            BigDecimal valorPago = new BigDecimal(pagoTxt);
             String descontoTexto = formularioVenda.getTextoDesconto().getText().replace(",", ".");
-            
-            BigDecimal valorPago = new BigDecimal(pagoTexto.isEmpty() ? "0" : pagoTexto);
             BigDecimal desconto = new BigDecimal(descontoTexto.isEmpty() ? "0" : descontoTexto);
-            BigDecimal totalVenda = venda.getTotalVenda();
-            
-            BigDecimal valorComDesconto = totalVenda.subtract(desconto);
+
+            BigDecimal valorComDesconto = venda.getTotalVenda().subtract(desconto);
             BigDecimal troco = valorPago.subtract(valorComDesconto);
-            
+
             venda.setValorPago(valorPago);
             venda.setDesconto(desconto);
             venda.setTroco(troco.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : troco);
             venda.setDataCriacao(LocalDateTime.now());
-            
-            Long idUsuario = formularioVenda.getUsuarioId();
-            
-            if (idUsuario == null) {
-                idUsuario =1L;
-            }
-            
-            venda.setUsuarioId(idUsuario);
 
-            String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens()); 
+            Long idUsuario = formularioVenda.getUsuarioId();
+            venda.setUsuarioId(idUsuario == null ? 1L : idUsuario);
+            venda.setClienteId(1L);
+
+            String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens());
 
             if (mensagem.startsWith("Venda realizada")) {
                 for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
-                    Long produtoId = Long.valueOf(tabelaModeloCheckout.getValueAt(i, 0).toString());
-                    Integer qtdVendida = Integer.valueOf(tabelaModeloCheckout.getValueAt(i, 2).toString());
-
-                    Optional<Produto> produtoOpt = produtoServico.buscarPeloId(produtoId);
-                    if (produtoOpt.isPresent()) {
-                        int novoEstoque = produtoOpt.get().getQuantidade() - qtdVendida;
-                        produtoServico.atualizarEstoque(produtoId, novoEstoque);
-                    }
+                    Long produtoId = (Long) tabelaModeloCheckout.getValueAt(i, 0);
+                    Integer qtdVendida = (Integer) tabelaModeloCheckout.getValueAt(i, 2);
+                    produtoServico.buscarPeloId(produtoId).ifPresent(p -> {
+                        produtoServico.atualizarEstoque(produtoId, p.getQuantidade() - qtdVendida);
+                    });
                 }
 
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
-
-                // Sincronização
                 atualizarTabelaVenda(); 
                 limparTudoAposVenda();
             } else {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao finalizar: " + ex.getMessage());
         }
     }
     
