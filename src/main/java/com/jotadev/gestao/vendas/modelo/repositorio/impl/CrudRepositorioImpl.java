@@ -28,8 +28,11 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
     @Override
     public boolean salvar(T t) {
         Object id = null;
-        Set<Field> campos = ReflectionUtils.getFields(this.t, e -> true);
-        
+        Set<Field> campos = ReflectionUtils.getFields(this.t, e -> 
+            !e.getName().equalsIgnoreCase("categoria") && 
+            !e.getName().equalsIgnoreCase("serialVersionUID")
+        );
+
         try {
             for (Field campo : campos) {
                 campo.setAccessible(true);
@@ -37,8 +40,8 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
                     id = campo.get(t);
                 }
             }
-            
-            if (id == null) { 
+
+            if (id == null || id.toString().equals("0")) { 
                 SQLFormato sql = new SQLFormatoInserir(this.t);
                 return persistencia(sql.formato(), t, false);
             }
@@ -48,41 +51,56 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
             throw new RuntimeException(e);
         }
     }
+
+    private int preencherPreparedStatement(Object t, PreparedStatement ps, boolean atualizar) {
+        int contador = 1; 
+        Set<Field> campos = ReflectionUtils.getFields(this.t, e -> 
+            !e.getName().equalsIgnoreCase("categoria") && 
+            !e.getName().equalsIgnoreCase("serialVersionUID")
+        );
+
+        try {
+            Field campoId = null;
+            for (Field campo : campos) {
+                campo.setAccessible(true);
+                if (campo.getName().equalsIgnoreCase("id")) {
+                    campoId = campo;
+                    if (atualizar) continue; 
+                }
+                ps.setObject(contador, campo.get(t));
+                contador++;
+            }
+
+            if (atualizar && campoId != null) {
+                ps.setObject(contador, campoId.get(t));
+            } else {
+                contador--;
+            }
+
+            return atualizar ? contador : contador; 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     
     private boolean persistencia(String sql, Object t, boolean atualizar){
         try {
             PreparedStatement ps = ConexaoMySQL.obterConexao().prepareStatement(sql);
-            
-            preencherPreparedStatement(t, ps, atualizar);
-            
+
+            int totalPreenchido = preencherPreparedStatement(t, ps, atualizar);
+
+            System.out.println("DEBUG SQL: " + sql);
+            System.out.println("Total de '?' no SQL: " + sql.chars().filter(ch -> ch == '?').count());
+            System.out.println("Total de parâmetros preenchidos pelo Java: " + (atualizar ? totalPreenchido : totalPreenchido));
+
             int resultado = ps.executeUpdate();
-            
             return resultado == 1;
-            
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
     
-    private void preencherPreparedStatement(Object t, PreparedStatement ps, boolean atualizar) {
-        int contador = 1;
-        Set<Field> campos = ReflectionUtils.getFields(this.t, e -> true);
-        
-        try {
-            for (Field campo : campos) {
-                campo.setAccessible(true);
-                if (atualizar && campo.getName().equalsIgnoreCase("id")) {
-                    ps.setObject(campos.size(), campo.get(t));
-                    continue;
-                }
-                
-                ps.setObject(contador, campo.get(t));
-                contador++;
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public List<T> buscarTodos() {
@@ -108,6 +126,7 @@ public abstract class CrudRepositorioImpl<T> implements CrudRepositorio<T> {
             Set<Field> campos = ReflectionUtils.getAllFields(t, e -> true);
             
             for (Field campo : campos){
+                if (campo.getName().equalsIgnoreCase("categoria")) continue;
                 Object valor = null;
                 String nome = campo.getName();
                 

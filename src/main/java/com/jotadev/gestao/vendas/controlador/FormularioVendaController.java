@@ -256,66 +256,68 @@ public class FormularioVendaController implements ActionListener {
     }   
     
     private void adicionarItem() {
-        System.out.println("botão adicionar clicado!"); //teste
-        try {
-            String nome = formularioVenda.getLabelNomeDoProduto().getText();
-            if (nome.isEmpty() || nome.equals("Nome do produto")) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Busque um produto primeiro!");
-                return;
-            }
-            
-            String estoqueTexto = formularioVenda.getLabelEstoqueQuantidade().getText();
-    
-            // Proteção contra "null" ou textos vazios
-            if (estoqueTexto == null || estoqueTexto.equals("null") || estoqueTexto.isEmpty()) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque inválido!");
-                return;
-            }
+    System.out.println("DEBUG: Tentando adicionar item ao carrinho...");
+    try {
+        String nome = formularioVenda.getLabelNomeDoProduto().getText();
+        String idTexto = formularioVenda.getTextoBuscarProdutoPeloID().getText();
 
-            int estoqueAtual = Integer.parseInt(estoqueTexto);
-            int qtdDesejada = Integer.parseInt(formularioVenda.getTextoQuantidade().getText().trim());
+        if (nome.isEmpty() || nome.equals("Nome do produto") || idTexto.isEmpty()) {
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Busque um produto primeiro!");
+            return;
+        }
 
-            if (qtdDesejada > estoqueAtual) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque insuficiente! Disponível: " + estoqueAtual);
-                return;
-            }
+        //SINCRONIZAÇÃO: Busca o ID que está na tela
+        Long idRecuperado = Long.parseLong(idTexto);
+        Optional<Produto> produtoAtualizado = produtoServico.buscarPeloId(idRecuperado);
+
+        if (produtoAtualizado.isPresent()) {
+            Produto p = produtoAtualizado.get();
+            int estoqueReal = p.getQuantidade();
             
+            String qtdDigitadaStr = formularioVenda.getTextoQuantidade().getText().trim();
+            int qtdDesejada = qtdDigitadaStr.isEmpty() ? 0 : Integer.parseInt(qtdDigitadaStr);
+
+            //VALIDAÇÃO DE ESTOQUE REAL
             if (qtdDesejada <= 0) {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Quantidade deve ser maior que zero!");
                 return;
             }
-            
-            String textoPreco = formularioVenda.getLabelPrecoProduto().getText().replace(",", ".");
-            double vPreco = Double.parseDouble(textoPreco);
 
-            int vQuantidade = Integer.parseInt(formularioVenda.getTextoQuantidade().getText().trim());
+            if (qtdDesejada > estoqueReal) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque insuficiente! Disponível: " + estoqueReal);
+                return;
+            }
 
-            // Calculamos o subtotal aqui para passar para o DTO
-            double vSubtotal = vPreco * vQuantidade;
-            
+            //CRIAÇÃO DO ITEM PARA O CARRINHO
             VendaDto item = VendaDto.builder()
-                    .id(Long.parseLong(formularioVenda.getTextoBuscarProdutoPeloID().getText()))
-                    .nome(nome)
-                    .preco(vPreco)
-                    .quantidade(vQuantidade)
-                    .subtotal(vSubtotal)
+                    .id(p.getId())
+                    .nome(p.getNome())
+                    .preco(p.getPreco().doubleValue()) 
+                    .quantidade(qtdDesejada)
+                    .subtotal(p.getPreco().doubleValue() * qtdDesejada)
                     .build();
-            
+
+            //ADIÇÃO E ATUALIZAÇÃO DA UI
             tabelaModeloCheckout.adicionar(item);
+            
             int totalItens = tabelaModeloCheckout.getRowCount();
             formularioVenda.getLabelCarrinho().setText(String.valueOf(totalItens));
             
             atualizarTotalVenda();
-            
             limparCamposProduto();
             
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Produto adicionado!");
-            
-        } catch (Exception e) {
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro na contagem do estoque ou quantidade!");
+        } else {
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Produto não encontrado no banco!");
         }
-        
+
+    } catch (NumberFormatException e) {
+        formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Quantidade inválida!");
+    } catch (Exception e) {
+        e.printStackTrace();
+        formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao adicionar item!");
     }
+}
     
     private void limparCamposProduto() {
         formularioVenda.getTextoBuscarProdutoPeloID().setText("");
@@ -448,7 +450,7 @@ public class FormularioVendaController implements ActionListener {
     // Método auxiliar para deixar o código principal mais limpo
     private void atualizarEstoquePosVenda() {
         for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
-            Long produtoId = (Long) tabelaModeloCheckout.getValueAt(i, 0);
+            Long produtoId = Long.valueOf(tabelaModeloCheckout.getValueAt(i, 0).toString());
             Integer qtdVendida = (Integer) tabelaModeloCheckout.getValueAt(i, 2);
 
             produtoServico.buscarPeloId(produtoId).ifPresent(p -> {

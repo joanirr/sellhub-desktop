@@ -14,7 +14,7 @@ public class SQLFormatoAtualizar<T> implements SQLFormato{
 
     @Override
     public String formato() {
-        Set<Field> campos = ReflectionUtils.getFields(this.t, e -> true);
+        Set<Field> campos = ReflectionUtils.getFields(t, e -> !e.getName().equalsIgnoreCase("categoria"));
         StringBuilder atributos = new StringBuilder();
 
         try {
