@@ -32,6 +32,7 @@ public class FormularioVendaController implements ActionListener {
     private TabelaModeloVenda tabelaModeloVenda;
     private TabelaModeloCheckout tabelaModeloCheckout;
     private ProdutoServico produtoServico;
+    private Produto produtoSelecionado;
 
     public FormularioVendaController(FormularioVenda formularioVenda) {
         this.formularioVenda = formularioVenda;
@@ -135,6 +136,12 @@ public class FormularioVendaController implements ActionListener {
                calcularTotal();
            }
         });
+        formularioVenda.getTextoDesconto().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent evt) {
+                atualizarCalculos();
+            }
+        });
         
         formularioVenda.getTextoValorPago().addKeyListener(new KeyAdapter() {
             @Override
@@ -196,6 +203,8 @@ public class FormularioVendaController implements ActionListener {
             if (produtoOpt.isPresent()) {
                 Produto p = produtoOpt.get(); // extrai o produto de dentro do optional
                 
+                this.produtoSelecionado = p;
+                
                 formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
                 formularioVenda.getLabelPrecoProduto().setText(String.valueOf(p.getPreco()));
                 formularioVenda.getLabelEstoqueQuantidade().setText(String.valueOf(p.getQuantidade()));
@@ -205,6 +214,7 @@ public class FormularioVendaController implements ActionListener {
                 Integer estoque = p.getQuantidade();
                 formularioVenda.getLabelEstoqueQuantidade().setText(estoque != null ? String.valueOf(estoque) : "0");
             } else {
+                this.produtoSelecionado = null;
                 formularioVenda.getLabelEstoqueQuantidade().setText("0");
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Produto não encontrado!");
             }
@@ -236,90 +246,111 @@ public class FormularioVendaController implements ActionListener {
     public void atualizarTotalVenda() {
         try {
             double totalGeral = 0.0;
+            double descontoAcumulado = 0.0;
+
             for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
-                // Acessar a coluna 4 (Subtotal)
-                Object valorLinha = tabelaModeloCheckout.getValueAt(i, 4);
-                if (valorLinha != null) {
-                    // Remove possíveis "R$" ou espaços que bugam o Double.parseDouble
-                    String limparValor = valorLinha.toString().replace("R$", "").replace(",", ".").trim();
-                    totalGeral += Double.parseDouble(limparValor);
+                Object objDesconto = tabelaModeloCheckout.getValueAt(i, 4);
+                Object objSubtotal = tabelaModeloCheckout.getValueAt(i, 5);
+
+                if (objDesconto != null) {
+                    String d = objDesconto.toString().replace("R$", "").replace(".", "").replace(",", ".").trim();
+                    descontoAcumulado += Double.parseDouble(d);
+                }
+
+                if (objSubtotal != null) {
+                    String s = objSubtotal.toString().replace("R$", "").replace(".", "").replace(",", ".").trim();
+                    totalGeral += Double.parseDouble(s);
                 }
             }
+
             formularioVenda.getLabelTotalVenda().setText(String.format("%.2f", totalGeral));
+
+            formularioVenda.getLabelDesconto().setText(String.format("%.2f", descontoAcumulado));
+
         } catch (Exception e) {
+            System.out.println("Erro ao calcular: " + e.getMessage());
         }
-    }   
+    }
     
-    private void adicionarItem() {
-    try {
-        String nome = formularioVenda.getLabelNomeDoProduto().getText();
-        String idTexto = formularioVenda.getTextoBuscarProdutoPeloID().getText();
-
-        if (nome.isEmpty() || nome.equals("Nome do produto") || idTexto.isEmpty()) {
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Busque um produto primeiro!");
-            return;
-        }
-
-        //SINCRONIZAÇÃO: Busca o ID que está na tela
-        Long idRecuperado = Long.parseLong(idTexto);
-        Optional<Produto> produtoAtualizado = produtoServico.buscarPeloId(idRecuperado);
-
-        if (produtoAtualizado.isPresent()) {
-            Produto p = produtoAtualizado.get();
-            int estoqueReal = p.getQuantidade();
-            
-            String qtdDigitadaStr = formularioVenda.getTextoQuantidade().getText().trim();
-            int qtdDesejada = qtdDigitadaStr.isEmpty() ? 0 : Integer.parseInt(qtdDigitadaStr);
-
-            //VALIDAÇÃO DE ESTOQUE REAL
-            if (qtdDesejada <= 0) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Quantidade deve ser maior que zero!");
+    public void adicionarItem() {
+        try {
+            String nomeProd = formularioVenda.getLabelNomeDoProduto().getText();
+            if (nomeProd.equals("Nome do produto:") || nomeProd.isEmpty()) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Busque um produto pelo ID primeiro!");
                 return;
             }
 
-            if (qtdDesejada > estoqueReal) {
-                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque insuficiente! Disponível: " + estoqueReal);
+            String qtdTexto = formularioVenda.getTextoQuantidade().getText().trim();
+            String descTexto = formularioVenda.getTextoDesconto().getText().trim().replace(",", ".");
+
+            int quantidade = qtdTexto.isEmpty() ? 0 : Integer.parseInt(qtdTexto);
+            double desconto = descTexto.isEmpty() ? 0.0 : Double.parseDouble(descTexto);
+
+            if (quantidade <= 0) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Informe a quantidade!");
                 return;
             }
 
-            //CRIAÇÃO DO ITEM PARA O CARRINHO
+            if (produtoSelecionado == null) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Produto não carregado!");
+                return;
+            }
+
+            if (quantidade > produtoSelecionado.getQuantidade()) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Estoque insuficiente!");
+                return;
+            }
+
+            // 4. Cálculos
+            double precoUnitario = produtoSelecionado.getPreco().doubleValue();
+            double subtotalItem = (precoUnitario * quantidade) - desconto;
+
+            if (subtotalItem < 0) {
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Desconto maior que o valor total!");
+                return;
+            }
+
+            formularioVenda.getLabelDesconto().setText(String.format("%.2f", desconto));
+            formularioVenda.getLabelSubtotalItem().setText(String.format("%.2f", subtotalItem));
+
             VendaDto item = VendaDto.builder()
-                    .id(p.getId())
-                    .nome(p.getNome())
-                    .preco(p.getPreco().doubleValue()) 
-                    .quantidade(qtdDesejada)
-                    .subtotal(p.getPreco().doubleValue() * qtdDesejada)
+                    .id(produtoSelecionado.getId())
+                    .nome(produtoSelecionado.getNome())
+                    .preco(precoUnitario)
+                    .quantidade(quantidade)
+                    .desconto(new BigDecimal(desconto))
+                    .subtotal(subtotalItem)
                     .build();
 
-            //ADIÇÃO E ATUALIZAÇÃO DA UI
             tabelaModeloCheckout.adicionar(item);
-            
-            int totalItens = tabelaModeloCheckout.getRowCount();
-            formularioVenda.getLabelCarrinho().setText(String.valueOf(totalItens));
-            
-            atualizarTotalVenda();
-            limparCamposProduto();
-            
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Produto adicionado!");
-        } else {
-            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Produto não encontrado no banco!");
-        }
 
-    } catch (NumberFormatException e) {
-        formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Quantidade inválida!");
-    } catch (Exception e) {
-        e.printStackTrace();
-        formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao adicionar item!");
+            int itensNoCarrinho = tabelaModeloCheckout.getRowCount();
+            formularioVenda.getLabelCarrinho().setText(String.valueOf(itensNoCarrinho));
+
+            atualizarTotalVenda();
+
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Item adicionado ao carrinho!");
+
+            limparCamposProduto();
+
+        } catch (NumberFormatException e) {
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Valores inválidos em Qtd ou Desconto!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro ao adicionar item.");
+        }
     }
-}
     
     private void limparCamposProduto() {
         formularioVenda.getTextoBuscarProdutoPeloID().setText("");
-        formularioVenda.getLabelNomeDoProduto().setText("Nome do produto");
-        formularioVenda.getLabelPrecoProduto().setText("0.00");
-        formularioVenda.getLabelEstoqueQuantidade().setText("0");
-        formularioVenda.getLabelSubtotalItem().setText("0.00");
         formularioVenda.getTextoQuantidade().setText("");
+        formularioVenda.getTextoDesconto().setText("");
+        formularioVenda.getLabelNomeDoProduto().setText("Nome do produto:");
+        formularioVenda.getLabelEstoqueQuantidade().setText("0");
+        formularioVenda.getLabelPrecoProduto().setText("0.00");
+        formularioVenda.getLabelSubtotalItem().setText("0.00");
+        formularioVenda.getLabelDesconto().setText("0.00");
+        this.produtoSelecionado = null;
         
         formularioVenda.getTextoBuscarProdutoPeloID().requestFocus();
     }
@@ -356,6 +387,9 @@ public class FormularioVendaController implements ActionListener {
         //busca o produto na lista geral pelo nome
         Optional<Produto> produtoOpt = produtoServico.buscarPeloNome(nome);
             produtoOpt.ifPresent(p -> {
+                
+                this.produtoSelecionado = p;
+                
                 formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
                 formularioVenda.getLabelPrecoProduto().setText(String.format("%.2f", p.getPreco()));
 
@@ -461,4 +495,24 @@ public class FormularioVendaController implements ActionListener {
         // Limpa os campos de busca
         limparCamposProduto();
     }
+    public void atualizarCalculos() {
+        try {
+            String precoStr = formularioVenda.getLabelPrecoProduto().getText().replace(",", ".");
+            String qtdStr = formularioVenda.getTextoQuantidade().getText().trim();
+            String descStr = formularioVenda.getTextoDesconto().getText().trim().replace(",", ".");
+
+            double preco = precoStr.isEmpty() ? 0 : Double.parseDouble(precoStr);
+            int qtd = qtdStr.isEmpty() ? 0 : Integer.parseInt(qtdStr);
+            double desconto = descStr.isEmpty() ? 0 : Double.parseDouble(descStr);
+
+            double subtotal = preco * qtd;
+            double totalItemComDesconto = subtotal - desconto;
+
+            formularioVenda.getLabelSubtotalItem().setText(String.format("%.2f", totalItemComDesconto));
+            formularioVenda.getLabelDesconto().setText(String.format("%.2f", desconto));
+
+        } catch (NumberFormatException e) {
+        }
+    }
+    
 }

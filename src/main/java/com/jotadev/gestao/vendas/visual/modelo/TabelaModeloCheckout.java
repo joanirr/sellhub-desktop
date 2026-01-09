@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class TabelaModeloCheckout extends AbstractTableModel {
     
-    private final String [] colunas = {"ID", "Produto", "Quantidade", "Preço Unit.", "Subtotal"};
+    private final String [] colunas = {"ID", "Produto", "Quantidade", "Preço Unit.", "Desconto", "Subtotal"};
     private List<VendaDto> itens;
     
     public TabelaModeloCheckout(List<VendaDto> itens) {
@@ -37,10 +37,10 @@ public class TabelaModeloCheckout extends AbstractTableModel {
             case 1 -> item.getNome();
             case 2 -> item.getQuantidade();
             case 3 -> String.format("R$ %.2f", item.getPreco());
-            case 4 -> String.format("R$ %.2f", item.getSubtotal());
+            case 4 -> String.format("R$ %.2f", item.getDesconto());
+            case 5 -> String.format("R$ %.2f", item.getSubtotal());
             default -> null;
         };
-        
     }
 
     @Override

@@ -19,6 +19,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -80,6 +82,20 @@ public class FormularioVenda extends javax.swing.JPanel {
         formularioVendaController = new FormularioVendaController(this);
         eventoDosBotoes();
         eventoDoMouse();
+        
+        getTextoQuantidade().getDocument().addDocumentListener(new DocumentAdapter() {
+            @Override
+            public void update() {
+                formularioVendaController.atualizarCalculos();
+            }
+        });
+
+        getTextoDesconto().getDocument().addDocumentListener(new DocumentAdapter() {
+            @Override
+            public void update() {
+                formularioVendaController.atualizarCalculos();
+            }
+        });
     }
 
     public Long getUsuarioId() {
@@ -115,6 +131,25 @@ public class FormularioVenda extends javax.swing.JPanel {
             
         });
     }
+    public abstract class DocumentAdapter implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            update();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            update();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            update();
+        }
+
+        public abstract void update();
+    }
+    
     
     private void eventoDoMouse() {
 //        tabelaVendas.addMouseListener(formularioUsuarioController);
