@@ -1,6 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.FormularioUsuarioController;
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
         
         setOpaque(true);
         jScrollPane1.getViewport().setBackground(new Color(45,45,45));
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         jDialog2.setResizable(false);
         dialogUsuario.setResizable(false);
         txtFoto.setColumns(15);

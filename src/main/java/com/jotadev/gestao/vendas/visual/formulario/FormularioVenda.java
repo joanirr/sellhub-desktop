@@ -5,6 +5,7 @@ import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
 import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -69,6 +70,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         
         setOpaque(true);
         jScrollPane1.getViewport().setBackground(new Color(45,45,45));
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         dialogVenda.setResizable(false);
         
         this.usuarioId = usuarioId;

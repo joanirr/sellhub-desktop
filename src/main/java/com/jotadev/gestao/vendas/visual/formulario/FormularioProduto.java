@@ -1,6 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.FormularioProdutoController;
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.formulario.produto.Tela;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ public class FormularioProduto extends javax.swing.JPanel {
         
         setOpaque(true);
         jScrollPane1.getViewport().setBackground(new Color(45,45,45));
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         
         this.usuarioId = usuarioId;
         this.dashboard = dashboard;

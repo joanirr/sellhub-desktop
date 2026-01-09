@@ -4,6 +4,7 @@ import com.jotadev.gestao.vendas.controlador.FormularioEstoqueController;
 import com.jotadev.gestao.vendas.modelo.util.MensagemUtil;
 import com.jotadev.gestao.vendas.visual.componentes.Botao;
 import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
+import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import java.awt.Color;
 import javax.swing.JDialog;
@@ -24,6 +25,7 @@ public class FormularioEstoque extends javax.swing.JPanel {
         
         setOpaque(true);
         jScrollPane1.getViewport().setBackground(new Color(45,45,45));
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         dialogEstoque.setResizable(false);
         
         this.usuarioId = usuarioId;

@@ -12,11 +12,10 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         initComponents();
         inicializarCartao();
         jScrollPane1.getViewport().setBackground(new Color(45, 45, 45));
+        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         jScrollPane1.setBackground(new Color(45, 45, 45));
         jScrollPane1.setBorder(null);
         
-        jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
-        jScrollPane1.getVerticalScrollBar().setPreferredSize(new java.awt.Dimension(8, Integer.MAX_VALUE));
     }
     
     private void inicializarCartao() {
