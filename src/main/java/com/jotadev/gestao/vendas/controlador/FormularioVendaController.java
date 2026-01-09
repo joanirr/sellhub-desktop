@@ -115,6 +115,22 @@ public class FormularioVendaController implements ActionListener {
             finalizarVenda();
         });
         
+        formularioVenda.getBotaoLimpar().addActionListener(e -> {
+            limparCamposProduto();
+        });
+        
+        formularioVenda.getBotaoCarrinhoLimpar().addActionListener(e -> {
+            int confirma = JOptionPane.showConfirmDialog(null, 
+                "Deseja realmente esvaziar todo o carrinho?", "Confirmar", JOptionPane.YES_NO_OPTION);
+
+            if (confirma == JOptionPane.YES_OPTION) {
+                tabelaModeloCheckout.limpar();
+                atualizarTotalVenda();
+                formularioVenda.getLabelCarrinho().setText("0");
+                formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, "Carrinho esvaziado!");
+            }
+        });
+        
         formularioVenda.getBotaoCarrinhoRemover().addActionListener(e -> {
             int linhaSelecionada = formularioVenda.getTabelaCheckout().getSelectedRow();
 
