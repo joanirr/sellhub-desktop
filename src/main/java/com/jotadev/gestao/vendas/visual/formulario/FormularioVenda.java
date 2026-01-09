@@ -7,6 +7,7 @@ import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
 import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
 import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -283,6 +284,15 @@ public class FormularioVenda extends javax.swing.JPanel {
     public JLabel getLabelSubtotalItem() {
         return labelSubtotalItem;
     }
+
+    public JDateChooser getDataInicial() {
+        return dataInicial;
+    }
+
+    public JDateChooser getDataFinal() {
+        return dataFinal;
+    }
+    
     
     
     public void mostrarCarrinho() {

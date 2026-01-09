@@ -17,6 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +48,10 @@ public class FormularioVendaController implements ActionListener {
         
         this.formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
         this.formularioVenda.getTabelaCheckout().setModel(tabelaModeloCheckout);
+        
+        formularioVenda.getBotaoPesquisar().addActionListener(e -> {
+            pesquisarVendasPorData();
+        });
         
         atualizarTabelaVenda();
     }
@@ -118,6 +123,7 @@ public class FormularioVendaController implements ActionListener {
         formularioVenda.getBotaoLimpar().addActionListener(e -> {
             limparCamposProduto();
         });
+        
         
         formularioVenda.getBotaoCarrinhoLimpar().addActionListener(e -> {
             int confirma = JOptionPane.showConfirmDialog(null, 
@@ -591,6 +597,49 @@ public class FormularioVendaController implements ActionListener {
             return texto.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
         } else { //Formata CNPJ
             return texto.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5");
+        }
+    }
+    
+    private void pesquisarVendasPorData() {
+        try {
+            // Validação com JOptionPane (Garante exibição na tela principal)
+            if (formularioVenda.getDataInicial().getDate() == null || 
+                formularioVenda.getDataFinal().getDate() == null) {
+
+                javax.swing.JOptionPane.showMessageDialog(
+                    formularioVenda, 
+                    "Por favor, selecione as datas Inicial e Final para pesquisar!", 
+                    "Validação de Pesquisa", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+                );
+                return; 
+            }
+
+            // Coleta das datas
+            java.util.Date dataIni = formularioVenda.getDataInicial().getDate();
+            java.util.Date dataFin = formularioVenda.getDataFinal().getDate();
+
+            // Conversão para LocalDateTime (Início e Fim do dia)
+            LocalDateTime inicio = dataIni.toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDateTime().withHour(0).withMinute(0).withSecond(0);
+
+            LocalDateTime fim = dataFin.toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDateTime().withHour(23).withMinute(59).withSecond(59);
+
+            // Busca e Atualização da Tabela
+            List<VendaDto> listaFiltrada = vendaServico.buscarPorPeriodo(inicio, fim);
+
+            if (listaFiltrada.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(formularioVenda, "Nenhuma venda encontrada para este período.");
+            }
+
+            TabelaModeloVenda novoModelo = new TabelaModeloVenda(listaFiltrada);
+            formularioVenda.getTabelaVendas().setModel(novoModelo);
+            novoModelo.fireTableDataChanged(); 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro na pesquisa: " + e.getMessage());
         }
     }
     

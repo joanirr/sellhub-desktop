@@ -101,4 +101,44 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
         return "Erro desconhecido";
     }
     
+    public List<VendaDto> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+        String sql = "SELECT v.*, u.nome AS usuario_nome, c.nome AS cliente_nome " +
+                     "FROM venda v " +
+                     "INNER JOIN usuario u ON v.usuarioId = u.id " +
+                     "LEFT JOIN cliente c ON v.clienteId = c.id " +
+                     "WHERE v.dataCriacao BETWEEN ? AND ? " +
+                     "ORDER BY v.id DESC";
+
+        List<VendaDto> vendas = new ArrayList<>();
+
+        try (Connection conn = ConexaoMySQL.obterConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setTimestamp(1, Timestamp.valueOf(inicio));
+            stmt.setTimestamp(2, Timestamp.valueOf(fim));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    VendaDto v = new VendaDto();
+                    v.setId(rs.getLong("id"));
+                    v.setTotalVenda(rs.getBigDecimal("totalVenda"));
+                    v.setValorPago(rs.getBigDecimal("valorPago"));
+                    v.setTroco(rs.getBigDecimal("troco"));
+                    v.setDesconto(rs.getBigDecimal("desconto"));
+                    v.setDataCriacao(rs.getTimestamp("dataCriacao").toLocalDateTime());
+
+                    v.setUsuario(rs.getString("usuario_nome"));
+                    String nomeCli = rs.getString("cliente_nome");
+                    v.setCliente(nomeCli != null ? nomeCli : "Consumidor Final");
+
+                    vendas.add(v);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar vendas por período: " + e.getMessage());
+        }
+        return vendas;
+    }
+    
 }

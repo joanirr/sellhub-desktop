@@ -5,6 +5,7 @@ import com.jotadev.gestao.vendas.modelo.dto.VendaDto;
 import com.jotadev.gestao.vendas.modelo.entidade.Venda;
 import com.jotadev.gestao.vendas.modelo.repositorio.impl.VendaItemRepositorioImpl;
 import com.jotadev.gestao.vendas.modelo.repositorio.impl.VendaRepositorioImpl;
+import java.time.LocalDateTime;
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
@@ -54,6 +55,10 @@ public class VendaServico {
     
     public String salvar(Venda venda, List<VendaDto> itens) {
         return vendaRepositorioImpl.salvar(venda, itens); 
+    }
+    
+    public List<VendaDto> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
+        return vendaRepositorioImpl.buscarPorPeriodo(inicio, fim);
     }
     
 }
