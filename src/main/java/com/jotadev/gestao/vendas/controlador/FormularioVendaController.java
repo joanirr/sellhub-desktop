@@ -154,6 +154,7 @@ public class FormularioVendaController implements ActionListener {
         formularioVenda.getDialogVenda().pack();
         formularioVenda.getDialogVenda().setLocationRelativeTo(null);
         formularioVenda.getDialogVenda().setVisible(true);
+        formularioVenda.getTextoValorPago().setEnabled(false);
         preencherComboBoxCategoria();
     }
     
@@ -260,6 +261,14 @@ public class FormularioVendaController implements ActionListener {
                 if (objSubtotal != null) {
                     String s = objSubtotal.toString().replace("R$", "").replace(".", "").replace(",", ".").trim();
                     totalGeral += Double.parseDouble(s);
+                }
+                
+                boolean carrinhoTemItens = tabelaModeloCheckout.getRowCount() > 0;
+                formularioVenda.getTextoValorPago().setEnabled(carrinhoTemItens);
+                
+                if (!carrinhoTemItens) {
+                    formularioVenda.getTextoValorPago().setText("");
+                    formularioVenda.getLabelTroco().setText("0.00");
                 }
             }
 
@@ -485,14 +494,14 @@ public class FormularioVendaController implements ActionListener {
     }
     
     private void limparTudoAposVenda() {
-        // Esvazia a lista do TableModel do Checkout
         tabelaModeloCheckout.limpar();
 
-        // Atualiza os labels
         formularioVenda.getLabelTotalVenda().setText("0.00");
         formularioVenda.getLabelCarrinho().setText("0");
+        
+        formularioVenda.getTextoValorPago().setEnabled(false);
+        formularioVenda.getTextoValorPago().setText("");
 
-        // Limpa os campos de busca
         limparCamposProduto();
     }
     public void atualizarCalculos() {
