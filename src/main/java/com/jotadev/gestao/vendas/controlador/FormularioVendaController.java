@@ -165,7 +165,29 @@ public class FormularioVendaController implements ActionListener {
             public void keyReleased(KeyEvent evt) {
                 calcularTroco();
             }
+        });
+        
+        formularioVenda.getTextoCPF().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String textoOriginal = formularioVenda.getTextoCPF().getText();
 
+                //Remove tudo que não for número para contar o tamanho real
+                String apenasNumeros = textoOriginal.replaceAll("\\D", "");
+
+                // Limita a 14 dígitos (tamanho máximo de um CNPJ)
+                if (apenasNumeros.length() > 14) {
+                    apenasNumeros = apenasNumeros.substring(0, 14);
+                }
+
+                // Formata conforme o tamanho (CPF ou CNPJ)
+                String formatado = formatarCpfCnpj(apenasNumeros);
+
+                // Se o texto na tela for diferente do formatado, atualiza
+                if (!textoOriginal.equals(formatado)) {
+                    formularioVenda.getTextoCPF().setText(formatado);
+                }
+            }
         });
         
         formularioVenda.getTextoBuscarProdutoPeloID().getDocument().addDocumentListener(new DocumentListener() {
@@ -180,11 +202,11 @@ public class FormularioVendaController implements ActionListener {
             }
         });
 
-        formularioVenda.getDialogVenda().pack();
-        formularioVenda.getDialogVenda().setLocationRelativeTo(null);
-        formularioVenda.getDialogVenda().setVisible(true);
-        formularioVenda.getTextoValorPago().setEnabled(false);
-        preencherComboBoxCategoria();
+                formularioVenda.getDialogVenda().pack();
+                formularioVenda.getDialogVenda().setLocationRelativeTo(null);
+                formularioVenda.getDialogVenda().setVisible(true);
+                formularioVenda.getTextoValorPago().setEnabled(false);
+                preencherComboBoxCategoria();
     }
     
     private void calcularTroco() {
@@ -558,6 +580,17 @@ public class FormularioVendaController implements ActionListener {
             formularioVenda.getLabelDesconto().setText(String.format("%.2f", desconto));
 
         } catch (NumberFormatException e) {
+        }
+    }
+    
+    private String formatarCpfCnpj(String texto) {
+        // Remove tudo o que não for número
+        texto = texto.replaceAll("\\D", "");
+        
+        if (texto.length() <= 11) { //Formata CPF
+            return texto.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+        } else { //Formata CNPJ
+            return texto.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3/$4-$5");
         }
     }
     
