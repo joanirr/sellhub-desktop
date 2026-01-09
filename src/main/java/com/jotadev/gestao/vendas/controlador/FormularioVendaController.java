@@ -2,7 +2,6 @@ package com.jotadev.gestao.vendas.controlador;
 
 import com.jotadev.gestao.vendas.modelo.dto.VendaDto;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
-import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import com.jotadev.gestao.vendas.modelo.entidade.Venda;
 import com.jotadev.gestao.vendas.modelo.servico.CategoriaServico;
 import com.jotadev.gestao.vendas.modelo.servico.ProdutoServico;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentListener;
 
 public class FormularioVendaController implements ActionListener {
     
@@ -40,6 +40,7 @@ public class FormularioVendaController implements ActionListener {
         usuarioServico = new UsuarioServico();
         categoriaServico = new CategoriaServico();
         produtoServico = new ProdutoServico();
+        
         
         this.tabelaModeloVenda = new TabelaModeloVenda(new ArrayList<>());
         this.tabelaModeloCheckout = new TabelaModeloCheckout(new ArrayList<>());
@@ -149,6 +150,18 @@ public class FormularioVendaController implements ActionListener {
                 calcularTroco();
             }
 
+        });
+        
+        formularioVenda.getTextoBuscarProdutoPeloID().getDocument().addDocumentListener(new DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { verificarEPropagar(); }
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { verificarEPropagar(); }
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { verificarEPropagar(); }
+
+            private void verificarEPropagar() {
+                if (formularioVenda.getTextoBuscarProdutoPeloID().getText().trim().isEmpty()) {
+                    limparCamposProduto();
+                }
+            }
         });
 
         formularioVenda.getDialogVenda().pack();
@@ -368,7 +381,12 @@ public class FormularioVendaController implements ActionListener {
         formularioVenda.getComboBoxProduto().removeAllItems();
         formularioVenda.getComboBoxProduto().addItem("Selecione o produto");
 
-        if (nomeCategoria == null || nomeCategoria.equals("Selecione a categoria")) return;
+        if (nomeCategoria == null || nomeCategoria.equals("Selecione a categoria")) {
+            formularioVenda.getComboBoxProduto().removeAllItems();
+            formularioVenda.getComboBoxProduto().addItem("Selecione o produto");
+            limparCamposProduto();
+            return;
+        }
 
         produtoServico.buscarTodos().stream()
                 .filter(p -> {
@@ -391,7 +409,10 @@ public class FormularioVendaController implements ActionListener {
     }
     
     private void preencherCamposPeloNome(String nome) {
-        if (nome == null || nome.equals("Selecione o produto")) return;
+        if (nome == null || nome.equals("Selecione o produto")) {
+            limparCamposProduto();
+            return;
+        }
         
         //busca o produto na lista geral pelo nome
         Optional<Produto> produtoOpt = produtoServico.buscarPeloNome(nome);
