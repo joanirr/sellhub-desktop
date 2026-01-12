@@ -1,5 +1,6 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
+import com.jotadev.gestao.vendas.controlador.FormularioPrincipalController;
 import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
 import java.awt.Color;
 import javax.swing.JComponent;
@@ -31,7 +32,10 @@ public class Dashboard extends javax.swing.JFrame {
             menuSelecionadoIndex = e;
             
             switch(e) {
-                case 0 -> { setForm(formularioPrincipal); }
+                case 0 -> {
+                    setForm(formularioPrincipal);
+                    new FormularioPrincipalController(formularioPrincipal).atualizarDash();
+                }
                 case 1 -> { setForm(formularioProduto); }
                 case 2 -> { setForm(formularioEstoque); }
                 case 3 -> {}

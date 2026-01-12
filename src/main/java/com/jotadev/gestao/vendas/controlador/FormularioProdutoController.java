@@ -154,51 +154,61 @@ public class FormularioProdutoController implements ActionListener, MouseListene
     }
     
     private void salvarProduto() {
-        // Validar permissão
         permissaoServico.validarPermissao(PERMISSAO_ID_PARA_SALVAR_PRODUTO, formularioProduto.getUsuarioId());
+
+        for (java.awt.event.ActionListener al : formularioProduto.getTela().getProdutoCategoria().getBotaoProduto().getActionListeners()) {
+            formularioProduto.getTela().getProdutoCategoria().getBotaoProduto().removeActionListener(al);
+        }
+
         formularioProduto.getTela().getProdutoCategoria().getBotaoProduto().addActionListener(e -> {
             String nome = formularioProduto.getTela().getProdutoCategoria().getTextoNomeProduto().getText();
             String descricao = formularioProduto.getTela().getProdutoCategoria().getTextoDescricaoProduto().getText();
             String precoTemp = formularioProduto.getTela().getProdutoCategoria().getTextoPrecoProduto().getText();
-            
-            validacaoDeCampoVazio(nome);
-            validacaoDeCampoVazio(precoTemp);
-            validarComboCategoriaProduto();
-            
-            BigDecimal preco = null;
-            
-            try {
-                preco = BigDecimal.valueOf(Double.parseDouble(precoTemp));
-            } catch (NumberFormatException erro) {
-                mensagemDeErroProduto("Erro no preço.");
+
+            if (nome.isEmpty() || precoTemp.isEmpty()) {
+                formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Preencha os campos obrigatórios!");
+                return;
             }
-            
-            int quantidadeAtual = 0;
+            validarComboCategoriaProduto();
+
+            BigDecimal preco = BigDecimal.ZERO;
+            try {
+                preco = new BigDecimal(precoTemp.replace(",", "."));
+            } catch (Exception erro) {
+                formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Preço inválido!");
+                return; 
+            }
+
+            int quantidadeParaSalvar = 0;
             if (produtoId != null) {
-                quantidadeAtual = produtoServico.buscarPeloId(produtoId)
+                quantidadeParaSalvar = produtoServico.buscarPeloId(produtoId)
                         .map(Produto::getQuantidade)
                         .orElse(0);
             }
-            
+
             Produto produto = Produto.builder()
                     .id(produtoId)
                     .nome(nome)
                     .descricao(descricao)
                     .preco(preco)
-                    .quantidade(quantidadeAtual)
+                    .quantidade(quantidadeParaSalvar)
                     .categoriaId(categoriaId)
                     .dataCriacao(LocalDateTime.now())
                     .usuarioId(formularioProduto.getUsuarioId())
                     .build();
-            
+
             String mensagem = produtoServico.salvar(produto);
-            
+
             if (mensagem.startsWith("Produto")) {
-               formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
-               atualizarTabelaProduto();
-               limparCamposProduto();
-           }
-           else formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
+                formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
+
+                this.produtoId = null; 
+
+                atualizarTabelaProduto();
+                limparCamposProduto();
+            } else {
+                formularioProduto.getTela().getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
+            }
         });
     }
     

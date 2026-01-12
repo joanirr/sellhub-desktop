@@ -11,6 +11,15 @@ public class FormularioPrincipal extends javax.swing.JPanel {
     
     public FormularioPrincipal() {
         initComponents();
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                new FormularioPrincipalController(FormularioPrincipal.this).atualizarDash();
+
+                System.out.println("Dashboard atualizado em tempo real!");
+            }
+        });
+        
         inicializarCartao();
         
         FormularioPrincipalController controller = new FormularioPrincipalController(this);
@@ -20,13 +29,6 @@ public class FormularioPrincipal extends javax.swing.JPanel {
         jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         jScrollPane1.setBackground(new Color(45, 45, 45));
         jScrollPane1.setBorder(null);
-        
-        this.addComponentListener(new java.awt.event.ComponentAdapter() {
-            @Override
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                new FormularioPrincipalController(FormularioPrincipal.this).atualizarDash();
-            }
-        });
     }
     
     public void atualizarDadosCartoes(long totalProdutos, long totalVendas, long totalEstoque) {
