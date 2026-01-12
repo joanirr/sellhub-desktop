@@ -16,7 +16,7 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
-    private Integer quantidade;
+    private Integer quantidade = 0;
     private BigDecimal preco;
     private Long usuarioId;
     private Long categoriaId;

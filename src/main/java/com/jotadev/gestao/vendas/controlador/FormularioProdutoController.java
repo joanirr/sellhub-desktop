@@ -173,11 +173,19 @@ public class FormularioProdutoController implements ActionListener, MouseListene
                 mensagemDeErroProduto("Erro no preço.");
             }
             
+            int quantidadeAtual = 0;
+            if (produtoId != null) {
+                quantidadeAtual = produtoServico.buscarPeloId(produtoId)
+                        .map(Produto::getQuantidade)
+                        .orElse(0);
+            }
+            
             Produto produto = Produto.builder()
                     .id(produtoId)
                     .nome(nome)
                     .descricao(descricao)
                     .preco(preco)
+                    .quantidade(quantidadeAtual)
                     .categoriaId(categoriaId)
                     .dataCriacao(LocalDateTime.now())
                     .usuarioId(formularioProduto.getUsuarioId())

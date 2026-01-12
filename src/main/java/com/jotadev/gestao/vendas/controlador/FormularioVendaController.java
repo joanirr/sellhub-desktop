@@ -453,7 +453,7 @@ public class FormularioVendaController implements ActionListener {
     }
     
     private void preencherCamposPeloNome(String nome) {
-        if (nome == null || nome.equals("Selecione o produto")) {
+        if (nome == null || nome.equals("Selecione o produto") || nome.isEmpty()) {
             limparCamposProduto();
             return;
         }
@@ -467,8 +467,8 @@ public class FormularioVendaController implements ActionListener {
                 formularioVenda.getLabelNomeDoProduto().setText(p.getNome());
                 formularioVenda.getLabelPrecoProduto().setText(String.format("%.2f", p.getPreco()));
 
-                Integer estoque = p.getQuantidade();
-                formularioVenda.getLabelEstoqueQuantidade().setText(estoque != null ? String.valueOf(estoque) : "0");
+                int estoque = p.getQuantidade();
+                formularioVenda.getLabelEstoqueQuantidade().setText(String.valueOf(estoque));
 
                 // Preenche o ID para o sistema saber qual produto é na hora de adicionar ao carrinho
                 formularioVenda.getTextoBuscarProdutoPeloID().setText(p.getId().toString());
