@@ -141,4 +141,19 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
         return vendas;
     }
     
+    public Long contarTodos() {
+        String sql = "SELECT COUNT(*) FROM venda";
+        try (Connection conn = ConexaoMySQL.obterConexao();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0L;
+    }
+    
 }

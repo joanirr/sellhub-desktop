@@ -61,4 +61,8 @@ public class VendaServico {
         return vendaRepositorioImpl.buscarPorPeriodo(inicio, fim);
     }
     
+    public Long contarTotalVendas() {
+        return vendaRepositorioImpl.contarTodos(); 
+    }
+    
 }

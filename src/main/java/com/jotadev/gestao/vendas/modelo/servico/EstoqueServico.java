@@ -67,4 +67,11 @@ public class EstoqueServico {
         else
             JOptionPane.showMessageDialog(null, "Erro ao remover estoque.");
     }
+    
+    public int somarQuantidadeTotalEstoque() {
+        return estoqueRepositorio.buscarTodos()
+                .stream()
+                .mapToInt(e -> e.getQuantidade())
+                .sum();
+    }
 }

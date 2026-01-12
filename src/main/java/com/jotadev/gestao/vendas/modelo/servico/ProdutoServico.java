@@ -69,4 +69,9 @@ public class ProdutoServico {
     public void atualizarEstoque(Long produtoId, int novaQuantidade) {
         produtoRepositorioImpl.atualizarEstoque(produtoId, novaQuantidade);
     }
+    
+    public Long contarTotalProdutos() {
+        return produtoRepositorioImpl.contarTodos();
+    }
+    
 }

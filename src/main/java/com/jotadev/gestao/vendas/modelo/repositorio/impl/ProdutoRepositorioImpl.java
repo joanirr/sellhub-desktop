@@ -2,6 +2,7 @@ package com.jotadev.gestao.vendas.modelo.repositorio.impl;
 
 import com.jotadev.gestao.vendas.modelo.conexao.ConexaoMySQL;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,5 +89,20 @@ public class ProdutoRepositorioImpl extends CrudRepositorioImpl<Produto> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Long contarTodos() {
+        String sql = "SELECT COUNT(*) FROM produto";
+        try (Connection conn = ConexaoMySQL.obterConexao();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0L;
     }
 }

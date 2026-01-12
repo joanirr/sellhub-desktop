@@ -1,6 +1,7 @@
 package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
+import com.jotadev.gestao.vendas.controlador.FormularioPrincipalController;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
 import com.jotadev.gestao.vendas.visual.modelo.CartaoModelo;
 import java.awt.Color;
@@ -11,21 +12,35 @@ public class FormularioPrincipal extends javax.swing.JPanel {
     public FormularioPrincipal() {
         initComponents();
         inicializarCartao();
+        
+        FormularioPrincipalController controller = new FormularioPrincipalController(this);
+        controller.atualizarDash();
+        
         jScrollPane1.getViewport().setBackground(new Color(45, 45, 45));
         jScrollPane1.getVerticalScrollBar().setUI(new ModernScrollBarUI());
         jScrollPane1.setBackground(new Color(45, 45, 45));
         jScrollPane1.setBorder(null);
         
+        this.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                new FormularioPrincipalController(FormularioPrincipal.this).atualizarDash();
+            }
+        });
     }
     
+    public void atualizarDadosCartoes(long totalProdutos, long totalVendas, long totalEstoque) {
+        CartaoModelo m1 = new CartaoModelo(new ImageIcon(getCaminho() + "produto.png"), "Produto", "Total " + totalProdutos);
+        CartaoModelo m2 = new CartaoModelo(new ImageIcon(getCaminho() + "venda.png"), "Venda", "Total " + totalVendas);
+        CartaoModelo m3 = new CartaoModelo(new ImageIcon(getCaminho() + "stock.png"), "Estoque", "Total " + totalEstoque);
+
+        cartao1.setData(m1);
+        cartao2.setData(m2);
+        cartao3.setData(m3);
+    }
+
     private void inicializarCartao() {
-        CartaoModelo cartaoModelo1 = new CartaoModelo(new ImageIcon(getCaminho() + "produto.png"), "Produto", "Total 7");
-        CartaoModelo cartaoModelo2 = new CartaoModelo(new ImageIcon(getCaminho() + "venda.png"), "Venda", "Total 7");
-        CartaoModelo cartaoModelo3 = new CartaoModelo(new ImageIcon(getCaminho() + "stock.png"), "Estoque", "Total 7");
-        
-        cartao1.setData(cartaoModelo1);
-        cartao2.setData(cartaoModelo2);
-        cartao3.setData(cartaoModelo3);
+        atualizarDadosCartoes(0, 0, 0); 
     }
 
     public Tabela getTabelaDoFormularioPrincipal() {
