@@ -99,9 +99,42 @@ public class FormularioProdutoController implements ActionListener, MouseListene
     private void removerProduto() {
         permissaoServico.validarPermissao(PERMISSAO_ID_PARA_REMOVER_PRODUTO, formularioProduto.getUsuarioId());
         selecionarProdutoNaTabela();
-        produtoServico.remover(produtoId);
-        atualizarTabelaProduto();
-        limparCamposProduto();
+
+        if (produtoId != null) {
+            int confirmacao = javax.swing.JOptionPane.showConfirmDialog(
+                formularioProduto, 
+                "Tem certeza que deseja remover este produto?", 
+                "Confirmar Exclusão", 
+                javax.swing.JOptionPane.YES_NO_OPTION
+            );
+
+            if (confirmacao == javax.swing.JOptionPane.YES_OPTION) {
+                try {
+                    produtoServico.remover(produtoId);
+
+                    javax.swing.JOptionPane.showMessageDialog(
+                        formularioProduto, 
+                        "Produto removido com sucesso! A lista e o dashboard foram atualizados.", 
+                        "Sucesso", 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    atualizarTabelaProduto();
+                    limparCamposProduto();
+
+                } catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                        formularioProduto, 
+                        "Não é possível remover o produto ID: " + produtoId + ".\n" +
+                        "Motivo: O produto possui registros vinculados em estoque ou vendas.", 
+                        "Erro de Integridade", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+
+                    System.err.println("Erro ao remover: " + e.getMessage());
+                }
+            }
+        }
     }
     
     private void salvarCategoria() {

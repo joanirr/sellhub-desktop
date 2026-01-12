@@ -18,66 +18,64 @@ public class MensagemUtil {
     }
     
     public void mostrarMensagem(Mensagem.TipoMensagem tipo, String mensagem) {
-        Mensagem ms = new Mensagem();
-        ms.mostrarMensagem(tipo, mensagem);
-        
-        TimingTarget target = new TimingTargetAdapter() {
-            @Override
-            public void begin() {
-                if (!ms.isMostrar()) {
-                    background.add(ms, "pos 0.5al -30", JLayeredPane.DRAG_LAYER);
-                    background.setLayer(ms, JLayeredPane.DRAG_LAYER);
-                    ms.setVisible(true);
-                    background.repaint();
-                }
-            }
-
-            @Override
-            public void timingEvent(float fraction) {
-                float f;
-                
-                if (!ms.isMostrar()) {
-                    f = -30 + (70 * fraction);
-                } else {
-                    f = 40 - (70 * fraction);
-                }
-                
-                layout.setComponentConstraints(ms, "pos 0.5al " + (int) f);
-                background.revalidate();
-            }
-
-            @Override
-            public void end() {
-                if (ms.isMostrar()) {
-                    background.remove(ms);
-                    background.repaint();
-                    background.revalidate();
-                } else {
-                    ms.setMostrar(true);
-                }
-            }
-            
-        };
-        
-        Animator animacaoEntrada = new Animator(300, target);
-        Animator animacaoSaida = new Animator(300, target);
-        animacaoEntrada.setAcceleration(0.5f);
-        animacaoEntrada.setDeceleration(0.5f);
-        animacaoSaida.setAcceleration(0.5f);
-        animacaoSaida.setDeceleration(0.5f);
-        
-        new Thread(() -> {
+        javax.swing.SwingUtilities.invokeLater(() -> {
             try {
-                animacaoEntrada.start();
-                Thread.sleep(2000);
-                animacaoSaida.start();
-            } catch (InterruptedException e) {
-                System.out.println(e);
-            } catch (IllegalStateException e) {
-                System.out.println("Animador já estava rodando: " + e.getMessage());
+                final Mensagem ms = new Mensagem();
+                ms.mostrarMensagem(tipo, mensagem);
+
+                for (java.awt.Component c : background.getComponents()) {
+                    if (c instanceof Mensagem) {
+                        background.remove(c);
+                    }
+                }
+
+                background.add(ms);
+                background.setLayer(ms, JLayeredPane.POPUP_LAYER);
+                ms.setVisible(true);
+
+                TimingTarget target = new TimingTargetAdapter() {
+                    @Override
+                    public void timingEvent(float fraction) {
+                        float f = !ms.isMostrar() ? -30 + (70 * fraction) : 40 - (70 * fraction);
+
+                        int x = (background.getWidth() - ms.getPreferredSize().width) / 2;
+                        ms.setBounds(x, (int) f, ms.getPreferredSize().width, ms.getPreferredSize().height);
+
+                        background.repaint();
+                    }
+
+                    @Override
+                    public void end() {
+                        if (ms.isMostrar()) {
+                            background.remove(ms);
+                            background.repaint();
+                        } else {
+                            ms.setMostrar(true);
+                            new Thread(() -> {
+                                try {
+                                    Thread.sleep(2000);
+                                    ms.setMostrar(true);
+                                    animarSaida();
+                                } catch (InterruptedException e) {}
+                            }).start();
+                        }
+                    }
+
+                    private void animarSaida() {
+                        Animator out = new Animator(300, this);
+                        out.start();
+                    }
+                };
+
+                Animator animator = new Animator(300, target);
+                animator.setAcceleration(0.5f);
+                animator.setDeceleration(0.5f);
+                animator.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }).start();
-        
+        });
     }
 
     public Object getMensagemPanel() {
