@@ -65,4 +65,20 @@ public class VendaServico {
         return vendaRepositorioImpl.contarTodos(); 
     }
     
+    public String excluir(Long id) {
+        try {
+            vendaItemRepositorioImpl.removerPorVendaId(id); 
+
+            vendaRepositorioImpl.removerPeloId(id);
+
+            return "Venda #" + id + " excluída com sucesso!";
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao excluir venda: " + e.getMessage());
+        }
+    }
+    public List<VendaDto> buscarItensDaVenda(Long vendaId) {
+        return vendaItemRepositorioImpl.buscarItensPorVendaId(vendaId);
+    }
+    
+    
 }

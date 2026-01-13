@@ -1041,7 +1041,7 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.jotadev.gestao.vendas.visual.componentes.Botao()"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="botaoPermissoes">
+        <Component class="javax.swing.JButton" name="botaoDetalhes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>

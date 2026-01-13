@@ -107,7 +107,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoAtualizar.addActionListener(formularioVendaController);
         botaoAdicionar.addActionListener(formularioVendaController);
         botaoImprimir.addActionListener(formularioVendaController);
-        botaoPermissoes.addActionListener(formularioVendaController);
+        botaoDetalhes.addActionListener(formularioVendaController);
         botaoRemover.addActionListener(formularioVendaController);
     }
     
@@ -181,8 +181,8 @@ public class FormularioVenda extends javax.swing.JPanel {
         return botaoRemover;
     }
       
-    public JButton getBotaoPermissoes() {
-        return botaoPermissoes;
+    public JButton getBotaoDetalhes() {
+        return botaoDetalhes;
     }
        
     public JButton getBotaoImprimir() {
@@ -400,7 +400,7 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoAdicionar = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         botaoAtualizar = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         botaoRemover = new com.jotadev.gestao.vendas.visual.componentes.Botao();
-        botaoPermissoes = new com.jotadev.gestao.vendas.visual.componentes.Botao();
+        botaoDetalhes = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         botaoImprimir = new com.jotadev.gestao.vendas.visual.componentes.Botao();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaVendas = new com.jotadev.gestao.vendas.visual.componentes.Tabela();
@@ -836,13 +836,13 @@ public class FormularioVenda extends javax.swing.JPanel {
         botaoRemover.addActionListener(this::botaoRemoverActionPerformed);
         jPanel1.add(botaoRemover);
 
-        botaoPermissoes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        botaoPermissoes.setForeground(new java.awt.Color(255, 255, 255));
-        botaoPermissoes.setText("Detalhes");
-        botaoPermissoes.setActionCommand("permissoes");
-        botaoPermissoes.setName("permissoes"); // NOI18N
-        jPanel1.add(botaoPermissoes);
-        botaoPermissoes.getAccessibleContext().setAccessibleName("");
+        botaoDetalhes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botaoDetalhes.setForeground(new java.awt.Color(255, 255, 255));
+        botaoDetalhes.setText("Detalhes");
+        botaoDetalhes.setActionCommand("permissoes");
+        botaoDetalhes.setName("permissoes"); // NOI18N
+        jPanel1.add(botaoDetalhes);
+        botaoDetalhes.getAccessibleContext().setAccessibleName("");
 
         botaoImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         botaoImprimir.setForeground(new java.awt.Color(255, 255, 255));
@@ -964,9 +964,9 @@ public class FormularioVenda extends javax.swing.JPanel {
     private javax.swing.JButton botaoAtualizar;
     private com.jotadev.gestao.vendas.visual.componentes.Botao botaoCarrinhoLimpar;
     private com.jotadev.gestao.vendas.visual.componentes.Botao botaoCarrinhoRemover;
+    private javax.swing.JButton botaoDetalhes;
     private javax.swing.JButton botaoImprimir;
     private com.jotadev.gestao.vendas.visual.componentes.Botao botaoLimpar;
-    private javax.swing.JButton botaoPermissoes;
     private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton botaoRemover;
     private com.jotadev.gestao.vendas.visual.componentes.Botao botaoVender;

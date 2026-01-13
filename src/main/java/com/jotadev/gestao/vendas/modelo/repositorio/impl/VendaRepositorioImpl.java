@@ -155,5 +155,4 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
         }
         return 0L;
     }
-    
 }

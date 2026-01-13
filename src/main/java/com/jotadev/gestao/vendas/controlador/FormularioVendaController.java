@@ -49,26 +49,48 @@ public class FormularioVendaController implements ActionListener {
         this.formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
         this.formularioVenda.getTabelaCheckout().setModel(tabelaModeloCheckout);
         
-        formularioVenda.getBotaoPesquisar().addActionListener(e -> {
-            pesquisarVendasPorData();
-        });
+        formularioVenda.getBotaoPesquisar().addActionListener(e ->
+            pesquisarVendasPorData());
+        
+        formularioVenda.getBotaoAtualizar().addActionListener(e -> 
+            atualizarTabelaVenda());
+        
+        formularioVenda.getBotaoRemover().addActionListener(e ->
+            removerVenda());
+        
+        formularioVenda.getBotaoDetalhes().addActionListener(e ->
+            verDetalhesVenda());
+        
+        formularioVenda.getBotaoImprimir().addActionListener(e ->
+            imprimirVenda());
         
         atualizarTabelaVenda();
     }
     
     private void atualizarTabelaVenda() {
-        // Busca a lista atualizada do banco
-        List<VendaDto> lista = vendaServico.buscarTodos(); 
+        try {
+            List<VendaDto> lista = vendaServico.buscarTodos(); 
 
-        // Cria um novo modelo com os dados novos
-        tabelaModeloVenda = new TabelaModeloVenda(lista);
+            if (lista == null) {
+                lista = new java.util.ArrayList<>();
+            }
 
-        // Seta o modelo na tabela da View
-        formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
+            tabelaModeloVenda = new TabelaModeloVenda(lista);
+            formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
+            tabelaModeloVenda.fireTableDataChanged();
 
-        // Força a interface a se redesenhar
-        formularioVenda.getTabelaVendas().revalidate();
-        formularioVenda.getTabelaVendas().repaint();
+            JOptionPane.showMessageDialog(formularioVenda, 
+                    "Lista de vendas atualizada com sucesso!", 
+                    "Atualização", 
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(formularioVenda, 
+                    "Erro ao atualizar a lista: " + e.getMessage(), 
+                    "Erro", 
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -640,6 +662,61 @@ public class FormularioVendaController implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
             formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, "Erro na pesquisa: " + e.getMessage());
+        }
+    }
+    
+    private void removerVenda() {
+        int linha = formularioVenda.getTabelaVendas().getSelectedRow();
+        
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(formularioVenda, "Selecione uma venda na tabela para remover!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
+        
+        int confirmacao = JOptionPane.showConfirmDialog(formularioVenda,
+                "Tem certeza que deseja excluir a venda #" + vendaId + "?\nEsta ação não poderá ser desfeita.",
+                "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+        
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            try {
+                String mensagem = vendaServico.excluir(vendaId);
+                
+                JOptionPane.showMessageDialog(formularioVenda, "Venda removida co sucesso!");
+                atualizarTabelaVenda();
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(formularioVenda, "Erro ao remover venda : " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
+    private void verDetalhesVenda() {
+        int linha = formularioVenda.getTabelaVendas().getSelectedRow();
+        
+        if (linha != -1) {
+            Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
+            
+            List<VendaDto> itens = vendaServico.buscarItensDaVenda(vendaId);
+            StringBuilder sb = new StringBuilder("Itens da Venda #" + vendaId + ":\n\n");
+            itens.forEach(i -> sb.append(i.getNome()).append(" - Qtd: ").append(i.getQuantidade()).append("\n"));
+            
+            JOptionPane.showMessageDialog(formularioVenda, sb.toString(), "Detalhes da Venda", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showConfirmDialog(formularioVenda, "Selecione uma venda para ver os detalhes.");
+        }
+    }
+    
+    private void imprimirVenda() {
+        int linha = formularioVenda.getTabelaVendas().getSelectedRow();
+        
+        if (linha != -1) {
+            Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
+            
+            JOptionPane.showMessageDialog(formularioVenda, "Gerando comprovante da venda #" + vendaId + "...", "Impressão", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(formularioVenda, "Selecione uma venda para imprimir.");
         }
     }
     
