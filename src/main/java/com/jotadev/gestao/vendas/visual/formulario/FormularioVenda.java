@@ -7,9 +7,14 @@ import com.jotadev.gestao.vendas.visual.componentes.CampoDeTexto;
 import com.jotadev.gestao.vendas.visual.componentes.ComboBox;
 import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
 import com.jotadev.gestao.vendas.visual.componentes.Tabela;
+import com.jotadev.gestao.vendas.visual.modelo.TabelaModeloCheckout;
 import com.toedter.calendar.JDateChooser;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -19,6 +24,8 @@ import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -34,10 +41,19 @@ public class FormularioVenda extends javax.swing.JPanel {
     private Long usuarioId;
     private MigLayout layout;
     private MensagemUtil mensagemUtil;
+    private JDialog dialogDetalhes;
+    private JTable tabelaDetalhesItens;
+    private TabelaModeloCheckout modeloDetalhes;
+
+    private JLabel labelDetalheVendaId;
+    private JLabel labelDetalheData;
+    private JLabel labelDetalheTotal;
+    private JLabel labelDetalheUsuario;
     private boolean mostrar = true;
 
     public FormularioVenda(Long usuarioId) {
         initComponents();
+        inicializarDialogDetalhes();
         
         jScrollPane4.getViewport().setBackground(new Color(45,45,45));
         tabelaCheckout.setBackground(new Color(45,45,45));
@@ -292,6 +308,30 @@ public class FormularioVenda extends javax.swing.JPanel {
     public JDateChooser getDataFinal() {
         return dataFinal;
     }
+
+    public JDialog getDialogDetalhes() {
+        return dialogDetalhes;
+    }
+
+    public JTable getTabelaDetalhesItens() {
+        return tabelaDetalhesItens;
+    }
+
+    public JLabel getLabelDetalheVendaId() {
+        return labelDetalheVendaId;
+    }
+
+    public JLabel getLabelDetalheData() {
+        return labelDetalheData;
+    }
+
+    public JLabel getLabelDetalheTotal() {
+        return labelDetalheTotal;
+    }
+
+    public JLabel getLabelDetalheUsuario() {
+        return labelDetalheUsuario;
+    }
     
     
     
@@ -343,6 +383,62 @@ public class FormularioVenda extends javax.swing.JPanel {
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
         animator.start();
+    }
+    
+    private void inicializarDialogDetalhes() {
+        dialogDetalhes = new JDialog();
+        dialogDetalhes.setTitle("Detalhes da Venda");
+        dialogDetalhes.setModal(true);
+        dialogDetalhes.setSize(700, 500);
+        dialogDetalhes.setLayout(new BorderLayout(10, 10));
+        dialogDetalhes.getContentPane().setBackground(new Color(45, 45, 45));
+
+        tabelaDetalhesItens = new JTable();
+        modeloDetalhes = new TabelaModeloCheckout(new java.util.ArrayList<>()); 
+        tabelaDetalhesItens.setModel(modeloDetalhes);;
+
+        tabelaDetalhesItens.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabelaDetalhesItens.getColumnModel().getColumn(1).setPreferredWidth(250);
+
+        JPanel painelCabecalho = new JPanel(new GridLayout(2, 2, 10, 5));
+        painelCabecalho.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        painelCabecalho.setOpaque(false);
+
+        labelDetalheVendaId = criarLabelDetalhe("Venda: #000", 14, Font.BOLD);
+        labelDetalheData = criarLabelDetalhe("Data: --/--/----", 12, Font.PLAIN);
+        labelDetalheUsuario = criarLabelDetalhe("Vendedor: ---", 12, Font.PLAIN);
+        labelDetalheTotal = criarLabelDetalhe("Total: R$ 0,00", 16, Font.BOLD);
+        labelDetalheTotal.setForeground(new Color(46, 204, 113));
+
+        painelCabecalho.add(labelDetalheVendaId);
+        painelCabecalho.add(labelDetalheData);
+        painelCabecalho.add(labelDetalheUsuario);
+        painelCabecalho.add(labelDetalheTotal);
+
+        JScrollPane scrollPane = new JScrollPane(tabelaDetalhesItens);
+        scrollPane.getViewport().setBackground(new Color(45, 45, 45));
+
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoes.setOpaque(false);
+        JButton btnFechar = new JButton("Fechar");
+        btnFechar.addActionListener(e -> dialogDetalhes.dispose());
+        painelBotoes.add(btnFechar);
+
+        dialogDetalhes.add(painelCabecalho, BorderLayout.NORTH);
+        dialogDetalhes.add(scrollPane, BorderLayout.CENTER);
+        dialogDetalhes.add(painelBotoes, BorderLayout.SOUTH);
+
+        dialogDetalhes.setLocationRelativeTo(null);
+        
+        dialogDetalhes.revalidate();
+        dialogDetalhes.repaint();
+    }
+
+    private JLabel criarLabelDetalhe(String texto, int tamanho, int estilo) {
+        JLabel label = new JLabel(texto);
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("SansSerif", estilo, tamanho));
+        return label;
     }
 
     @SuppressWarnings("unchecked")

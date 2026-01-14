@@ -18,13 +18,12 @@ public class VendaItemRepositorioImpl extends CrudRepositorioImpl<VendaItem> {
     }
     
     public List<VendaDto> buscarItensPorVendaId(Long vendaId) {
-        String sql = "SELECT p.nome, vi.quantidade, vi.preco, vi.desconto, vi.total " +
+        String sql = "SELECT p.id, p.nome, vi.quantidade, vi.preco, vi.desconto, vi.total " +
                      "FROM vendaitem vi " +
-                     "JOIN produto p ON vi.produtoId = p.id " +
+                     "JOIN produto p ON p.id = vi.produtoId " +
                      "WHERE vi.vendaId = ?";
 
         List<VendaDto> itens = new ArrayList<>();
-
         try (Connection conn = ConexaoMySQL.obterConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -33,6 +32,7 @@ public class VendaItemRepositorioImpl extends CrudRepositorioImpl<VendaItem> {
 
             while (rs.next()) {
                 VendaDto item = new VendaDto();
+                item.setId(rs.getLong("id"));
                 item.setNome(rs.getString("nome"));
                 item.setQuantidade(rs.getInt("quantidade"));
                 item.setPreco(rs.getDouble("preco"));

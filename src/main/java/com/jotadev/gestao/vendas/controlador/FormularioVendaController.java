@@ -3,6 +3,7 @@ package com.jotadev.gestao.vendas.controlador;
 import com.jotadev.gestao.vendas.modelo.dto.VendaDto;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
 import com.jotadev.gestao.vendas.modelo.entidade.Venda;
+import com.jotadev.gestao.vendas.modelo.repositorio.impl.VendaItemRepositorioImpl;
 import com.jotadev.gestao.vendas.modelo.servico.CategoriaServico;
 import com.jotadev.gestao.vendas.modelo.servico.ProdutoServico;
 import com.jotadev.gestao.vendas.modelo.servico.UsuarioServico;
@@ -36,6 +37,7 @@ public class FormularioVendaController implements ActionListener {
     private Produto produtoSelecionado;
 
     public FormularioVendaController(FormularioVenda formularioVenda) {
+        
         this.formularioVenda = formularioVenda;
         this.vendaServico = new VendaServico();
         usuarioServico = new UsuarioServico();
@@ -692,20 +694,37 @@ public class FormularioVendaController implements ActionListener {
     
     private void verDetalhesVenda() {
         int linha = formularioVenda.getTabelaVendas().getSelectedRow();
-        
-        if (linha != -1) {
-            Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
-            
-            List<VendaDto> itens = vendaServico.buscarItensDaVenda(vendaId);
-            StringBuilder sb = new StringBuilder("Itens da Venda #" + vendaId + ":\n\n");
-            itens.forEach(i -> sb.append(i.getNome()).append(" - Qtd: ").append(i.getQuantidade()).append("\n"));
-            
-            JOptionPane.showMessageDialog(formularioVenda, sb.toString(), "Detalhes da Venda", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showConfirmDialog(formularioVenda, "Selecione uma venda para ver os detalhes.");
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione uma venda!");
+            return;
         }
+
+        Long id = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
+        String vendedor = formularioVenda.getTabelaVendas().getValueAt(linha, 6).toString();
+        String data = formularioVenda.getTabelaVendas().getValueAt(linha, 7).toString();
+        String total = formularioVenda.getTabelaVendas().getValueAt(linha, 1).toString();
+
+        VendaItemRepositorioImpl itemRepo = new VendaItemRepositorioImpl();
+        List<VendaDto> itens = itemRepo.buscarItensPorVendaId(id);
+
+        System.out.println("Itens encontrados para venda #" + id + ": " + itens.size());
+
+        formularioVenda.getLabelDetalheUsuario().setText("Vendedor: " + vendedor);
+        formularioVenda.getLabelDetalheVendaId().setText("Venda: #" + id);
+        formularioVenda.getLabelDetalheData().setText("Data: " + data);
+        formularioVenda.getLabelDetalheTotal().setText("Total: R$ " + total);
+
+        TabelaModeloCheckout modelo = new TabelaModeloCheckout(itens);
+        formularioVenda.getTabelaDetalhesItens().setModel(modelo);
+
+        modelo.fireTableDataChanged(); 
+        formularioVenda.getTabelaDetalhesItens().repaint();
+
+        formularioVenda.getDialogDetalhes().pack();
+        formularioVenda.getDialogDetalhes().setLocationRelativeTo(formularioVenda);
+        formularioVenda.getDialogDetalhes().setVisible(true);
     }
-    
+
     private void imprimirVenda() {
         int linha = formularioVenda.getTabelaVendas().getSelectedRow();
 
