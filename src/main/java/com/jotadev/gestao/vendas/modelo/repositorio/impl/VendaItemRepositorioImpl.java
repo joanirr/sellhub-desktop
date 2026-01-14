@@ -67,7 +67,7 @@ public class VendaItemRepositorioImpl extends CrudRepositorioImpl<VendaItem> {
             ps.setInt(3, item.getQuantidade());
             ps.setDouble(4, item.getSubtotal());
             ps.setDouble(5, item.getPreco());
-            ps.setDouble(6, 0.0);
+            ps.setBigDecimal(6, item.getDesconto());
 
             ps.executeUpdate();
         } catch (SQLException e) {
