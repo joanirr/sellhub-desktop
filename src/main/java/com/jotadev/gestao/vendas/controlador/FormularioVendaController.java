@@ -53,7 +53,7 @@ public class FormularioVendaController implements ActionListener {
             pesquisarVendasPorData());
         
         formularioVenda.getBotaoAtualizar().addActionListener(e -> 
-            atualizarTabelaVenda());
+            atualizarTabelaVendaComMensagem());
         
         formularioVenda.getBotaoRemover().addActionListener(e ->
             removerVenda());
@@ -64,10 +64,10 @@ public class FormularioVendaController implements ActionListener {
         formularioVenda.getBotaoImprimir().addActionListener(e ->
             imprimirVenda());
         
-        atualizarTabelaVenda();
+        atualizarTabelaVendaSilencioso();
     }
     
-    private void atualizarTabelaVenda() {
+    private void atualizarTabelaVendaSilencioso() {
         try {
             List<VendaDto> lista = vendaServico.buscarTodos(); 
 
@@ -79,6 +79,15 @@ public class FormularioVendaController implements ActionListener {
             formularioVenda.getTabelaVendas().setModel(tabelaModeloVenda);
             tabelaModeloVenda.fireTableDataChanged();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void atualizarTabelaVendaComMensagem() {
+        try {
+            atualizarTabelaVendaSilencioso();
+
             JOptionPane.showMessageDialog(formularioVenda, 
                     "Lista de vendas atualizada com sucesso!", 
                     "Atualização", 
@@ -89,7 +98,6 @@ public class FormularioVendaController implements ActionListener {
                     "Erro ao atualizar a lista: " + e.getMessage(), 
                     "Erro", 
                     JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
         }
     }
 
@@ -553,7 +561,7 @@ public class FormularioVendaController implements ActionListener {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
 
                 // Sincronização da UI
-                atualizarTabelaVenda(); 
+                atualizarTabelaVendaSilencioso(); 
                 limparTudoAposVenda();
             } else {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
@@ -683,8 +691,8 @@ public class FormularioVendaController implements ActionListener {
             try {
                 String mensagem = vendaServico.excluir(vendaId);
                 
-                JOptionPane.showMessageDialog(formularioVenda, "Venda removida co sucesso!");
-                atualizarTabelaVenda();
+                JOptionPane.showMessageDialog(formularioVenda, "Venda removida com sucesso!");
+                atualizarTabelaVendaSilencioso();
                 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(formularioVenda, "Erro ao remover venda : " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
