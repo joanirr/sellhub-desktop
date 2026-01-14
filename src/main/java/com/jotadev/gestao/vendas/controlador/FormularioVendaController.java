@@ -555,14 +555,13 @@ public class FormularioVendaController implements ActionListener {
             String mensagem = vendaServico.salvar(venda, tabelaModeloCheckout.getItens());
 
             if (mensagem.startsWith("Venda realizada")) {
-                // Atualização Automática de Estoque
-                atualizarEstoquePosVenda();
 
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.SUCESSO, mensagem);
 
                 // Sincronização da UI
                 atualizarTabelaVendaSilencioso(); 
                 limparTudoAposVenda();
+                limparCamposProduto();
             } else {
                 formularioVenda.getMensagemUtil().mostrarMensagem(Mensagem.TipoMensagem.ERRO, mensagem);
             }
@@ -575,17 +574,8 @@ public class FormularioVendaController implements ActionListener {
         }
     }
 
-    // Método auxiliar para deixar o código principal mais limpo
     private void atualizarEstoquePosVenda() {
-        for (int i = 0; i < tabelaModeloCheckout.getRowCount(); i++) {
-            Long produtoId = Long.valueOf(tabelaModeloCheckout.getValueAt(i, 0).toString());
-            Integer qtdVendida = (Integer) tabelaModeloCheckout.getValueAt(i, 2);
-
-            produtoServico.buscarPeloId(produtoId).ifPresent(p -> {
-                int novoEstoque = p.getQuantidade() - qtdVendida;
-                produtoServico.atualizarEstoque(produtoId, novoEstoque);
-            });
-        }
+        System.out.println("Estoque atualizado automaticamente pelo Banco de Dados.");
     }
     
     private void limparTudoAposVenda() {
