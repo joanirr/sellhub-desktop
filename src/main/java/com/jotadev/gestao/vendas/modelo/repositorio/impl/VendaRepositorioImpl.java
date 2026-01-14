@@ -67,38 +67,32 @@ public class VendaRepositorioImpl extends CrudRepositorioImpl<Venda>{
                 .vendaItemDto(null)
                 .build();
     }
-    public String salvar(Venda venda, List<VendaDto> itens) {
-        // SQL deve bater com os nomes das colunas do Workbench
-        String sqlVenda = "INSERT INTO venda (totalVenda, valorPago, troco, desconto, clienteId, usuarioId, dataCriacao) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public Long salvarERetornarId(Venda venda) {
+        String sql = "INSERT INTO venda (totalVenda, valorPago, desconto, troco, dataCriacao, usuarioId, clienteId) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexaoMySQL.obterConexao();
-             PreparedStatement ps = conn.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setBigDecimal(1, venda.getTotalVenda());
-            ps.setBigDecimal(2, venda.getValorPago()); 
-            ps.setBigDecimal(3, venda.getTroco());
-            ps.setBigDecimal(4, venda.getDesconto());
-            ps.setLong(5, 1L); 
-            ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
-            
-            if (venda.getUsuarioId() != null) {
-                ps.setLong(6, venda.getUsuarioId());
-            } else {
-                ps.setNull(6, java.sql.Types.INTEGER);
+            ps.setBigDecimal(2, venda.getValorPago());
+            ps.setBigDecimal(3, venda.getDesconto());
+            ps.setBigDecimal(4, venda.getTroco());
+            ps.setTimestamp(5, java.sql.Timestamp.valueOf(venda.getDataCriacao()));
+            ps.setLong(6, venda.getUsuarioId());
+            ps.setLong(7, venda.getClienteId());
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getLong(1);
             }
 
-            // O COMANDO QUE ENVIA PARA O BANCO
-            int linhasAfetadas = ps.executeUpdate(); 
-
-            if (linhasAfetadas > 0) {
-                return "Venda realizada com sucesso!";
-            }
+            throw new SQLException("Erro ao obter o ID da venda gerado.");
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            return "Erro SQL: " + e.getMessage();
+            throw new RuntimeException("Erro ao salvar venda: " + e.getMessage());
         }
-        return "Erro desconhecido";
     }
     
     public List<VendaDto> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {

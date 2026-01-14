@@ -54,7 +54,19 @@ public class VendaServico {
     }
     
     public String salvar(Venda venda, List<VendaDto> itens) {
-        return vendaRepositorioImpl.salvar(venda, itens); 
+        try {
+            // Salva a venda e recupera o ID gerado pelo banco
+            Long vendaIdGerado = vendaRepositorioImpl.salvarERetornarId(venda);
+
+            // Salva cada item vinculado a esse ID
+            for (VendaDto item : itens) {
+                vendaItemRepositorioImpl.salvarItem(item, vendaIdGerado);
+            }
+
+            return "Venda realizada com sucesso!";
+        } catch (Exception e) {
+            return "Erro ao salvar: " + e.getMessage();
+        }
     }
     
     public List<VendaDto> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
@@ -80,5 +92,34 @@ public class VendaServico {
         return vendaItemRepositorioImpl.buscarItensPorVendaId(vendaId);
     }
     
-    
+    public String gerarTextoComprovante(Long vendaId) {
+        List<VendaDto> itens = vendaItemRepositorioImpl.buscarItensPorVendaId(vendaId);
+        
+        System.out.println("DEBUG: Buscando itens para a venda ID: " + vendaId);
+        System.out.println("DEBUG: Quantidade de itens encontrados: " + itens.size());
+
+        StringBuilder cupom = new StringBuilder();
+        cupom.append("          LOJA SELLHUB          \n");
+        cupom.append("--------------------------------\n");
+        cupom.append("COMPROVANTE DE VENDA: #").append(vendaId).append("\n");
+        cupom.append("DATA: ").append(java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))).append("\n");
+        cupom.append("--------------------------------\n");
+        cupom.append(String.format("%-14s %-3s %-10s\n", "ITEM", "QTD", "SUBTOTAL"));
+
+        double totalGeral = 0;
+        for (VendaDto item : itens) {
+            System.out.println("Item encontrado: " + item.getNome() + " - Valor: " + item.getSubtotal());
+            String nomeCurto = item.getNome().length() > 14 ? item.getNome().substring(0, 11) + "..." : item.getNome();
+            cupom.append(String.format("%-14s %-3d R$%-9.2f\n", 
+                nomeCurto, item.getQuantidade(), item.getSubtotal()));
+            totalGeral += item.getSubtotal();
+        }
+
+        cupom.append("--------------------------------\n");
+        cupom.append(String.format("VALOR TOTAL: R$ %.2f\n", totalGeral));
+        cupom.append("--------------------------------\n");
+        cupom.append("   OBRIGADO PELA PREFERENCIA!   \n");
+
+        return cupom.toString();
+    }
 }

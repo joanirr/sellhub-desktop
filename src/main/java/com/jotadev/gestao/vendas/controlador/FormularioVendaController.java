@@ -710,14 +710,38 @@ public class FormularioVendaController implements ActionListener {
     
     private void imprimirVenda() {
         int linha = formularioVenda.getTabelaVendas().getSelectedRow();
-        
-        if (linha != -1) {
-            Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
-            
-            JOptionPane.showMessageDialog(formularioVenda, "Gerando comprovante da venda #" + vendaId + "...", "Impressão", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+
+        if (linha == -1) {
             JOptionPane.showMessageDialog(formularioVenda, "Selecione uma venda para imprimir.");
+            return;
         }
+
+        Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
+
+        try {
+            String textoCupom = vendaServico.gerarTextoComprovante(vendaId);
+
+            javax.swing.JTextArea textArea = new javax.swing.JTextArea(textoCupom);
+            textArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
+            textArea.setEditable(false);
+
+            int op = JOptionPane.showConfirmDialog(formularioVenda, 
+                new javax.swing.JScrollPane(textArea), 
+                "Imprimir Venda #" + vendaId, 
+                JOptionPane.YES_NO_OPTION);
+
+            if (op == JOptionPane.YES_OPTION) {
+                textArea.print(); 
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(formularioVenda, "Erro ao processar impressão: " + e.getMessage());
+        }
+    }
+
+    private void enviarParaImpressora(String texto) {
+        System.out.println(texto);
+        JOptionPane.showMessageDialog(formularioVenda, "Enviado para a fila de impressão!");
     }
     
 }
