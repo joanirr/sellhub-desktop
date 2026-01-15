@@ -729,30 +729,26 @@ public class FormularioVendaController implements ActionListener {
         int linha = formularioVenda.getTabelaVendas().getSelectedRow();
 
         if (linha == -1) {
-            JOptionPane.showMessageDialog(formularioVenda, "Selecione uma venda para imprimir.");
+            JOptionPane.showMessageDialog(formularioVenda, "Por favor, selecione uma venda na tabela primeiro.");
             return;
         }
 
-        Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
-
         try {
-            String textoCupom = vendaServico.gerarTextoComprovante(vendaId);
+            Long vendaId = (Long) formularioVenda.getTabelaVendas().getValueAt(linha, 0);
 
-            javax.swing.JTextArea textArea = new javax.swing.JTextArea(textoCupom);
-            textArea.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
-            textArea.setEditable(false);
+            Object objCliente = formularioVenda.getTabelaVendas().getValueAt(linha, 5); 
+            String nomeCliente = (objCliente != null) ? objCliente.toString() : "CONSUMIDOR FINAL";
 
-            int op = JOptionPane.showConfirmDialog(formularioVenda, 
-                new javax.swing.JScrollPane(textArea), 
-                "Imprimir Venda #" + vendaId, 
-                JOptionPane.YES_NO_OPTION);
+            String comprovante = vendaServico.gerarTextoComprovante(vendaId, nomeCliente);
 
-            if (op == JOptionPane.YES_OPTION) {
-                textArea.print(); 
-            }
+            javax.swing.JTextArea areaTexto = new javax.swing.JTextArea(comprovante);
+            areaTexto.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 9));
+            areaTexto.print();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(formularioVenda, "Erro ao processar impressão: " + e.getMessage());
+        } catch (java.awt.print.PrinterException ex) {
+            JOptionPane.showMessageDialog(formularioVenda, "Falha na impressora: " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(formularioVenda, "Erro ao gerar comprovante: " + ex.getMessage());
         }
     }
 
