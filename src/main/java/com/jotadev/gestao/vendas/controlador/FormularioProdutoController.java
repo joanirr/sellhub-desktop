@@ -15,9 +15,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigDecimal;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 
 public class FormularioProdutoController implements ActionListener, MouseListener {
@@ -69,6 +71,7 @@ public class FormularioProdutoController implements ActionListener, MouseListene
            case "adicionar" -> { mostrarTelaDeCadastroProdutoCategoria(); break;}
            case "atualizar" -> { mostrarTelaDeCadastroParaAtualizar(); break;}
            case "remover" -> { removerProduto(); break;}
+           case "imprimir" -> { imprimirTabelaProdutos(); break;}
        }
        
        salvarCategoria();
@@ -283,6 +286,26 @@ public class FormularioProdutoController implements ActionListener, MouseListene
         ProdutoDto produtoTemp = tabelaModeloProduto.getProdutos().get(linha);
         preencherCamposProduto(produtoTemp);
     }
+    
+    private void imprimirTabelaProdutos() {
+        try {
+            MessageFormat header = new MessageFormat("Relatório de Produtos - Estoque Atual");
+            MessageFormat footer = new MessageFormat("Página {0,number,integer}");
+
+            boolean imprimir = formularioProduto.getTabelaProduto().print(
+                JTable.PrintMode.FIT_WIDTH, 
+                header, 
+                footer
+            );
+
+            if (imprimir) {
+                JOptionPane.showMessageDialog(null, "Impressão concluída com sucesso!");
+            }
+        } catch (java.awt.print.PrinterException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar imprimir: " + e.getMessage());
+        }
+    }
+    
 
     @Override
     public void mousePressed(MouseEvent e) {

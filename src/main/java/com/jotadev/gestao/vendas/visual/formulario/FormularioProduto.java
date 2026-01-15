@@ -134,6 +134,7 @@ public class FormularioProduto extends javax.swing.JPanel {
         botaoImprimir.setText("Imprimir");
         botaoImprimir.setActionCommand("imprimir");
         botaoImprimir.setName("imprimir"); // NOI18N
+        botaoImprimir.addActionListener(this::botaoImprimirActionPerformed);
         jPanel1.add(botaoImprimir);
 
         tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -185,6 +186,10 @@ public class FormularioProduto extends javax.swing.JPanel {
     private void botaoRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoRemoverActionPerformed
+
+    private void botaoImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoImprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

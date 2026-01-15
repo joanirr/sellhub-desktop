@@ -1,14 +1,20 @@
 package com.jotadev.gestao.vendas.modelo.repositorio.impl;
 
+import com.jotadev.gestao.vendas.controlador.FormularioProdutoController;
 import com.jotadev.gestao.vendas.modelo.conexao.ConexaoMySQL;
 import com.jotadev.gestao.vendas.modelo.entidade.Produto;
+import com.jotadev.gestao.vendas.visual.formulario.FormularioProduto;
+import java.awt.print.PrinterException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.Optional;
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class ProdutoRepositorioImpl extends CrudRepositorioImpl<Produto> {
 
@@ -105,4 +111,5 @@ public class ProdutoRepositorioImpl extends CrudRepositorioImpl<Produto> {
         }
         return 0L;
     }
+    
 }
