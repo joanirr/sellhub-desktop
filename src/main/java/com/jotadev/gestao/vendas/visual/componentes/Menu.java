@@ -75,7 +75,10 @@ public class Menu extends javax.swing.JPanel {
         graphics2D.fillRect(getWidth() - 20, 0, getWidth(), getHeight());
         super.paintComponent(g); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
+
+    public ImageAvatar getImageAvatar1() {
+        return imageAvatar1;
+    }
     
 
     @SuppressWarnings("unchecked")

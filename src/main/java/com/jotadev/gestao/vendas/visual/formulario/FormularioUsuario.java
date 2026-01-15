@@ -2,7 +2,9 @@ package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.FormularioUsuarioController;
 import com.jotadev.gestao.vendas.visual.componentes.ModernScrollBarUI;
+import com.jotadev.gestao.vendas.visual.componentes.Menu;
 import java.awt.Color;
+import static java.awt.SystemColor.menu;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -18,8 +20,12 @@ public class FormularioUsuario extends javax.swing.JPanel {
     
     private FormularioUsuarioController formularioUsuarioController;
     private Long usuarioId;
+    private com.jotadev.gestao.vendas.visual.componentes.Menu menuLateral;
 
-    public FormularioUsuario(Long usuarioId) {
+    public FormularioUsuario(Long usuarioId, com.jotadev.gestao.vendas.visual.componentes.Menu menu) {
+        this.usuarioId = usuarioId;
+        this.menuLateral = menu;
+
         initComponents();
         
         setOpaque(true);
@@ -43,7 +49,7 @@ public class FormularioUsuario extends javax.swing.JPanel {
     private void eventoDosBotoes() {
         botaoAtualizar.addActionListener(formularioUsuarioController);
         botaoAdicionar.addActionListener(formularioUsuarioController);
-        botaoSelecionarArquivo.addActionListener(formularioUsuarioController);
+//        botaoSelecionarArquivo.addActionListener(formularioUsuarioController);
         botaoImprimir.addActionListener(formularioUsuarioController);
         botaoPermissoes.addActionListener(formularioUsuarioController);
         botaoRemover.addActionListener(formularioUsuarioController);
@@ -229,6 +235,10 @@ public class FormularioUsuario extends javax.swing.JPanel {
     
     public JCheckBox getCheckBox17() {
         return jCheckBox17;
+    }
+
+    public Menu getMenuLateral() {
+        return menuLateral;
     }
 
     @SuppressWarnings("unchecked")

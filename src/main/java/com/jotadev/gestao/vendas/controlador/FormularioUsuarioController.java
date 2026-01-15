@@ -53,15 +53,24 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
         permissaoServico = new PermissaoServico();
         this.usuarioLogado = formularioUsuario.getUsuarioId();
         this.formularioUsuario.getBotaoSelecionarArquivo().addActionListener(this);
-        atualizarTabela();
+        javax.swing.Timer timer = new javax.swing.Timer(30000, (e) -> {
+            atualizarTabela();
+        });
+        timer.start();
     }
     
     private void atualizarTabela() {
         usuarios = usuarioServico.buscarTodos();
-        tabelaModeloUsuario = new TabelaModeloUsuario(usuarios);
-        formularioUsuario.getTabelaUsuarios().setModel(tabelaModeloUsuario);
-    }
+        
+        java.awt.EventQueue.invokeLater(() -> {
+            tabelaModeloUsuario = new TabelaModeloUsuario(usuarios);
+            formularioUsuario.getTabelaUsuarios().setModel(tabelaModeloUsuario);
 
+            formularioUsuario.getTabelaUsuarios().revalidate();
+            formularioUsuario.getTabelaUsuarios().repaint();
+        });
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         String acao = e.getActionCommand().toLowerCase();
@@ -130,8 +139,10 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             boolean resultado = usuarioServico.salvar(usuario);
             
             if (resultado) {
+                atualizarFotoNoMenu(formularioUsuario.getTxtFoto().getText());
                 mensagem(true, "Usuário salvo com sucesso!");
                 limparCamposUsuario();
+                atualizarTabela();
             }
             else
                 mensagem(false, "Erro ao cadastrar usuário.");
@@ -174,17 +185,12 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
     
     private void escolherArquivo() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Selecione a foto do usuário");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
         int retorno = fileChooser.showOpenDialog(formularioUsuario);
 
         if (retorno == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             urlFoto = file.getAbsolutePath();
             formularioUsuario.getTxtFoto().setText(urlFoto);
-
-            System.out.println("Foto selecionada: " + urlFoto);
         }
     }
     
@@ -258,6 +264,7 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             if (resultado) {
                 JOptionPane.showMessageDialog(null, "Usuário removido com sucesso!");
                 atualizarTabela();
+                usuario = null;
             } else {
             JOptionPane.showMessageDialog(null, "Erro ao remover usuário!", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -390,4 +397,25 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             JOptionPane.showMessageDialog(null, "Falha na impressão: " + e.getMessage());
         }
     }
+    
+    private void atualizarFotoNoMenu(String caminho) {
+    if (caminho == null || caminho.isEmpty()) return;
+
+    java.awt.Window janela = javax.swing.SwingUtilities.getWindowAncestor(formularioUsuario);
+
+    if (janela instanceof com.jotadev.gestao.vendas.visual.formulario.Dashboard principal) {
+        
+        try {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(caminho);
+            
+            principal.getMenu1().getImageAvatar1().setImage(icon);
+
+            principal.getMenu1().getImageAvatar1().repaint();
+            
+        } catch (Exception e) {
+            System.err.println("Erro ao carregar imagem: " + e.getMessage());
+        }
+    }
+}
+    
 }

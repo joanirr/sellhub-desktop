@@ -2,6 +2,7 @@ package com.jotadev.gestao.vendas.visual.formulario;
 
 import com.jotadev.gestao.vendas.controlador.FormularioPrincipalController;
 import com.jotadev.gestao.vendas.modelo.entidade.Usuario;
+import com.jotadev.gestao.vendas.visual.componentes.Menu;
 import java.awt.Color;
 import javax.swing.JComponent;
 
@@ -52,7 +53,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     private void inicializarFormulario(Long usuarioId) {
         formularioPrincipal = new FormularioPrincipal();
-        formularioUsuario = new FormularioUsuario(usuarioId);
+        formularioUsuario = new FormularioUsuario(usuarioId, menu1);
         formularioProduto = new FormularioProduto(usuarioId, this);
         formularioEstoque = new FormularioEstoque(usuarioId, formularioPrincipal);
         formularioVenda = new FormularioVenda(usuarioId);
@@ -64,6 +65,11 @@ public class Dashboard extends javax.swing.JFrame {
         panelPrincipal.repaint();
         panelPrincipal.revalidate();
     }
+
+    public Menu getMenu1() {
+        return menu1;
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
