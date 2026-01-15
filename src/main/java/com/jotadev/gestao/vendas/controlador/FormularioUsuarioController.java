@@ -8,11 +8,14 @@ import com.jotadev.gestao.vendas.modelo.servico.UsuarioServico;
 import com.jotadev.gestao.vendas.visual.formulario.FormularioUsuario;
 import com.jotadev.gestao.vendas.visual.modelo.TabelaModeloUsuario;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +25,8 @@ import java.util.Optional;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 public class FormularioUsuarioController implements ActionListener, MouseListener {
     
@@ -68,6 +73,7 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             case "salvarpermissao" -> { salvarPermissao(); }
             case "selecione" -> { escolherArquivo(); }
             case "remover" -> { remover(); }
+            case "imprimir" -> { imprimirUsuario(); }
         }
     }
     
@@ -336,5 +342,46 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
                     .forEach(pu -> permissaoServico.remover(pu));
             
             JOptionPane.showMessageDialog(null, "Permissão alterada com sucesso!");
+    }
+    
+    private void imprimirUsuario() {
+        int linhaSelecionada = formularioUsuario.getTabelaUsuarios().getSelectedRow();
+
+        try {
+            if (linhaSelecionada == -1) {
+                MessageFormat header = new MessageFormat("Relatório Geral de Usuários do Sistema");
+                MessageFormat footer = new MessageFormat("Página {0,number,integer}");
+
+                boolean imprimir = formularioUsuario.getTabelaUsuarios().print(
+                    JTable.PrintMode.FIT_WIDTH, 
+                    header, 
+                    footer
+                );
+
+                if (imprimir) {
+                    JOptionPane.showMessageDialog(null, "Relatório geral impresso com sucesso!");
+                }
+
+            } else {
+                Long id = (Long) formularioUsuario.getTabelaUsuarios().getValueAt(linhaSelecionada, 0);
+
+                String fichaCompleta = usuarioServico.gerarFichaDetalhadaUsuario(id);
+
+                JTextArea areaImpressao = new JTextArea(fichaCompleta);
+                areaImpressao.setFont(new Font("Monospaced", Font.PLAIN, 9));
+
+                boolean ok = areaImpressao.print(
+                    new MessageFormat("Perfil do Usuário #" + id),
+                    new MessageFormat("Sistema de Gestão - Sigiloso"),
+                    true, null, null, true
+                );
+
+                if (ok) {
+                    JOptionPane.showMessageDialog(null, "Ficha do usuário impressa com sucesso!");
+                }
+            }
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(null, "Falha na impressão: " + e.getMessage());
+        }
     }
 }
