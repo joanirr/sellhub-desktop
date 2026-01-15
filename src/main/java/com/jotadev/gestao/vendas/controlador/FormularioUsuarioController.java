@@ -52,6 +52,7 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
         usuarioServico = new UsuarioServico();
         permissaoServico = new PermissaoServico();
         this.usuarioLogado = formularioUsuario.getUsuarioId();
+        this.formularioUsuario.getBotaoSelecionarArquivo().addActionListener(this);
         atualizarTabela();
     }
     
@@ -71,7 +72,7 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
             case "salvar" -> { salvarUsuario(); }
             case "permissoes" -> { permissao(); }
             case "salvarpermissao" -> { salvarPermissao(); }
-            case "selecione" -> { escolherArquivo(); }
+            case "selecionar" -> { escolherArquivo(); }
             case "remover" -> { remover(); }
             case "imprimir" -> { imprimirUsuario(); }
         }
@@ -173,12 +174,17 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
     
     private void escolherArquivo() {
         JFileChooser fileChooser = new JFileChooser();
-        int retorno = fileChooser.showDialog(null, "Selecione");
-        
+        fileChooser.setDialogTitle("Selecione a foto do usuário");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        int retorno = fileChooser.showOpenDialog(formularioUsuario);
+
         if (retorno == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile().getAbsoluteFile();
+            File file = fileChooser.getSelectedFile();
             urlFoto = file.getAbsolutePath();
             formularioUsuario.getTxtFoto().setText(urlFoto);
+
+            System.out.println("Foto selecionada: " + urlFoto);
         }
     }
     
