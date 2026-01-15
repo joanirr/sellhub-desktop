@@ -17,9 +17,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class FormularioEstoqueController implements ActionListener, KeyListener, MouseListener{
     
@@ -64,6 +66,7 @@ public class FormularioEstoqueController implements ActionListener, KeyListener,
             case "atualizar" -> { mostrarTelaAtualizar(); break; }
             case "salvar" -> { salvar(); break; }
             case "remover" -> { remover(); break; }
+            case "imprimir" -> { imprimirRelatorioEstoque(); break; }
         }
     }
     private void mostrarTelaAdicionar() {
@@ -268,6 +271,25 @@ public class FormularioEstoqueController implements ActionListener, KeyListener,
         if (estoqueId == null) {
             JOptionPane.showMessageDialog(null, "Selecione a tabela!", "Erro.", JOptionPane.ERROR_MESSAGE);
             throw new RuntimeException();
+        }
+    }
+    
+    private void imprimirRelatorioEstoque() {
+        try {
+            MessageFormat header = new MessageFormat("Relatório de Inventário - Saldo de Estoque");
+            MessageFormat footer = new MessageFormat("Página {0,number,integer}");
+
+            boolean completo = formularioEstoque.getTabelaEstoque().print(
+                    JTable.PrintMode.FIT_WIDTH, 
+                    header, 
+                    footer
+            );
+
+            if (completo) {
+                JOptionPane.showMessageDialog(null, "Relatório de estoque impresso com sucesso!");
+            }
+        } catch (java.awt.print.PrinterException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao imprimir estoque: " + e.getMessage());
         }
     }
 }
