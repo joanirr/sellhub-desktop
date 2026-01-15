@@ -53,10 +53,7 @@ public class FormularioUsuarioController implements ActionListener, MouseListene
         permissaoServico = new PermissaoServico();
         this.usuarioLogado = formularioUsuario.getUsuarioId();
         this.formularioUsuario.getBotaoSelecionarArquivo().addActionListener(this);
-        javax.swing.Timer timer = new javax.swing.Timer(30000, (e) -> {
-            atualizarTabela();
-        });
-        timer.start();
+        atualizarTabela();
     }
     
     private void atualizarTabela() {
